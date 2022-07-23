@@ -1,9 +1,33 @@
-import React from 'react'
+import React from "react";
+import styled, {css} from "styled-components";
 
-const PhotoCard = () => {
+const PhotoCard = ({boardImg=""}) => {
   return (
-    <div>PhotoCard</div>
-  )
-}
+    <ImageBox>
+      <img
+        src={
+          boardImg
+            ? boardImg
+            : "https://placehold.jp/400x400.png"
+        }
+      />
+    </ImageBox>
+  );
+};
 
-export default PhotoCard
+const ImageBox = styled.div`
+    width: calc(100%/3);
+    height: calc(100/3vw);
+    max-width: 400px;
+    max-height: 400px;
+    margin-bottom: 0.1vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img{
+        width: 100%;
+        object-fit: contain;
+    }
+`;
+
+export default PhotoCard;
