@@ -16,17 +16,17 @@ const Makepost = () => {
   return (
     <WrapMakePost>
       <WrapPicAndReply>
-        <div style={{width:'50%',hight:"100%",backgroundColor:"yellow"}}>
-          <Test1>
+
+          <WrpaImg>
             <img src={UploadImg} style={{ width: "100%" }} />
-          </Test1>
-        </div>
-        <Test2>
+          </WrpaImg>
+    
+        <WrapText>
           <input type="file" ref={RefImg} onChange={DetectImg} />
           <div>
-            <textarea />
+            <input rows="14" cols="70"/>
           </div>
-        </Test2>
+        </WrapText>
       </WrapPicAndReply>
       <div>지도api</div>
       <div>
@@ -50,15 +50,25 @@ const WrapPicAndReply = styled.div`
   height: 500px;
   width: 1200px;
 `;
-const Test1 = styled.div`
-  background-color: blue;
-  margin: auto auto auto auto;
-`;
-const Test2 = styled.div`
-  height: 100%;
+const WrpaImg = styled.div`
+  /* background-color: blue; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 50%;
-  background-color: green;
+  
 `;
+const WrapText = styled.div`
+  /* background-color: blue; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  
+`;
+
 const MyBtn=styled.button`
   width: 100%;
 `
