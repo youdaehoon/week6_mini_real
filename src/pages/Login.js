@@ -3,21 +3,34 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-    const navigate=useNavigate();
+  const navigate = useNavigate();
   return (
     <WrapLogin>
       <Title>로그인</Title>
       <Margin_10px>
         <WrapInput>
-          <MyInput  placeholder="이메일" />
-          <MyInput  placeholder="비밀번호" />
+          <MyInput placeholder="이메일" />
+          <MyInput placeholder="비밀번호" />
         </WrapInput>
-        <Mybtn onClick={()=>{navigate('/')}}>로그인</Mybtn>
+        <Mybtn
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          로그인
+        </Mybtn>
         <WrapLinkText>
-          <div style={{display:"flex",flexDirection:"row"}}>
-            <LinkText>아이디/</LinkText><LinkText>비밀번호찾기</LinkText>
+          <div style={{ display: "flex", flexDirection: "row" }}>
+            <LinkText>아이디/</LinkText>
+            <LinkText>비밀번호찾기</LinkText>
           </div>
-          <LinkText onClick={()=>{navigate('/signup')}}>회원가입</LinkText>
+          <LinkText
+            onClick={() => {
+              navigate("/signup");
+            }}
+          >
+            회원가입
+          </LinkText>
         </WrapLinkText>
       </Margin_10px>
     </WrapLogin>

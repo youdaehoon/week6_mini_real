@@ -2,12 +2,12 @@ import React from "react";
 import styled from "styled-components";
 
 const Signup = () => {
-    const [MyFrofileImg,SetFrofileImg]=React.useState(
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlmv-ZuA9KAj9yb4y7UwSBYx_PjnSrBQJY-A&usqp=CAU"
-    );
-    const UploadFrofileImg=(e)=>{
-        SetFrofileImg(URL.createObjectURL(e.target.files[0]));
-    }
+  const [MyFrofileImg, SetFrofileImg] = React.useState(
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlmv-ZuA9KAj9yb4y7UwSBYx_PjnSrBQJY-A&usqp=CAU"
+  );
+  const UploadFrofileImg = (e) => {
+    SetFrofileImg(URL.createObjectURL(e.target.files[0]));
+  };
   return (
     <WrapLogin>
       <Title>회원가입</Title>
@@ -17,7 +17,7 @@ const Signup = () => {
           <MyInput placeholder="비밀번호" />
           <MyInput placeholder="비밀번호확인" />
           <MyInput placeholder="닉네임" />
-          <input type="file" onChange={UploadFrofileImg}/>
+          <input type="file" onChange={UploadFrofileImg} />
           <WrapFrofile>
             <ControlFrofileImg>
               <FrofileImg src={MyFrofileImg} />
@@ -31,6 +31,7 @@ const Signup = () => {
             <LinkText>아이디/</LinkText>
             <LinkText>비밀번호찾기</LinkText>
           </div>
+          
           <LinkText>회원가입</LinkText>
         </WrapLinkText>
       </Margin_10px>
@@ -71,26 +72,24 @@ const MyInput = styled.input`
   border-radius: 5px;
   height: 20px;
 `;
-const WrapFrofile=styled.div`
-    display: flex;
-    flex-direction: row;
-`
+const WrapFrofile = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
 const ControlFrofileImg = styled.div`
   width: 20px;
   height: 20px;
   border-radius: 10px;
   overflow: hidden;
-  
 `;
-const ControlNick=styled.div`
-    width : 90%;
-    text-align: center;
-   
-`
+const ControlNick = styled.div`
+  width: 90%;
+  text-align: center;
+`;
 const FrofileImg = styled.img`
-   width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
 const Mybtn = styled.button`
   background-color: #0d99ff;
