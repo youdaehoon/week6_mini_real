@@ -26,7 +26,7 @@ function addWords(wordData) {
       console.log("123123123현오현오");
       console.log("123123123현오현오");
       console.log("123123123현오현오");
-      dispatch({ type: "WORD/ADD_WORD", payload: new_word });
+      dispatch({ type: "WORD/ADD_WORD", payload: });
     };
   }
   
