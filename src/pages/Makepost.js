@@ -9,6 +9,9 @@ const Makepost = () => {
   const DetectImg = (e) => {
     SetUploadImg(URL.createObjectURL(e.target.files[0]));
   };
+  const onCickImageUpload=()=>{
+    RefImg.current.click()
+  }
 
   useEffect(() => {
     console.log(UploadImg);
@@ -21,7 +24,8 @@ const Makepost = () => {
         </WrpaImg>
 
         <WrapText>
-          <input type="file" ref={RefImg} onChange={DetectImg} />
+          <input type="file" ref={RefImg} onChange={DetectImg} style={{display:"none"}} />
+          <div style={{width:"100%",height:"30px"}}><MyBtn onClick={onCickImageUpload}>파일 선택</MyBtn></div>
           <div>
             <InputText />
           </div>
@@ -72,16 +76,25 @@ const WrpaImg = styled.div`
 `;
 const WrapText = styled.div`
   /* background-color: blue; */
+  background-color: #d6d0d0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 50%;
+  height:100%;
+`;
+const MyBtn = styled.button`
+  background-color: #0d99ff;
+  color: white;
+  border: 0px solid white;
+  border-radius: 4px;
+  width: 100%;
+  height: 30px;
+  margin-bottom: 10px;
 `;
 const InputText = styled.input`
   width: 50%;
 `;
 
-const MyBtn = styled.button`
-  width: 100%;
-`;
+

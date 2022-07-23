@@ -48,6 +48,7 @@ const WrapLogin = styled.div`
   gap: 20px;
   width: 600px;
   padding: 20px 0 20px 0;
+  border-radius: 10px;
   @media (max-width: 914px) {
     width: 90vw;
   }
@@ -76,6 +77,8 @@ const Mybtn = styled.button`
   border: 0px solid white;
   border-radius: 4px;
   width: 100%;
+  height: 3z0px;
+  margin-bottom: 10px;
 `;
 const WrapLinkText = styled.div`
   display: flex;
