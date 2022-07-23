@@ -9,15 +9,15 @@ const Login = () => {
       <Title>로그인</Title>
       <Margin_10px>
         <WrapInput>
-          <MyInput value="아이디" />
-          <MyInput value="비밀번호" />
+          <MyInput  placeholder="이메일" />
+          <MyInput  placeholder="비밀번호" />
         </WrapInput>
         <Mybtn onClick={()=>{navigate('/')}}>로그인</Mybtn>
         <WrapLinkText>
           <div style={{display:"flex",flexDirection:"row"}}>
             <LinkText>아이디/</LinkText><LinkText>비밀번호찾기</LinkText>
           </div>
-          <LinkText>회원가입</LinkText>
+          <LinkText onClick={()=>{navigate('/signup')}}>회원가입</LinkText>
         </WrapLinkText>
       </Margin_10px>
     </WrapLogin>

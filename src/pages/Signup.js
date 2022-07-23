@@ -25,7 +25,7 @@ const Signup = () => {
             <ControlNick>닉네임</ControlNick>
           </WrapFrofile>
         </WrapInput>
-        <Mybtn>로그인</Mybtn>
+        <Mybtn>회원가입</Mybtn>
         <WrapLinkText>
           <div style={{ display: "flex", flexDirection: "row" }}>
             <LinkText>아이디/</LinkText>

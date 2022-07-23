@@ -1,7 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const MainNavi = () => {
+  const navigate=useNavigate();
   return (
     <NaviFrame>
       <NaviWrap>
@@ -9,8 +11,8 @@ const MainNavi = () => {
           <h1>instagram</h1>
         </a>
         <span>
-          <button>로그인</button>
-          <button>회원가입</button>
+          <button onClick={()=>{navigate('/login')}}>로그인</button>
+          <button onClick={()=>{navigate('/signup')}}>회원가입</button>
         </span>
       </NaviWrap>
     </NaviFrame>
