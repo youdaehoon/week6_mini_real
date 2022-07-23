@@ -2,12 +2,22 @@ import React from "react";
 import styled from "styled-components";
 
 const Signup = () => {
-    const [MyFrofileImg,SetFrofileImg]=React.useState(
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlmv-ZuA9KAj9yb4y7UwSBYx_PjnSrBQJY-A&usqp=CAU"
-    );
-    const UploadFrofileImg=(e)=>{
-        SetFrofileImg(URL.createObjectURL(e.target.files[0]));
-    }
+  const [MyFrofileImg, SetFrofileImg] = React.useState(
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlmv-ZuA9KAj9yb4y7UwSBYx_PjnSrBQJY-A&usqp=CAU"
+  );
+  const [Nickname, SetNickname] = React.useState("닉네임이 나타납니다.!");
+  const RefNick = React.useRef(null);
+  const RefProfileImg = React.useRef(null);
+  const PreviewFrofileImg = (e) => {
+    SetFrofileImg(URL.createObjectURL(e.target.files[0]));
+  };
+  const PreviewFrofileNick = (e) => {
+    SetNickname(e.target.value);
+    console.log(e.target.value)
+  };
+  const onCickImageUpload = () => {
+    RefProfileImg.current.click();
+  };
   return (
     <WrapLogin>
       <Title>회원가입</Title>
@@ -15,14 +25,28 @@ const Signup = () => {
         <WrapInput>
           <MyInput placeholder="이메일" />
           <MyInput placeholder="비밀번호" />
-          <MyInput placeholder="비밀번호확인" />
-          <MyInput placeholder="닉네임" />
-          <input type="file" onChange={UploadFrofileImg}/>
+          <MyInput placeholder="비밀번호확인" /> 
+          <MyInput
+            placeholder="닉네임"
+            ref={RefNick}
+            onChange={PreviewFrofileNick}
+          />
+          <input type="file" ref={RefProfileImg} style={{display:"none"}} onChange={PreviewFrofileImg} />
+          <button onClick={onCickImageUpload}>파일 선택</button>
           <WrapFrofile>
             <ControlFrofileImg>
               <FrofileImg src={MyFrofileImg} />
             </ControlFrofileImg>
-            <ControlNick>닉네임</ControlNick>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                width: "90%",
+                alignItems: "center",
+              }}
+            >
+              <ControlNick>{Nickname}</ControlNick>
+            </div>
           </WrapFrofile>
         </WrapInput>
         <Mybtn>회원가입</Mybtn>
@@ -71,26 +95,26 @@ const MyInput = styled.input`
   border-radius: 5px;
   height: 20px;
 `;
-const WrapFrofile=styled.div`
-    display: flex;
-    flex-direction: row;
-`
-const ControlFrofileImg = styled.div`
-  width: 20px;
-  height: 20px;
-  border-radius: 10px;
-  overflow: hidden;
-  
+const WrapFrofile = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: 10px 0 10px 0;
 `;
-const ControlNick=styled.div`
-    width : 90%;
-    text-align: center;
-   
-`
+const ControlFrofileImg = styled.div`
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  overflow: hidden;
+`;
+const ControlNick = styled.div`
+  width: 90%;
+  text-align: center;
+  /* background-color: green; */
+`;
 const FrofileImg = styled.img`
-   width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
 const Mybtn = styled.button`
   background-color: #0d99ff;
@@ -98,6 +122,8 @@ const Mybtn = styled.button`
   border: 0px solid white;
   border-radius: 4px;
   width: 100%;
+  height: 30px;
+  margin-bottom: 10px;
 `;
 const WrapLinkText = styled.div`
   display: flex;
