@@ -5,8 +5,10 @@ import styled from 'styled-components';
 import {Routes, Route} from 'react-router-dom';
 // page, components
 import Home from './pages/Home';
-import Makepost from './pages/Makepost';
+import MakePost from './pages/MakePost';
 import MainNavi from './components/MainNavi';
+
+
 
 function App() {
   return (
@@ -15,7 +17,7 @@ function App() {
       <MainBody>
         <Routes>
           <Route path="/" element={<Home/>}/>
-          <Route path="/makepost" element={<Makepost/>}/>
+          <Route path="/makepost" element={<MakePost/>}/>
         </Routes>
       </MainBody>
     </div>
