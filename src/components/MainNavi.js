@@ -3,11 +3,17 @@ import styled from "styled-components";
 
 const MainNavi = () => {
   return (
-  <NaviFrame>
-    <NaviWrap>
-
-    </NaviWrap>
-  </NaviFrame>
+    <NaviFrame>
+      <NaviWrap>
+        <a href="/">
+          <h1>instagram</h1>
+        </a>
+        <span>
+          <button>로그인</button>
+          <button>로그아웃</button>
+        </span>
+      </NaviWrap>
+    </NaviFrame>
   );
 };
 
@@ -35,13 +41,13 @@ const NaviWrap = styled.div`
   a {
     margin-left: 10%;
     text-decoration: none;
-    color: #f1f3f5;
+    color: #black;
     > h1 {
       text-align: center;
       font-size: 25px;
       border: 0px solid transparent;
       background: transparent;
-      color: white;
+      color: black;
       transition: text-shadow 150ms ease-out;
       &:hover {
         text-shadow: 2px 2px 2px rgb(0, 173, 173, 1);
