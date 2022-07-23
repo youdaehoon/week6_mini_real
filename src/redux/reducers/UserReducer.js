@@ -3,7 +3,7 @@ import {createSlice} from '@reduxjs/toolkit';
 let initialState = {};
 
 const UserSlice = createSlice({
-    name:"",
+    name:"user",
     initialState,
     reducers:{
         // 리듀서 넣기
