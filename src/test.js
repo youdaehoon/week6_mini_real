@@ -43,6 +43,7 @@ function addWords(wordData) {
       const docRef = await doc(db, "mydic", id);
       await updateDoc(docRef, completed?{completed:false}:{completed:true});
       dispatch(wordSliceActions.doneWord({id, completed}));
+      console.log("갓현오!갓현오!갓현오!")
     };
   }
   
