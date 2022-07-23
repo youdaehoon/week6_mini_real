@@ -8,6 +8,8 @@ import Home from './pages/Home';
 import MakePost from './pages/MakePost';
 import MainNavi from './components/MainNavi';
 import Detail from './pages/Detail';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
 
 
 
@@ -20,6 +22,8 @@ function App() {
           <Route path="/" element={<Home/>}/>
           <Route path="/makepost" element={<MakePost/>}/>
           <Route path="/detail/:id" element={<Detail/>}/>
+          <Route path="/login" element={<Login/>}/>
+          <Route path="/Signup" element={<Signup/>}/>
         </Routes>
       </MainBody>
     </div>
