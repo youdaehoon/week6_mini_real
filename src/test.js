@@ -2,6 +2,30 @@ function addWords(wordData) {
     return async (dispatch) => {
       const docRef = await addDoc(collection(db, "mydic"), wordData);
       // const new_word = { id: docRef.id, ...wordData.data() };
+      console.log("123123123현오현오");
+      console.log("123123123현오현오");
+      console.log("123123123현오현오");
+      console.log("123123123현오현오");
+      console.log("123123123현오현오");
+      console.log("123123123현오현오");
+      console.log("123123123현오현오");
+      console.log("123123123현오현오");
+      console.log("123123123현오현오");
+      console.log("123123123현오현오");
+      console.log("123123123현오현오");
+      console.log("123123123현오현오");
+      console.log("123123123현오현오");
+      console.log("123123123현오현오");
+      console.log("123123123현오현오");
+      console.log("123123123현오현오");
+      console.log("123123123현오현오");
+      console.log("123123123현오현오");
+      console.log("123123123현오현오");
+      console.log("123123123현오현오");
+      console.log("123123123현오현오");
+      console.log("123123123현오현오");
+      console.log("123123123현오현오");
+      console.log("123123123현오현오");
       dispatch({ type: "WORD/ADD_WORD", payload: new_word });
     };
   }
