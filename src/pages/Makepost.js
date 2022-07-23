@@ -32,7 +32,7 @@ const Makepost = () => {
         </WrapText>
       </WrapPicAndReply>
       <br />
-      <div>지도api</div>
+      <div>지도 api</div>
       <div>
         <MyBtn>글쓰기</MyBtn>
       </div>
@@ -47,7 +47,7 @@ const WrapMakePost = styled.div`
   align-items: center;
   justify-content: center;
   width: 70vw;
- 
+
   /* background-color: green; */
 `;
 
@@ -60,7 +60,7 @@ const WrapPicAndReply = styled.div`
   @media (max-width: 914px) {
     flex-direction: column;
     align-items: center;
-  justify-content: center;
+    justify-content: center;
   }
 `;
 const WrpaImg = styled.div`
@@ -93,8 +93,8 @@ const MyBtn = styled.button`
   height: 30px;
   margin-bottom: 10px;
 `;
-const InputText =styled.input`
-  width : 50%
-`
+const InputText = styled.input`
+  width: 50%;
+`;
 
 

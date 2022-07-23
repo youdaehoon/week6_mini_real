@@ -1,28 +1,28 @@
-import React from 'react';
-import PhotoCard from '../components/PhotoCard';
-import styled from 'styled-components';
+import React from "react";
+import PhotoCard from "../components/PhotoCard";
+import styled from "styled-components";
 
 const Home = () => {
   return (
     <HomeWholeFrame>
-      <PhotoCard/>
-      <PhotoCard/>
-      <PhotoCard/>
-      <PhotoCard/>
-      <PhotoCard/>
-      <PhotoCard/>
-      <PhotoCard/>
-      <PhotoCard/>
-      <PhotoCard/>
-      <PhotoCard/>
-      <PhotoCard/>
-      <PhotoCard/>
-      <PhotoCard/>
-      <PhotoCard/>
-      <PhotoCard/>
+      <PhotoCard />
+      <PhotoCard />
+      <PhotoCard />
+      <PhotoCard />
+      <PhotoCard />
+      <PhotoCard />
+      <PhotoCard />
+      <PhotoCard />
+      <PhotoCard />
+      <PhotoCard />
+      <PhotoCard />
+      <PhotoCard />
+      <PhotoCard />
+      <PhotoCard />
+      <PhotoCard />
     </HomeWholeFrame>
-  )
-}
+  );
+};
 
 const HomeWholeFrame = styled.div`
   display: flex;
@@ -30,7 +30,6 @@ const HomeWholeFrame = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
   width: 100%;
-`
+`;
 
-
-export default Home
+export default Home;
