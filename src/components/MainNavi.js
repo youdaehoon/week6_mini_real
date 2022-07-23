@@ -10,7 +10,7 @@ const MainNavi = () => {
         </a>
         <span>
           <button>로그인</button>
-          <button>로그아웃</button>
+          <button>회원가입</button>
         </span>
       </NaviWrap>
     </NaviFrame>
@@ -41,7 +41,7 @@ const NaviWrap = styled.div`
   a {
     margin-left: 10%;
     text-decoration: none;
-    color: #black;
+    color: black;
     > h1 {
       text-align: center;
       font-size: 25px;
@@ -52,6 +52,16 @@ const NaviWrap = styled.div`
       &:hover {
         text-shadow: 2px 2px 2px rgb(0, 173, 173, 1);
       }
+    }
+  }
+
+  span {
+    margin-right: 10%;
+    button{
+        margin-left: 1rem;
+        border: 2px solid black;
+        background-color: transparent;
+        outline: none;
     }
   }
 `;
