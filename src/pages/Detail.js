@@ -22,14 +22,14 @@ const Detail = ({ boardImg }) => {
               <CommentsButton>작성하기</CommentsButton>
             </CommentsInputArea>
             <CommentsShowArea>
-                <Comment/>
-                <Comment/>
-                <Comment/>
-                <Comment/>
-                <Comment/>
-                <Comment/>
-                <Comment/>
-                <Comment/>
+              <Comment />
+              <Comment />
+              <Comment />
+              <Comment />
+              <Comment />
+              <Comment />
+              <Comment />
+              <Comment />
             </CommentsShowArea>
           </CommentsBox>
         </CommentsArea>

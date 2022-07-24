@@ -5,6 +5,7 @@ const Signup = () => {
   const [MyFrofileImg, SetFrofileImg] = React.useState(
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlmv-ZuA9KAj9yb4y7UwSBYx_PjnSrBQJY-A&usqp=CAU"
   );
+
   const [Nickname, SetNickname] = React.useState("닉네임이 나타납니다.!");
   const RefNick = React.useRef(null);
   const RefProfileImg = React.useRef(null);
@@ -18,6 +19,7 @@ const Signup = () => {
   const onCickImageUpload = () => {
     RefProfileImg.current.click();
   };
+
   return (
     <WrapLogin>
       <Title>회원가입</Title>
@@ -25,6 +27,7 @@ const Signup = () => {
         <WrapInput>
           <MyInput placeholder="이메일" />
           <MyInput placeholder="비밀번호" />
+
           <MyInput placeholder="비밀번호확인" /> 
           <MyInput
             placeholder="닉네임"
@@ -33,6 +36,7 @@ const Signup = () => {
           />
           <input type="file" ref={RefProfileImg} style={{display:"none"}} onChange={PreviewFrofileImg} />
           <button onClick={onCickImageUpload}>파일 선택</button>
+
           <WrapFrofile>
             <ControlFrofileImg>
               <FrofileImg src={MyFrofileImg} />
@@ -55,6 +59,7 @@ const Signup = () => {
             <LinkText>아이디/</LinkText>
             <LinkText>비밀번호찾기</LinkText>
           </div>
+          
           <LinkText>회원가입</LinkText>
         </WrapLinkText>
       </Margin_10px>
@@ -98,7 +103,9 @@ const MyInput = styled.input`
 const WrapFrofile = styled.div`
   display: flex;
   flex-direction: row;
+
   margin: 10px 0 10px 0;
+
 `;
 const ControlFrofileImg = styled.div`
   width: 50px;
@@ -109,7 +116,9 @@ const ControlFrofileImg = styled.div`
 const ControlNick = styled.div`
   width: 90%;
   text-align: center;
+
   /* background-color: green; */
+
 `;
 const FrofileImg = styled.img`
   width: 100%;

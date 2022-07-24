@@ -1,29 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
 // package
-import styled from 'styled-components';
-import {Routes, Route} from 'react-router-dom';
+import styled from "styled-components";
+import { Routes, Route } from "react-router-dom";
 // page, components
-import Home from './pages/Home';
-import MakePost from './pages/MakePost';
-import MainNavi from './components/MainNavi';
-import Detail from './pages/Detail';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
-
-
+import Home from "./pages/Home";
+import MakePost from "./pages/MakePost";
+import MainNavi from "./components/MainNavi";
+import Detail from "./pages/Detail";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 function App() {
   return (
     <div className="App">
-      <MainNavi/>
+      <MainNavi />
       <MainBody>
         <Routes>
-          <Route path="/" element={<Home/>}/>
-          <Route path="/makepost" element={<MakePost/>}/>
-          <Route path="/detail/:id" element={<Detail/>}/>
-          <Route path="/login" element={<Login/>}/>
-          <Route path="/Signup" element={<Signup/>}/>
+          <Route path="/" element={<Home />} />
+          <Route path="/makepost" element={<MakePost />} />
+          <Route path="/detail/:id" element={<Detail />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/Signup" element={<Signup />} />
         </Routes>
       </MainBody>
     </div>

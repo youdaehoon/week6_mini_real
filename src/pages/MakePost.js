@@ -45,7 +45,9 @@ const Makepost = () => {
         </WrapText>
       </WrapPicAndReply>
       <br />
+
       <WrapMap>지도api</WrapMap>
+
       <div>
         <MyBtn>글쓰기</MyBtn>
       </div>
