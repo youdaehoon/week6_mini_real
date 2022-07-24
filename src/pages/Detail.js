@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import Comment from "../components/Comment";
+import KakaoMapForDetail from "../components/KakaoMapForDetail";
 
-const Detail = ({ boardImg }) => {
+const Detail = ({ boardImg="https://dimg.donga.com/wps/NEWS/IMAGE/2017/08/31/86092017.1.jpg" }) => {
   const contextId = useParams();
+  const selectPosition = {"La": 128.5459692503228,"Ma": 35.826131559945495}
   return (
     <DatailFrame>
       <DatailTopFrame>
@@ -34,6 +36,10 @@ const Detail = ({ boardImg }) => {
           </CommentsBox>
         </CommentsArea>
       </DatailTopFrame>
+      <DatailBottomFrame>
+        <DetailMapField><KakaoMapForDetail selectPosition={selectPosition}/></DetailMapField>
+        <DetailContextArea>내용</DetailContextArea>
+      </DatailBottomFrame>
     </DatailFrame>
   );
 };
@@ -52,6 +58,7 @@ const DatailTopFrame = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-bottom: 1rem;
   @media screen and (max-width: 1200px) {
     flex-direction: column;
     justify-content: flex-start;
@@ -66,21 +73,22 @@ const PhotoArea = styled.div`
   align-items: center;
   justify-content: center;
   img {
-    width: 100%;
+    width: 600px;
+    height: 600px;
     object-fit: contain;
   }
 `;
 
 const CommentsArea = styled.div`
   width: 50%;
-  height: 100%;
+  height: 600px;
   display: flex;
   align-items: center;
   justify-content: center;
   @media screen and (max-width: 1200px) {
     margin-top: 1rem;
     width: 100%;
-    height: 500px;
+    height: 600px;
   }
 `;
 
@@ -130,10 +138,38 @@ const CommentsButton = styled.button`
 const CommentsShowArea = styled.div`
   background: white;
   width: 90%;
-  max-height: 500px;
+  max-height: 600px;
   height: 80%;
   border-radius: 0.5rem 0.5rem;
   overflow-y: scroll;
+`;
+
+const DatailBottomFrame = styled.div`
+  width: 100%;
+  margin-top: 0.5rem;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  @media screen and (max-width: 1200px) {
+    margin-left: 2%;
+    margin-right: 2%;
+  }
+`;
+
+const DetailMapField = styled.div`
+  background: #d9d9d9;
+  width: 60%;
+  max-height: 500px;
+  height: 100%;
+  border-radius: 0.5rem 0.5rem;
+`;
+
+const DetailContextArea = styled.div`
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export default Detail;
