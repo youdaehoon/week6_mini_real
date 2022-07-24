@@ -33,7 +33,7 @@ const WrapLogin = styled.div`
   align-items: center;
   justify-content: center;
   gap: 20px;
-  width: 600px;
+  width: 70vh;
   padding: 20px 0 20px 0;
   border-radius: 10px;
   @media (max-width: 914px) {
