@@ -3,11 +3,17 @@ import PhotoCard from "../components/PhotoCard";
 import styled from "styled-components";
 import "../modaltest/modal.css";
 
-const Home = () => {
- 
+const Home = ({ ModalInfo }) => {
+  const [ModalLogin, SetModalLogin] = ModalInfo.slice(0, 2);
+  const [ModalLoginOrSignup, SetModalLoginOrSignup] = ModalInfo.slice(2.2);
   return(
     <div>
-      <HomeWholeFrame>
+      <HomeWholeFrame
+      onClick={() => {
+        SetModalLogin(true);
+        SetModalLoginOrSignup("detail");
+      }}
+      >
         <PhotoCard />
         <PhotoCard />
         <PhotoCard />
