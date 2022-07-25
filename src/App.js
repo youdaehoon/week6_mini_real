@@ -17,8 +17,8 @@ function App() {
   const [Modal, SetModal] = React.useState(false);
   const [ModalLoginOrSignup, SetModalLoginOrSignup]= React.useState("login");
 
-  return (
-    <div className="App">
+  return (  
+    <AppBody>
       <MainNavi props={[Modal, SetModal,ModalLoginOrSignup, SetModalLoginOrSignup]} />
       <MainBody>
         <Routes>
