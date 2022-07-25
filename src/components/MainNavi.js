@@ -2,9 +2,14 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { BsFillPersonPlusFill } from "react-icons/bs";
+import Signup from "../pages/Signup";
 
-const MainNavi = (props) => {
-  const [ModalLogin, SetModalLogin] = props.props;
+const MainNavi = ({ModalInfo}) => {
+  const [ModalLogin, SetModalLogin] = ModalInfo.slice(0, 2);
+  const [ModalLoginOrSignup, SetModalLoginOrSignup] = ModalInfo.slice(2.2);
+
+  console.log("회원가입 모달도", ModalLogin, ModalLoginOrSignup);
+
 
   const navigate = useNavigate();
   return (
@@ -17,17 +22,19 @@ const MainNavi = (props) => {
           <button
             onClick={() => {
               SetModalLogin(true);
+              SetModalLoginOrSignup("login");
             }}
           >
-            Login
+            로그인
           </button>
-          <div
+          <button
             onClick={() => {
-              navigate("/signup");
+              SetModalLogin(true);
+              SetModalLoginOrSignup("signup");
             }}
           >
-            <BsFillPersonPlusFill size={55} />
-          </div>
+            회원가입
+          </button>
         </span>
       </NaviWrap>
     </NaviFrame>
