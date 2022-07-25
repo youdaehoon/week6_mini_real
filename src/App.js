@@ -16,17 +16,28 @@ import Makepost from "./pages/MakePost";
 
 function App() {
   const [Modal, SetModal] = React.useState(false);
-  const [ModalLoginOrSignup, SetModalLoginOrSignup]= React.useState("login");
+  const [ModalLoginOrSignup, SetModalLoginOrSignup] = React.useState("login");
   const [is_login, setIsLogin] = React.useState(false);
 
-  return (  
+  return (
     <AppBody>
-      <MainNavi ModalInfo={[Modal, SetModal,ModalLoginOrSignup, SetModalLoginOrSignup]} />
+      <MainNavi
+        ModalInfo={[Modal, SetModal, ModalLoginOrSignup, SetModalLoginOrSignup]}
+      />
       <MainBody>
         <Routes>
           <Route
             path="/"
-            element={<Home  ModalInfo={[Modal, SetModal,ModalLoginOrSignup, SetModalLoginOrSignup]}/>}
+            element={
+              <Home
+                ModalInfo={[
+                  Modal,
+                  SetModal,
+                  ModalLoginOrSignup,
+                  SetModalLoginOrSignup,
+                ]}
+              />
+            }
           />
           <Route path="/makepost" element={<MakePost />} />
           <Route path="/detail/:id" element={<Detail />} />
@@ -38,7 +49,15 @@ function App() {
             <div className="overlay"></div>
             <div className="modal-content">
               <div>
-              {ModalLoginOrSignup=="login"?<Login />:ModalLoginOrSignup=="makepost"?<MakePost/>:ModalLoginOrSignup=="detail"?<Detail/>:<Signup/>}
+                {ModalLoginOrSignup == "login" ? (
+                  <Login />
+                ) : ModalLoginOrSignup == "makepost" ? (
+                  <MakePost />
+                ) : ModalLoginOrSignup == "detail" ? (
+                  <Detail />
+                ) : (
+                  <Signup />
+                )}
               </div>
 
               <div className="close-modal">
@@ -61,7 +80,7 @@ function App() {
 const AppBody = styled.div`
   margin: 0;
   padding: 0;
-`
+`;
 
 const MainBody = styled.div`
   display: flex;

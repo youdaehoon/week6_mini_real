@@ -2,12 +2,6 @@ body.active-modal {
     overflow-y: hidden;
 }
 
-.btn-modal {
-    padding: 10px 20px;
-    display: block;
-    margin: 100px auto 0;
-    font-size: 18px;
-}
 
 .modal, .overlay {
     width: 100vw;
@@ -37,6 +31,7 @@ body.active-modal {
     max-height: 800px;
     overflow-y: scroll;
 }
+
 
 .close-modal {
     position: absolute;
