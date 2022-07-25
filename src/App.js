@@ -14,11 +14,12 @@ import Signup from "./pages/Signup";
 import { GrFormClose } from "react-icons/gr";
 
 function App() {
-  const [ModalLogin, SetModalLogin] = React.useState(false);
+  const [Modal, SetModal] = React.useState(false);
+  const [ModalLoginOrSignup, SetModalLoginOrSignup]= React.useState("login");
 
   return (
     <div className="App">
-      <MainNavi props={[ModalLogin, SetModalLogin]} />
+      <MainNavi props={[Modal, SetModal,ModalLoginOrSignup, SetModalLoginOrSignup]} />
       <MainBody>
         <Routes>
           <Route
@@ -30,19 +31,19 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/Signup" element={<Signup />} />
         </Routes>
-        {ModalLogin && (
+        {Modal && (
           <div className="modal">
             <div className="overlay"></div>
             <div className="modal-content">
               <div>
-                <Login />{" "}
+              {ModalLoginOrSignup=="login"?<Login />:<Signup/>}
               </div>
 
               <div className="close-modal">
                 <GrFormClose
                   size={35}
                   onClick={() => {
-                    SetModalLogin(false);
+                    SetModal(false);
                     console.log("버튼작동하니?");
                   }}
                 />

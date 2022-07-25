@@ -1,14 +1,15 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import Signup from "../pages/Signup";
 
 const MainNavi = (props) => {
-  
+  const [ModalLogin, SetModalLogin] = props.props.slice(0, 2);
+  const [ModalLoginOrSignup, SetModalLoginOrSignup] = props.props.slice(2.2);
 
-  const [ModalLogin,SetModalLogin]=props.props;
+  console.log("회원가입 모달도", ModalLogin, ModalLoginOrSignup);
 
-
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   return (
     <NaviFrame>
       <NaviWrap>
@@ -16,8 +17,22 @@ const MainNavi = (props) => {
           <h1>instagram</h1>
         </a>
         <span>
-          <button onClick={()=>{SetModalLogin(true)}}>로그인</button>
-          <button onClick={()=>{navigate('/signup')}}>회원가입</button>
+          <button
+            onClick={() => {
+              SetModalLogin(true);
+              SetModalLoginOrSignup("login");
+            }}
+          >
+            로그인
+          </button>
+          <button
+            onClick={() => {
+              SetModalLogin(true);
+              SetModalLoginOrSignup("signup");
+            }}
+          >
+            회원가입
+          </button>
         </span>
       </NaviWrap>
     </NaviFrame>
@@ -64,11 +79,11 @@ const NaviWrap = styled.div`
 
   span {
     margin-right: 10%;
-    button{
-        margin-left: 1rem;
-        border: 2px solid black;
-        background-color: transparent;
-        outline: none;
+    button {
+      margin-left: 1rem;
+      border: 2px solid black;
+      background-color: transparent;
+      outline: none;
     }
   }
 `;
