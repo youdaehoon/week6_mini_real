@@ -2,8 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { BsFillPersonPlusFill,BsPlusSquareFill,BsPlusSquare } from "react-icons/bs";
-import { GoKey } from "react-icons/go"
-import Signup from "../pages/Signup";
+import { GoKey } from "react-icons/go";
 
 const MainNavi = ({ ModalOpen, SetModalOpen,ModalRequiredName, SetModalRequiredName }) => {
 
@@ -23,7 +22,7 @@ const MainNavi = ({ ModalOpen, SetModalOpen,ModalRequiredName, SetModalRequiredN
               SetModalRequiredName("login");
             }}
           >
-            <GoKey size={40}/>
+            <GoKey size={30}/>
           </div>
           <div
             onClick={() => {
@@ -31,7 +30,7 @@ const MainNavi = ({ ModalOpen, SetModalOpen,ModalRequiredName, SetModalRequiredN
               SetModalRequiredName("makepost");
             }}
           >
-            {ModalOpen&&ModalRequiredName=="makepost"?(<BsPlusSquareFill size={40}/>):(<BsPlusSquare className="emptyBt" size={40}/>)}
+            {ModalOpen&&ModalRequiredName=="makepost"?(<BsPlusSquareFill size={30}/>):(<BsPlusSquare className="emptyBt" size={30}/>)}
           </div>
           <div
             onClick={() => {
@@ -40,7 +39,7 @@ const MainNavi = ({ ModalOpen, SetModalOpen,ModalRequiredName, SetModalRequiredN
             }}
           >
             <BsFillPersonPlusFill
-              size={40}
+              size={30}
             />
           </div>
         </span>
@@ -76,7 +75,7 @@ const NaviWrap = styled.div`
     color: black;
     > h1 {
       text-align: center;
-      font-size: 25px;
+      font-size: 32px;
       border: 0px solid transparent;
       background: transparent;
       color: black;
@@ -89,22 +88,6 @@ const NaviWrap = styled.div`
     flex-direction: row;
     justify-content: space-between;
     margin-right: 10%;
-    span {
-      margin-left: 1rem;
-      border: 2px solid black;
-      background-color: black;
-      color: white;
-      padding: 0 2rem 0 2rem;
-      border-radius: 1rem;
-      outline: none;
-      font-size: 20px;
-      border: 1px solid black;
-      transition: all 150ms ease-out;
-      &:hover {
-        border: 1px solid black;
-        box-shadow: 3px 5px 2px rgb(0, 0, 0, 0.4);
-      }
-    }
     div {
       margin-left: 1rem;
       display: flex;
