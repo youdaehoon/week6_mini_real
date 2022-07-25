@@ -28,11 +28,11 @@ body.active-modal {
     left: 50%;
     transform: translate(-50%, -50%);
     line-height: 1.4;
-    background: #f1f1f1;
+    background: white;
     padding: 14px 28px;
     border-radius: 10px;
-    width: 350px;
-    height: 370px;
+    width: 500px;
+    height: 500px;
 }
 
 .close-modal {

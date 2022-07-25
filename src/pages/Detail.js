@@ -37,6 +37,7 @@ const Detail = ({ boardImg="https://dimg.donga.com/wps/NEWS/IMAGE/2017/08/31/860
         </CommentsArea>
       </DatailTopFrame>
       <DatailBottomFrame>
+        
         <DetailMapField><KakaoMapForDetail selectPosition={selectPosition}/></DetailMapField>
         <DetailContextArea>내용</DetailContextArea>
       </DatailBottomFrame>

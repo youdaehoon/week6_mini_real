@@ -17,21 +17,22 @@ const Login = () => {
         <WrapInput>
           <MyInput placeholder="이메일" />
           <MyInput placeholder="비밀번호" />
-        </WrapInput>
-        <Mybtn
+          <Mybtn
           onClick={() => {
             navigate("/");
           }}
         >
           로그인
         </Mybtn>
+        </WrapInput>
+       
         <WrapLinkText>
           <div style={{ display: "flex", flexDirection: "row" }}>
             <LinkText>아이디/</LinkText>
             <LinkText>비밀번호찾기</LinkText>
           </div>
         
-          <button>로그인</button>
+          
           <p/>
           <LinkText
             onClick={() => {
@@ -57,9 +58,7 @@ const WrapLogin = styled.div`
   width: 100%;
   padding: 20px 0 20px 0;
   border-radius: 10px;
-  @media (max-width: 914px) {
-    width: 90vw;
-  }
+ 
 `;
 const Margin_10px = styled.div`
   margin: 20px 10px;
@@ -75,17 +74,20 @@ const WrapInput = styled.div`
 `;
 const MyInput = styled.input`
   margin-bottom: 10px;
-  border: 0px solid white;
+  border: 0.1px solid #dbdbdb;
   border-radius: 5px;
   height: 40px;
 `;
 const Mybtn = styled.button`
   color: white;
+  background-color: rgb(182 217 240);
+  font-size: 14px;
   border: 0px solid white;
   border-radius: 4px;
   width: 100%;
-  height: 3z0px;
+  height: 40px;
   margin-bottom: 10px;
+  margin-top: 30px;
 `;
 const WrapLinkText = styled.div`
   display: flex;
