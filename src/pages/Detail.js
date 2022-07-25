@@ -5,7 +5,7 @@ import Comment from "../components/Comment";
 import KakaoMapForDetail from "../components/KakaoMapForDetail";
 
 const Detail = ({
-  boardImg = "https://dimg.donga.com/wps/NEWS/IMAGE/2017/08/31/86092017.1.jpg",
+  boardImg = "https://cdn.imweb.me/thumbnail/20190903/8c6f0688b77c5.jpg",
 }) => {
   const contextId = useParams();
   const selectPosition = { La: 128.5459692503228, Ma: 35.826131559945495 };

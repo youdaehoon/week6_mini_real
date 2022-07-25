@@ -1,13 +1,15 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { BsFillPersonPlusFill } from "react-icons/bs";
 import Signup from "../pages/Signup";
 
-const MainNavi = (props) => {
-  const [ModalLogin, SetModalLogin] = props.props.slice(0, 2);
-  const [ModalLoginOrSignup, SetModalLoginOrSignup] = props.props.slice(2.2);
+const MainNavi = ({ModalInfo}) => {
+  const [ModalLogin, SetModalLogin] = ModalInfo.slice(0, 2);
+  const [ModalLoginOrSignup, SetModalLoginOrSignup] = ModalInfo.slice(2.2);
 
   console.log("회원가입 모달도", ModalLogin, ModalLoginOrSignup);
+
 
   const navigate = useNavigate();
   return (
@@ -78,12 +80,35 @@ const NaviWrap = styled.div`
   }
 
   span {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     margin-right: 10%;
     button {
       margin-left: 1rem;
       border: 2px solid black;
-      background-color: transparent;
+      background-color: black;
+      color: white;
+      padding: 0 2rem 0 2rem;
+      border-radius: 1rem;
       outline: none;
+      font-size: 20px;
+      border: 1px solid black;
+      transition: all 150ms ease-out;
+      &:hover {
+        border: 1px solid black;
+        box-shadow: 3px 5px 2px rgb(0, 0, 0, 0.4);
+      }
+    }
+    div{
+      margin-left: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.2s linear;
+      &:hover {
+        filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
+      }
     }
   }
 `;
