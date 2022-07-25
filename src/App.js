@@ -17,7 +17,7 @@ function App() {
   const [ModalLogin, SetModalLogin] = React.useState(false);
 
   return (
-    <div className="App">
+    <AppBody>
       <MainNavi props={[ModalLogin, SetModalLogin]} />
       <MainBody>
         <Routes>
@@ -51,9 +51,14 @@ function App() {
           </div>
         )}
       </MainBody>
-    </div>
+    </AppBody>
   );
 }
+
+const AppBody = styled.div`
+  margin: 0;
+  padding: 0;
+`
 
 const MainBody = styled.div`
   display: flex;
