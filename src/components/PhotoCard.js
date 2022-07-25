@@ -5,9 +5,9 @@ const PhotoCard = ({ boardImg = "" , SetModalOpen, SetModalRequiredName, SetKey,
   console.log(Cardkey);
   return (
     <ImageBox onClick={() => {
-      SetKey(Cardkey);
-      SetModalOpen(true);
-      SetModalRequiredName("detail");
+        SetKey(Cardkey);
+        SetModalOpen(true);
+        SetModalRequiredName("detail");
     }}>
       <img src={boardImg ? boardImg : "https://placehold.jp/400x400.png"} />
     </ImageBox>

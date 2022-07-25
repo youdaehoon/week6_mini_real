@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import instgramletter from "../image/InstagramLetter.png"
+import instgramletter from "../image/InstagramLetter.png";
 
 const Signup = () => {
   const [MyFrofileImg, SetFrofileImg] = React.useState(
@@ -26,17 +26,24 @@ const Signup = () => {
       <img src={instgramletter} width="50%" style={{ marginTop: "60px" }} />
       <Margin_10px>
         <WrapInput>
-        <MyInput placeholder="이메일" />
+          <MyInput placeholder="이메일" />
           <MyInput placeholder="비밀번호" />
 
-          <MyInput placeholder="비밀번호확인" /> 
+          <MyInput placeholder="비밀번호확인" />
           <MyInput
             placeholder="닉네임"
             ref={RefNick}
             onChange={PreviewFrofileNick}
           />
-          <input type="file" ref={RefProfileImg} style={{display:"none"}} onChange={PreviewFrofileImg} />
-          <button onClick={onCickImageUpload} style={{marginTop:"10px"}}>프로필 선택</button>
+          <input
+            type="file"
+            ref={RefProfileImg}
+            style={{ display: "none" }}
+            onChange={PreviewFrofileImg}
+          />
+          <button onClick={onCickImageUpload} style={{ marginTop: "10px" }}>
+            프로필 선택
+          </button>
           <WrapFrofile>
             <ControlFrofileImg>
               <FrofileImg src={MyFrofileImg} />
@@ -52,8 +59,6 @@ const Signup = () => {
               <ControlNick>{Nickname}</ControlNick>
             </div>
           </WrapFrofile>
-
-
         </WrapInput>
         <Mybtn>회원가입</Mybtn>
         <WrapLinkText>
@@ -104,8 +109,6 @@ const WrapFrofile = styled.div`
   display: flex;
   flex-direction: row;
   margin-top: 10px;
-
-
 `;
 const ControlFrofileImg = styled.div`
   width: 50px;
@@ -118,7 +121,6 @@ const ControlNick = styled.div`
   font-weight: bold;
 
   /* background-color: green; */
-
 `;
 const FrofileImg = styled.img`
   width: 100%;

@@ -100,7 +100,7 @@ const PhotoArea = styled.div`
     object-fit: contain;
   }
   @media screen and (max-width: 1200px) {
-    width: 100%;
+      width: 100%;
   }
 `;
 
