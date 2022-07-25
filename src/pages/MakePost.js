@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import Frofile from "../components/Frofile";
+import KakaoMapForPost from "../components/KakaoMapForPost";
 
 const Makepost = () => {
   const [UploadImg, SetUploadImg] = React.useState(
@@ -46,7 +47,9 @@ const Makepost = () => {
       </WrapPicAndReply>
       <br />
 
-      <WrapMap></WrapMap>
+      <WrapMap>
+      <KakaoMapForPost/>
+      </WrapMap>
 
       <div>
         <MyBtn>글쓰기</MyBtn>
