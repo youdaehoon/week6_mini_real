@@ -48,11 +48,10 @@ const MakePostImg = ({ files, setFiles, SetMakeProcess }) => {
       <div {...getRootProps()} style={{ width: "100%", height: "726px" }}>
         <input {...getInputProps()} />
         <p>Drop files here</p>
-        <div style={{display:"flex",flexDirection:"row"}}>
-        {images}
-        <InputText placeholder="문구입력.." />
+        <div style={{ display: "flex", flexDirection: "row" }}>
+          {images}
+          <InputText placeholder="문구입력.." />
         </div>
-       
       </div>
     </div>
   );

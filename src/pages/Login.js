@@ -1,39 +1,33 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import instgramletter from "../image/InstagramLetter.png"
+import instgramletter from "../image/InstagramLetter.png";
 
 const Login = () => {
   const navigate = useNavigate();
   return (
     <WrapLogin>
-      <img
-    src={ instgramletter }
-    width='50%'
-   
-    style={{marginTop:"60px"}}
-    />
-       <Margin_10px>
+      <img src={instgramletter} width="50%" style={{ marginTop: "60px" }} />
+      <Margin_10px>
         <WrapInput>
           <MyInput placeholder="이메일" />
           <MyInput placeholder="비밀번호" />
           <Mybtn
-          onClick={() => {
-            navigate("/");
-          }}
-        >
-          로그인
-        </Mybtn>
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            로그인
+          </Mybtn>
         </WrapInput>
-       
+
         <WrapLinkText>
           <div style={{ display: "flex", flexDirection: "row" }}>
             <LinkText>아이디/</LinkText>
             <LinkText>비밀번호찾기</LinkText>
           </div>
-        
-          
-          <p/>
+
+          <p />
           <LinkText
             onClick={() => {
               navigate("/signup");
@@ -58,7 +52,6 @@ const WrapLogin = styled.div`
   width: 100%;
   padding: 20px 0 20px 0;
   border-radius: 10px;
- 
 `;
 const Margin_10px = styled.div`
   margin: 20px 10px;
