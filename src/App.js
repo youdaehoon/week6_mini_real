@@ -16,10 +16,11 @@ import { GrFormClose } from "react-icons/gr";
 function App() {
   const [Modal, SetModal] = React.useState(false);
   const [ModalLoginOrSignup, SetModalLoginOrSignup]= React.useState("login");
+  const [is_login, setIsLogin] = React.useState(false);
 
   return (
-    <div className="App">
-      <MainNavi props={[Modal, SetModal,ModalLoginOrSignup, SetModalLoginOrSignup]} />
+    <AppBody>
+      <MainNavi ModalInfo={[Modal, SetModal,ModalLoginOrSignup, SetModalLoginOrSignup]} />
       <MainBody>
         <Routes>
           <Route

@@ -143,6 +143,7 @@ const Map_wrap = styled.div`
   position: relative;
   width: 100%;
   height: 500px;
+  z-index: 0;
   div:first-child {
     border-radius: 0 0 10px 10px;
   }
@@ -152,7 +153,7 @@ const Map_wrap = styled.div`
     top: 10px;
     border-radius: 2px;
     background: rgba(255, 255, 255, 0.8);
-    z-index: 1;
+    z-index: 0;
     padding: 5px;
     #centerAddr {
       display: block;
