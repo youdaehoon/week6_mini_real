@@ -1,7 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 // package
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Routes, Route } from "react-router-dom";
 // page, components
@@ -12,7 +12,7 @@ import Detail from "./pages/Detail";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { GrFormClose } from "react-icons/gr";
-import Makepost from "./pages/MakePost";
+import { RiCloseLine } from "react-icons/ri";
 
 function App() {
   const [ModalOpen, SetModalOpen] = React.useState(false);
@@ -40,13 +40,24 @@ function App() {
               />
             }
           />
-          <Route path="/makepost" element={<MakePost />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/Signup" element={<Signup />} />
         </Routes>
         {ModalOpen && (
-          <div className="modal">
-            <div className="overlay"></div>
+          <Modal>
+            <Overlay>
+              {ModalRequiredName == "detail" ? (
+                <div className="close-modal">
+                  <RiCloseLine
+                    size={50}
+                    color="#fff"
+                    onClick={() => {
+                      SetModalOpen(false);
+                    }}
+                  />
+                </div>
+              ) : (
+                <></>
+              )}
+            </Overlay>
 
             <div>
               {ModalRequiredName == "login" ? (
@@ -57,53 +68,41 @@ function App() {
                       size={35}
                       onClick={() => {
                         SetModalOpen(false);
-                        console.log("버튼작동하니?");
                       }}
                     />
                   </div>
                 </div>
               ) : ModalRequiredName == "makepost" ? (
                 <div className="modal-content">
-                <MakePost />
-                <div className="close-modal">
+                  <MakePost />
+                  <div className="close-modal">
                     <GrFormClose
                       size={35}
                       onClick={() => {
                         SetModalOpen(false);
-                        console.log("버튼작동하니?");
                       }}
                     />
                   </div>
                 </div>
               ) : ModalRequiredName == "detail" ? (
                 <div className="modal-content-detail">
-                <Detail Cardkey={Cardkey} />
-                <div className="close-modal">
-                <GrFormClose
-                  size={35}
-                  onClick={() => {
-                    SetModalOpen(false);
-                    console.log("버튼작동하니?");
-                  }}
-                />
-              </div>
-            </div>
+                  <Detail Cardkey={Cardkey} />
+                </div>
               ) : (
                 <div className="modal-content">
-                <Signup />
-                <div className="close-modal">
-                <GrFormClose
-                  size={35}
-                  onClick={() => {
-                    SetModalOpen(false);
-                    console.log("버튼작동하니?");
-                  }}
-                />
-              </div>
-            </div>
+                  <Signup />
+                  <div className="close-modal">
+                    <GrFormClose
+                      size={35}
+                      onClick={() => {
+                        SetModalOpen(false);
+                      }}
+                    />
+                  </div>
+                </div>
               )}
             </div>
-          </div>
+          </Modal>
         )}
       </MainBody>
     </AppBody>
@@ -123,6 +122,27 @@ const MainBody = styled.div`
   top: 100px;
   width: 100%;
   height: auto;
+`;
+
+const Modal = styled.div`
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+`;
+
+const Overlay = styled.div`
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  background: rgba(49, 49, 49, 0.8);
 `;
 
 export default App;

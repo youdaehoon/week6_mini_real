@@ -1,7 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { BsFillPersonPlusFill } from "react-icons/bs";
+import { BsFillPersonPlusFill,BsPlusSquareFill,BsPlusSquare } from "react-icons/bs";
+import { GoKey } from "react-icons/go"
 import Signup from "../pages/Signup";
 
 const MainNavi = ({ ModalOpen, SetModalOpen,ModalRequiredName, SetModalRequiredName }) => {
@@ -12,26 +13,26 @@ const MainNavi = ({ ModalOpen, SetModalOpen,ModalRequiredName, SetModalRequiredN
   return (
     <NaviFrame>
       <NaviWrap>
-        <a href="/">
+        <a>
           <h1>instagram</h1>
         </a>
         <span>
-          <button
+          <div
             onClick={() => {
               SetModalOpen(true);
               SetModalRequiredName("login");
             }}
           >
-            로그인
-          </button>
-          <button
+            <GoKey size={40}/>
+          </div>
+          <div
             onClick={() => {
               SetModalOpen(true);
               SetModalRequiredName("makepost");
             }}
           >
-            작성하기
-          </button>
+            {ModalOpen&&ModalRequiredName=="makepost"?(<BsPlusSquareFill size={40}/>):(<BsPlusSquare className="emptyBt" size={40}/>)}
+          </div>
           <div
             onClick={() => {
               SetModalOpen(true);
@@ -39,7 +40,7 @@ const MainNavi = ({ ModalOpen, SetModalOpen,ModalRequiredName, SetModalRequiredN
             }}
           >
             <BsFillPersonPlusFill
-              size={50}
+              size={40}
             />
           </div>
         </span>
@@ -56,7 +57,7 @@ const NaviFrame = styled.div`
   position: absolute;
   top: 0px;
   left: 0px;
-  z-index: 10;
+  z-index: 0;
   width: 100%;
 `;
 
@@ -80,9 +81,6 @@ const NaviWrap = styled.div`
       background: transparent;
       color: black;
       transition: text-shadow 150ms ease-out;
-      &:hover {
-        text-shadow: 2px 2px 2px rgb(0, 173, 173, 1);
-      }
     }
   }
 
@@ -114,7 +112,7 @@ const NaviWrap = styled.div`
       align-items: center;
       transition: all 0.2s linear;
       &:hover {
-        filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
+        filter: drop-shadow(2px 2px 5px rgb(0 0 0 / 0.4));
       }
     }
   }

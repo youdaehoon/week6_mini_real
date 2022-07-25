@@ -16,7 +16,7 @@ const PhotoCard = ({ boardImg = "" , SetModalOpen, SetModalRequiredName, SetKey,
 
 const ImageBox = styled.div`
   width: calc(100% / 3);
-  height: calc(100 / 3vw);
+  height: calc(100vw / 3);
   max-width: 400px;
   max-height: 400px;
   margin-bottom: 0.1vw;
@@ -30,7 +30,8 @@ const ImageBox = styled.div`
   }
   img {
     width: 100%;
-    object-fit: contain;
+    height: 100%;
+    object-fit: cover;
   }
 `;
 
