@@ -15,6 +15,7 @@ import { GrFormClose } from "react-icons/gr";
 
 function App() {
   const [ModalLogin, SetModalLogin] = React.useState(false);
+  const [is_login, setIsLogin] = React.useState(false);
 
   return (
     <AppBody>

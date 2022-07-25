@@ -1,14 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { BsFillPersonPlusFill } from "react-icons/bs";
 
 const MainNavi = (props) => {
-  
+  const [ModalLogin, SetModalLogin] = props.props;
 
-  const [ModalLogin,SetModalLogin]=props.props;
-
-
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   return (
     <NaviFrame>
       <NaviWrap>
@@ -16,8 +14,20 @@ const MainNavi = (props) => {
           <h1>instagram</h1>
         </a>
         <span>
-          <button onClick={()=>{SetModalLogin(true)}}>로그인</button>
-          <button onClick={()=>{navigate('/signup')}}>회원가입</button>
+          <button
+            onClick={() => {
+              SetModalLogin(true);
+            }}
+          >
+            Login
+          </button>
+          <div
+            onClick={() => {
+              navigate("/signup");
+            }}
+          >
+            <BsFillPersonPlusFill size={55} />
+          </div>
         </span>
       </NaviWrap>
     </NaviFrame>
@@ -63,12 +73,35 @@ const NaviWrap = styled.div`
   }
 
   span {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     margin-right: 10%;
-    button{
-        margin-left: 1rem;
-        border: 2px solid black;
-        background-color: transparent;
-        outline: none;
+    button {
+      margin-left: 1rem;
+      border: 2px solid black;
+      background-color: black;
+      color: white;
+      padding: 0 2rem 0 2rem;
+      border-radius: 1rem;
+      outline: none;
+      font-size: 20px;
+      border: 1px solid black;
+      transition: all 150ms ease-out;
+      &:hover {
+        border: 1px solid black;
+        box-shadow: 3px 5px 2px rgb(0, 0, 0, 0.4);
+      }
+    }
+    div{
+      margin-left: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.2s linear;
+      &:hover {
+        filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
+      }
     }
   }
 `;
