@@ -4,7 +4,7 @@ import KakaoMapForEdit from "./KakaoMapForEdit";
 const KakaoMapForPost = () => {
     const [InputText, setInputText] = useState('')
     const [Place, setPlace] = useState('')
-    const [selectPosition, setSelectPosition] = useState()
+    const [selectPosition, setSelectPosition] = useState() // 위치정보 redux보낼얘
   
     const onChange = (e) => {
       setInputText(e.target.value)

@@ -1,13 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import instgramletter from "../image/InstagramLetter.png"
 
 const Login = () => {
   const navigate = useNavigate();
   return (
     <WrapLogin>
-      <Title>로그인</Title>
-      <Margin_10px>
+      <img
+    src={ instgramletter }
+    width='50%'
+   
+    style={{marginTop:"60px"}}
+    />
+       <Margin_10px>
         <WrapInput>
           <MyInput placeholder="이메일" />
           <MyInput placeholder="비밀번호" />
@@ -24,6 +30,9 @@ const Login = () => {
             <LinkText>아이디/</LinkText>
             <LinkText>비밀번호찾기</LinkText>
           </div>
+        
+          <button>로그인</button>
+          <p/>
           <LinkText
             onClick={() => {
               navigate("/signup");
@@ -42,11 +51,10 @@ export default Login;
 const WrapLogin = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #d6d0d0;
   align-items: center;
   justify-content: center;
   gap: 20px;
-  width: 70vh;
+  width: 100%;
   padding: 20px 0 20px 0;
   border-radius: 10px;
   @media (max-width: 914px) {
@@ -54,8 +62,8 @@ const WrapLogin = styled.div`
   }
 `;
 const Margin_10px = styled.div`
-  margin: 0 10px 0 10px;
-  width: 60%;
+  margin: 20px 10px;
+  width: 80%;
 `;
 const Title = styled.div`
   font-weight: bold;
@@ -69,10 +77,9 @@ const MyInput = styled.input`
   margin-bottom: 10px;
   border: 0px solid white;
   border-radius: 5px;
-  height: 20px;
+  height: 40px;
 `;
 const Mybtn = styled.button`
-  background-color: #0d99ff;
   color: white;
   border: 0px solid white;
   border-radius: 4px;
