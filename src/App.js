@@ -52,9 +52,14 @@ function App() {
           </div>
         )}
       </MainBody>
-    </div>
+    </AppBody>
   );
 }
+
+const AppBody = styled.div`
+  margin: 0;
+  padding: 0;
+`
 
 const MainBody = styled.div`
   display: flex;
