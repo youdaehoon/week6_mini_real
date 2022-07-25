@@ -2,7 +2,12 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const MainNavi = () => {
+const MainNavi = (props) => {
+  
+
+  const [ModalLogin,SetModalLogin]=props.props;
+
+
   const navigate=useNavigate();
   return (
     <NaviFrame>
@@ -11,7 +16,7 @@ const MainNavi = () => {
           <h1>instagram</h1>
         </a>
         <span>
-          <button onClick={()=>{navigate('/login')}}>로그인</button>
+          <button onClick={()=>{SetModalLogin(true)}}>로그인</button>
           <button onClick={()=>{navigate('/signup')}}>회원가입</button>
         </span>
       </NaviWrap>

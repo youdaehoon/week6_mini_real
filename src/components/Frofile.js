@@ -28,6 +28,7 @@ const WrapFrofile = styled.div`
   flex-direction: row;
   margin: 10px 0 10px 0;
   height: 100%;
+  background-color: white;
 `;
 const ControlFrofileImg = styled.div`
   width: 20px;
