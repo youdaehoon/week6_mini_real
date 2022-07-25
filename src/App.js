@@ -1,6 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 // package
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Routes, Route } from "react-router-dom";
 // page, components
@@ -10,19 +11,45 @@ import MainNavi from "./components/MainNavi";
 import Detail from "./pages/Detail";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import { GrFormClose } from "react-icons/gr";
 
 function App() {
+  const [ModalLogin, SetModalLogin] = React.useState(false);
+
   return (
     <div className="App">
-      <MainNavi />
+      <MainNavi props={[ModalLogin, SetModalLogin]} />
       <MainBody>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route
+            path="/"
+            element={<Home  />}
+          />
           <Route path="/makepost" element={<MakePost />} />
           <Route path="/detail/:id" element={<Detail />} />
           <Route path="/login" element={<Login />} />
           <Route path="/Signup" element={<Signup />} />
         </Routes>
+        {ModalLogin && (
+          <div className="modal">
+            <div className="overlay"></div>
+            <div className="modal-content">
+              <div>
+                <Login />{" "}
+              </div>
+
+              <div className="close-modal">
+                <GrFormClose
+                  size={35}
+                  onClick={() => {
+                    SetModalLogin(false);
+                    console.log("버튼작동하니?");
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+        )}
       </MainBody>
     </div>
   );

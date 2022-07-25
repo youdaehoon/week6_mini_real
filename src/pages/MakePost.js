@@ -96,7 +96,7 @@ const Img = styled.img`
   object-fit: contain;
 `;
 const WrpaImg = styled.div`
-  background-color: #d6d0d0;
+  background-color: #d9d9d9;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -109,7 +109,7 @@ const WrpaImg = styled.div`
   }
 `;
 const WrapText = styled.div`
-  background-color: #d6d0d0;
+  background-color: #d9d9d9;
   display: flex;
   flex-direction: column;
   align-items: center;

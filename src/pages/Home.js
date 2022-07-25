@@ -1,26 +1,31 @@
 import React from "react";
 import PhotoCard from "../components/PhotoCard";
 import styled from "styled-components";
+import "../modaltest/modal.css";
+
 
 const Home = () => {
-  return (
-    <HomeWholeFrame>
-      <PhotoCard />
-      <PhotoCard />
-      <PhotoCard />
-      <PhotoCard />
-      <PhotoCard />
-      <PhotoCard />
-      <PhotoCard />
-      <PhotoCard />
-      <PhotoCard />
-      <PhotoCard />
-      <PhotoCard />
-      <PhotoCard />
-      <PhotoCard />
-      <PhotoCard />
-      <PhotoCard />
-    </HomeWholeFrame>
+ 
+  return(
+    <div>
+      <HomeWholeFrame>
+        <PhotoCard />
+        <PhotoCard />
+        <PhotoCard />
+        <PhotoCard />
+        <PhotoCard />
+        <PhotoCard />
+        <PhotoCard />
+        <PhotoCard />
+        <PhotoCard />
+        <PhotoCard />
+        <PhotoCard />
+        <PhotoCard />
+        <PhotoCard />
+        <PhotoCard />
+        <PhotoCard />
+      </HomeWholeFrame>
+    </div>
   );
 };
 
@@ -31,5 +36,7 @@ const HomeWholeFrame = styled.div`
   flex-wrap: wrap;
   width: 100%;
 `;
+
+
 
 export default Home;
