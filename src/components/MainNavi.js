@@ -4,11 +4,9 @@ import styled from "styled-components";
 import { BsFillPersonPlusFill } from "react-icons/bs";
 import Signup from "../pages/Signup";
 
-const MainNavi = ({ ModalInfo }) => {
-  const [ModalLogin, SetModalLogin] = ModalInfo.slice(0, 2);
-  const [ModalLoginOrSignup, SetModalLoginOrSignup] = ModalInfo.slice(2.2);
+const MainNavi = ({ ModalOpen, SetModalOpen,ModalRequiredName, SetModalRequiredName }) => {
 
-  console.log("회원가입 모달도", ModalLogin, ModalLoginOrSignup);
+  console.log("회원가입 모달도", ModalOpen, ModalRequiredName);
 
   const navigate = useNavigate();
   return (
@@ -20,24 +18,24 @@ const MainNavi = ({ ModalInfo }) => {
         <span>
           <button
             onClick={() => {
-              SetModalLogin(true);
-              SetModalLoginOrSignup("login");
+              SetModalOpen(true);
+              SetModalRequiredName("login");
             }}
           >
             로그인
           </button>
           <button
             onClick={() => {
-              SetModalLogin(true);
-              SetModalLoginOrSignup("makepost");
+              SetModalOpen(true);
+              SetModalRequiredName("makepost");
             }}
           >
             작성하기
           </button>
           <div
             onClick={() => {
-              SetModalLogin(true);
-              SetModalLoginOrSignup("signup");
+              SetModalOpen(true);
+              SetModalRequiredName("signup");
             }}
           >
             <BsFillPersonPlusFill
