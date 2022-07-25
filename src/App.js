@@ -13,7 +13,7 @@ import Signup from "./pages/Signup";
 
 function App() {
   return (
-    <div className="App">
+    <AppBody>
       <MainNavi />
       <MainBody>
         <Routes>
@@ -24,9 +24,14 @@ function App() {
           <Route path="/Signup" element={<Signup />} />
         </Routes>
       </MainBody>
-    </div>
+    </AppBody>
   );
 }
+
+const AppBody = styled.div`
+  margin: 0;
+  padding: 0;
+`
 
 const MainBody = styled.div`
   display: flex;
