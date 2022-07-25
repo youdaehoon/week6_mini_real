@@ -15,37 +15,46 @@ import { GrFormClose } from "react-icons/gr";
 import Makepost from "./pages/MakePost";
 
 function App() {
-  const [Modal, SetModal] = React.useState(false);
-  const [ModalLoginOrSignup, SetModalLoginOrSignup]= React.useState("login");
+  const [ModalOpen, SetModalOpen] = React.useState(false);
+  const [ModalRequiredName, SetModalRequiredName] = React.useState("login");
   const [is_login, setIsLogin] = React.useState(false);
+  const [Cardkey, SetKey] = React.useState();
 
-  return (  
+  return (
     <AppBody>
-      <MainNavi ModalInfo={[Modal, SetModal,ModalLoginOrSignup, SetModalLoginOrSignup]} />
+      <MainNavi ModalOpen={ModalOpen} SetModalOpen={SetModalOpen} ModalRequiredName={ModalRequiredName} SetModalRequiredName={SetModalRequiredName}
+      />
       <MainBody>
         <Routes>
           <Route
             path="/"
-            element={<Home  ModalInfo={[Modal, SetModal,ModalLoginOrSignup, SetModalLoginOrSignup]}/>}
-          />
+            element={<Home SetModalOpen={SetModalOpen} SetModalRequiredName={SetModalRequiredName} SetKey={SetKey}/>}
+            />
           <Route path="/makepost" element={<MakePost />} />
-          <Route path="/detail/:id" element={<Detail />} />
           <Route path="/login" element={<Login />} />
           <Route path="/Signup" element={<Signup />} />
         </Routes>
-        {Modal && (
+        {ModalOpen && (
           <div className="modal">
             <div className="overlay"></div>
             <div className="modal-content">
               <div>
-              {ModalLoginOrSignup=="login"?<Login />:ModalLoginOrSignup=="makepost"?<MakePost/>:ModalLoginOrSignup=="detail"?<Detail/>:<Signup/>}
+                {ModalRequiredName == "login" ? (
+                  <Login />
+                ) : ModalRequiredName == "makepost" ? (
+                  <MakePost />
+                ) : ModalRequiredName == "detail" ? (
+                  <Detail Cardkey={Cardkey}/>
+                ) : (
+                  <Signup />
+                )}
               </div>
 
               <div className="close-modal">
                 <GrFormClose
                   size={35}
                   onClick={() => {
-                    SetModal(false);
+                    SetModalOpen(false);
                     console.log("버튼작동하니?");
                   }}
                 />
@@ -61,7 +70,7 @@ function App() {
 const AppBody = styled.div`
   margin: 0;
   padding: 0;
-`
+`;
 
 const MainBody = styled.div`
   display: flex;
