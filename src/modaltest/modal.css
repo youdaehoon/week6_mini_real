@@ -29,6 +29,20 @@ body.active-modal {
     min-width: 500px;
     min-height: 500px;
     max-height: 800px;
+}
+
+.modal-content-detail {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translate(-50%, -50%);
+    line-height: 1.4;
+    background: white;
+    padding: 14px 28px;
+    border-radius: 10px;
+    min-width: 500px;
+    min-height: 500px;
+    max-height: 800px;
     overflow-y: scroll;
 }
 

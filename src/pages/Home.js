@@ -3,32 +3,14 @@ import PhotoCard from "../components/PhotoCard";
 import styled from "styled-components";
 import "../modaltest/modal.css";
 
-const Home = ({ ModalInfo }) => {
-  const [ModalLogin, SetModalLogin] = ModalInfo.slice(0, 2);
-  const [ModalLoginOrSignup, SetModalLoginOrSignup] = ModalInfo.slice(2.2);
+const Home = ({ ModalOpen, SetModalOpen, ModalRequiredName, SetModalRequiredName, SetKey }) => {
   return(
     <div>
-      <HomeWholeFrame
-      onClick={() => {
-        SetModalLogin(true);
-        SetModalLoginOrSignup("detail");
-      }}
-      >
-        <PhotoCard />
-        <PhotoCard />
-        <PhotoCard />
-        <PhotoCard />
-        <PhotoCard />
-        <PhotoCard />
-        <PhotoCard />
-        <PhotoCard />
-        <PhotoCard />
-        <PhotoCard />
-        <PhotoCard />
-        <PhotoCard />
-        <PhotoCard />
-        <PhotoCard />
-        <PhotoCard />
+      <HomeWholeFrame>
+        <PhotoCard SetModalOpen={SetModalOpen} SetModalRequiredName={SetModalRequiredName} Cardkey="1" SetKey={SetKey}/>
+        <PhotoCard SetModalOpen={SetModalOpen} SetModalRequiredName={SetModalRequiredName} Cardkey="2" SetKey={SetKey}/>
+        <PhotoCard SetModalOpen={SetModalOpen} SetModalRequiredName={SetModalRequiredName} Cardkey="3" SetKey={SetKey}/>
+        <PhotoCard SetModalOpen={SetModalOpen} SetModalRequiredName={SetModalRequiredName} Cardkey="4" SetKey={SetKey}/>
       </HomeWholeFrame>
     </div>
   );

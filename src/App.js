@@ -15,14 +15,18 @@ import { GrFormClose } from "react-icons/gr";
 import Makepost from "./pages/MakePost";
 
 function App() {
-  const [Modal, SetModal] = React.useState(false);
-  const [ModalLoginOrSignup, SetModalLoginOrSignup] = React.useState("login");
+  const [ModalOpen, SetModalOpen] = React.useState(false);
+  const [ModalRequiredName, SetModalRequiredName] = React.useState("login");
   const [is_login, setIsLogin] = React.useState(false);
+  const [Cardkey, SetKey] = React.useState();
 
   return (
     <AppBody>
       <MainNavi
-        ModalInfo={[Modal, SetModal, ModalLoginOrSignup, SetModalLoginOrSignup]}
+        ModalOpen={ModalOpen}
+        SetModalOpen={SetModalOpen}
+        ModalRequiredName={ModalRequiredName}
+        SetModalRequiredName={SetModalRequiredName}
       />
       <MainBody>
         <Routes>
@@ -30,45 +34,74 @@ function App() {
             path="/"
             element={
               <Home
-                ModalInfo={[
-                  Modal,
-                  SetModal,
-                  ModalLoginOrSignup,
-                  SetModalLoginOrSignup,
-                ]}
+                SetModalOpen={SetModalOpen}
+                SetModalRequiredName={SetModalRequiredName}
+                SetKey={SetKey}
               />
             }
           />
           <Route path="/makepost" element={<MakePost />} />
-          <Route path="/detail/:id" element={<Detail />} />
           <Route path="/login" element={<Login />} />
           <Route path="/Signup" element={<Signup />} />
         </Routes>
-        {Modal && (
+        {ModalOpen && (
           <div className="modal">
             <div className="overlay"></div>
-            <div className="modal-content">
-              <div>
-                {ModalLoginOrSignup == "login" ? (
-                  <Login />
-                ) : ModalLoginOrSignup == "makepost" ? (
-                  <MakePost />
-                ) : ModalLoginOrSignup == "detail" ? (
-                  <Detail />
-                ) : (
-                  <Signup />
-                )}
-              </div>
 
-              <div className="close-modal">
+            <div>
+              {ModalRequiredName == "login" ? (
+                <div className="modal-content">
+                  <Login />
+                  <div className="close-modal">
+                    <GrFormClose
+                      size={35}
+                      onClick={() => {
+                        SetModalOpen(false);
+                        console.log("버튼작동하니?");
+                      }}
+                    />
+                  </div>
+                </div>
+              ) : ModalRequiredName == "makepost" ? (
+                <div className="modal-content">
+                <MakePost />
+                <div className="close-modal">
+                    <GrFormClose
+                      size={35}
+                      onClick={() => {
+                        SetModalOpen(false);
+                        console.log("버튼작동하니?");
+                      }}
+                    />
+                  </div>
+                </div>
+              ) : ModalRequiredName == "detail" ? (
+                <div className="modal-content-detail">
+                <Detail Cardkey={Cardkey} />
+                <div className="close-modal">
                 <GrFormClose
                   size={35}
                   onClick={() => {
-                    SetModal(false);
+                    SetModalOpen(false);
                     console.log("버튼작동하니?");
                   }}
                 />
               </div>
+            </div>
+              ) : (
+                <div className="modal-content">
+                <Signup />
+                <div className="close-modal">
+                <GrFormClose
+                  size={35}
+                  onClick={() => {
+                    SetModalOpen(false);
+                    console.log("버튼작동하니?");
+                  }}
+                />
+              </div>
+            </div>
+              )}
             </div>
           </div>
         )}
