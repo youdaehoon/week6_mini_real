@@ -18,7 +18,7 @@ function App() {
   const [ModalLoginOrSignup, SetModalLoginOrSignup]= React.useState("login");
   const [is_login, setIsLogin] = React.useState(false);
 
-  return (
+  return (  
     <AppBody>
       <MainNavi ModalInfo={[Modal, SetModal,ModalLoginOrSignup, SetModalLoginOrSignup]} />
       <MainBody>
