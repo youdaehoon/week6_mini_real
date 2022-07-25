@@ -26,6 +26,14 @@ const MainNavi = ({ ModalInfo }) => {
           >
             로그인
           </button>
+          <button
+            onClick={() => {
+              SetModalLogin(true);
+              SetModalLoginOrSignup("makepost");
+            }}
+          >
+            작성하기
+          </button>
           <div
             onClick={() => {
               SetModalLogin(true);

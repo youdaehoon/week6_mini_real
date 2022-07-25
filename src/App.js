@@ -12,6 +12,7 @@ import Detail from "./pages/Detail";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { GrFormClose } from "react-icons/gr";
+import Makepost from "./pages/MakePost";
 
 function App() {
   const [Modal, SetModal] = React.useState(false);
@@ -25,7 +26,7 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<Home  />}
+            element={<Home  ModalInfo={[Modal, SetModal,ModalLoginOrSignup, SetModalLoginOrSignup]}/>}
           />
           <Route path="/makepost" element={<MakePost />} />
           <Route path="/detail/:id" element={<Detail />} />
@@ -37,7 +38,7 @@ function App() {
             <div className="overlay"></div>
             <div className="modal-content">
               <div>
-              {ModalLoginOrSignup=="login"?<Login />:<Signup/>}
+              {ModalLoginOrSignup=="login"?<Login />:ModalLoginOrSignup=="makepost"?<MakePost/>:ModalLoginOrSignup=="detail"?<Detail/>:<Signup/>}
               </div>
 
               <div className="close-modal">
