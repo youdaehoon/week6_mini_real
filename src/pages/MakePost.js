@@ -22,9 +22,7 @@ const Makepost = () => {
     <WrapMakePost>
       <WrapPicAndReply>
         <WrpaImg>
-        
-          <Img src={UploadImg}  />
-        
+          <Img src={UploadImg} />
         </WrpaImg>
 
         <WrapText>
@@ -37,23 +35,21 @@ const Makepost = () => {
           <div style={{ width: "100%", height: "30px" }}>
             <MyBtn onClick={onCickImageUpload}>파일 선택</MyBtn>
           </div>
-          <div style={{width:"100%"}}>
+          <div style={{ width: "100%" }}>
             <WrapFrofile>
               <Frofile />
             </WrapFrofile>
-            <InputText placeholder="문구입력.."/>
+            <InputText placeholder="문구입력.." />
           </div>
         </WrapText>
       </WrapPicAndReply>
       <br />
 
       <WrapMap>
-      <KakaoMapForPost/>
+        <KakaoMapForPost />
       </WrapMap>
 
-      <div>
-        <MyBtn>글쓰기</MyBtn>
-      </div>
+      <MyBtn>글 작성하기</MyBtn>
     </WrapMakePost>
   );
 };
@@ -70,8 +66,6 @@ const WrapMakePost = styled.div`
   margin-top: 40px;
 
   padding: 30px;
-
-
 `;
 
 const WrapPicAndReply = styled.div`
@@ -87,17 +81,20 @@ const WrapPicAndReply = styled.div`
     justify-content: center;
   }
 `;
-const WrapMap=styled.div`
-  width: 500px;
-  height: 500px;
-  background-color:green;
-`
-const Img=styled.img`
-width:400px;
-height: 400px;
-object-fit: contain;
-  
-`
+
+const WrapMap = styled.div`
+  width: 100%;
+  height: auto;
+  background-color: transparent;
+  border: 1px solid #d6d0d0;
+  box-shadow: 0 0 10px #d6d0d0;
+  border-radius: 10px;
+`;
+const Img = styled.img`
+  width: 400px;
+  height: 400px;
+  object-fit: contain;
+`;
 const WrpaImg = styled.div`
   background-color: #d6d0d0;
   display: flex;
@@ -116,7 +113,7 @@ const WrapText = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   width: 50%;
   height: 400px;
   padding: 0 20px 0 20px;
@@ -127,14 +124,14 @@ const MyBtn = styled.button`
   color: white;
   border: 0px solid white;
   border-radius: 4px;
-  width: 200px;
-  height: 30px;
+  width: 100%;
+  height: 50px;
   margin-bottom: 10px;
   margin-top: 10px;
 `;
-const WrapFrofile=styled.div`
-  height:20px;
-`
+const WrapFrofile = styled.div`
+  height: 20px;
+`;
 const InputText = styled.textarea`
   width: 100%;
   height: 200px;

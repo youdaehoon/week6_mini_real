@@ -41,6 +41,8 @@ const KakaoMapForEdit = ({ searchPlace, setSelectPosition }) => {
 
           // 마커를 클릭한 위치에 표시합니다
           setSelectPosition(mouseEvent.latLng);
+          console.log(mouseEvent.latLng);
+          console.log(detailAddr);
           marker.setPosition(mouseEvent.latLng);
           marker.setMap(map);
 
@@ -125,7 +127,7 @@ const KakaoMapForEdit = ({ searchPlace, setSelectPosition }) => {
       <div
         id="myMap"
         style={{
-          width: "500px",
+          width: "100%",
           height: "500px",
         }}
       ></div>
@@ -140,7 +142,10 @@ const KakaoMapForEdit = ({ searchPlace, setSelectPosition }) => {
 const Map_wrap = styled.div`
   position: relative;
   width: 100%;
-  height: 350px;
+  height: 500px;
+  div:first-child {
+    border-radius: 0 0 10px 10px;
+  }
   .hAddr {
     position: absolute;
     left: 10px;
