@@ -129,8 +129,8 @@ const KakaoMapForEdit = ({ searchPlace, setSelectPosition }) => {
           height: "500px",
         }}
       ></div>
-      <div class="hAddr">
-        <span class="title">주소정보</span>
+      <div className="hAddr">
+        <span className="title">주소정보</span>
         <span id="centerAddr"></span>
       </div>
     </Map_wrap>
