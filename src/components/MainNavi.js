@@ -4,12 +4,11 @@ import styled from "styled-components";
 import { BsFillPersonPlusFill } from "react-icons/bs";
 import Signup from "../pages/Signup";
 
-const MainNavi = ({ModalInfo}) => {
+const MainNavi = ({ ModalInfo }) => {
   const [ModalLogin, SetModalLogin] = ModalInfo.slice(0, 2);
   const [ModalLoginOrSignup, SetModalLoginOrSignup] = ModalInfo.slice(2.2);
 
   console.log("회원가입 모달도", ModalLogin, ModalLoginOrSignup);
-
 
   const navigate = useNavigate();
   return (
@@ -27,14 +26,16 @@ const MainNavi = ({ModalInfo}) => {
           >
             로그인
           </button>
-          <button
+          <div
             onClick={() => {
               SetModalLogin(true);
               SetModalLoginOrSignup("signup");
             }}
           >
-            회원가입
-          </button>
+            <BsFillPersonPlusFill
+              size={50}
+            />
+          </div>
         </span>
       </NaviWrap>
     </NaviFrame>
@@ -84,7 +85,7 @@ const NaviWrap = styled.div`
     flex-direction: row;
     justify-content: space-between;
     margin-right: 10%;
-    button {
+    span {
       margin-left: 1rem;
       border: 2px solid black;
       background-color: black;
@@ -100,7 +101,7 @@ const NaviWrap = styled.div`
         box-shadow: 3px 5px 2px rgb(0, 0, 0, 0.4);
       }
     }
-    div{
+    div {
       margin-left: 1rem;
       display: flex;
       justify-content: center;
