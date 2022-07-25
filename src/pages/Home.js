@@ -3,7 +3,6 @@ import PhotoCard from "../components/PhotoCard";
 import styled from "styled-components";
 import "../modaltest/modal.css";
 
-
 const Home = () => {
  
   return(

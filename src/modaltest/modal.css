@@ -32,7 +32,7 @@ body.active-modal {
     padding: 14px 28px;
     border-radius: 10px;
     width: 500px;
-    height: 500px;
+    min-height: 500px;
 }
 
 .close-modal {
