@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useDropzone } from "react-dropzone";
+import Frofile from "./Frofile";
 
 const MakePostImg = ({ files, setFiles, SetMakeProcess }) => {
   const { getRootProps, getInputProps } = useDropzone({
@@ -16,41 +17,62 @@ const MakePostImg = ({ files, setFiles, SetMakeProcess }) => {
     },
   });
   const images = files.map((file) => (
-    <div key={file.name}>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          backgroundColor: "green",
-          width: "50%",
-        }}
-      >
-        <img src={file.preview} style={{ width: "100%" }} alt="preview" />
-      </div>
+    <div
+      key={file.name}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "green",
+        width: "50%",
+      }}
+    >
+      <img src={file.preview} style={{ width: "100%" }} alt="preview" />
     </div>
   ));
+
   return (
     <div>
       <WrapMakeImgHead>
         새 게시물 만들기
-        {files[0] && (
-          <HeadBtn
-            onClick={() => {
-              SetMakeProcess("maketext");
-            }}
-          >
-            다음
-          </HeadBtn>
-        )}
+        {files[0] && <HeadBtn onClick={() => {}}>공유하기</HeadBtn>}
       </WrapMakeImgHead>
       <hr style={{ border: "solid 1px black" }} />
-      <div {...getRootProps()} style={{ width: "100%", height: "726px" }}>
-        <input {...getInputProps()} />
-        <p>Drop files here</p>
-        <div style={{ display: "flex", flexDirection: "row" }}>
-          {images}
-          <InputText placeholder="문구입력.." />
+      <div style={{ display: "flex" }}>
+        <div
+          {...getRootProps()}
+          style={{
+            width: "50%",
+            height: "372px",
+            backgroundImage: "url('https://placehold.jp/400x400.png')",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+          }}
+        >
+          <input {...getInputProps()} style={{ display: "none" }} />
+          {files[0] && (
+            <img
+              src={files[0].preview}
+              style={{ width: "100%", height: "372px", objectFit: "contain" }}
+            />
+          )}
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            height: "372px",
+            width: "50%",
+          }}
+        >
+          <div style={{ height: "30px", marginTop: "-15px" }}>
+            <Frofile />
+          </div>
+
+          <InputText
+            placeholder="문구입력.."
+            style={{ height: "340px", marginTop: "10px", width: "100%" }}
+          />
         </div>
       </div>
     </div>

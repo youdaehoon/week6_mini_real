@@ -54,10 +54,10 @@ body.active-modal {
   background: white;
   padding: 14px 28px;
   border-radius: 10px;
-  min-width: 500px;
+  max-width: 864px;
   width: 80%;
-  min-height: 500px;
-  max-height: 800px;
+  
+  max-height: 490px;
   overflow-y: scroll;
 }
 
