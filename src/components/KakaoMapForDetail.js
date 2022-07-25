@@ -43,7 +43,7 @@ const KakaoMapForDetail = ({ selectPosition }) => {
 };
 
 const Map_wrap = styled.div`
-  border-radius: 10px 10px 10px 10px;
+  border-radius: 10px 0 0 10px;
   z-index: 0;
 `
 

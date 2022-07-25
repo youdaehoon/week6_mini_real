@@ -16,6 +16,7 @@ body.active-modal {
 .overlay {
     background: rgba(49,49,49,0.8);
 }
+
 /* modal 하얀부분 컨트롤 하시려면 여깁니다! */
 .modal-content {
     position: absolute;
@@ -38,12 +39,11 @@ body.active-modal {
     transform: translate(-50%, -50%);
     line-height: 1.4;
     background: white;
-    padding: 14px 28px;
     border-radius: 10px;
-    min-width: 500px;
-    min-height: 500px;
-    max-height: 800px;
-    overflow-y: scroll;
+    width: 90%;
+    height: 83%;
+    overflow-y: auto;
+    box-shadow: 0 0 20px black;
 }
 
 
