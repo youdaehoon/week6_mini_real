@@ -22,14 +22,24 @@ function App() {
 
   return (
     <AppBody>
-      <MainNavi ModalOpen={ModalOpen} SetModalOpen={SetModalOpen} ModalRequiredName={ModalRequiredName} SetModalRequiredName={SetModalRequiredName}
+      <MainNavi
+        ModalOpen={ModalOpen}
+        SetModalOpen={SetModalOpen}
+        ModalRequiredName={ModalRequiredName}
+        SetModalRequiredName={SetModalRequiredName}
       />
       <MainBody>
         <Routes>
           <Route
             path="/"
-            element={<Home SetModalOpen={SetModalOpen} SetModalRequiredName={SetModalRequiredName} SetKey={SetKey}/>}
-            />
+            element={
+              <Home
+                SetModalOpen={SetModalOpen}
+                SetModalRequiredName={SetModalRequiredName}
+                SetKey={SetKey}
+              />
+            }
+          />
           <Route path="/makepost" element={<MakePost />} />
           <Route path="/login" element={<Login />} />
           <Route path="/Signup" element={<Signup />} />
@@ -37,20 +47,38 @@ function App() {
         {ModalOpen && (
           <div className="modal">
             <div className="overlay"></div>
-            <div className="modal-content">
-              <div>
-                {ModalRequiredName == "login" ? (
-                  <Login />
-                ) : ModalRequiredName == "makepost" ? (
-                  <MakePost />
-                ) : ModalRequiredName == "detail" ? (
-                  <Detail Cardkey={Cardkey}/>
-                ) : (
-                  <Signup />
-                )}
-              </div>
 
-              <div className="close-modal">
+            <div>
+              {ModalRequiredName == "login" ? (
+                <div className="modal-content">
+                  <Login />
+                  <div className="close-modal">
+                    <GrFormClose
+                      size={35}
+                      onClick={() => {
+                        SetModalOpen(false);
+                        console.log("버튼작동하니?");
+                      }}
+                    />
+                  </div>
+                </div>
+              ) : ModalRequiredName == "makepost" ? (
+                <div className="modal-content">
+                <MakePost />
+                <div className="close-modal">
+                    <GrFormClose
+                      size={35}
+                      onClick={() => {
+                        SetModalOpen(false);
+                        console.log("버튼작동하니?");
+                      }}
+                    />
+                  </div>
+                </div>
+              ) : ModalRequiredName == "detail" ? (
+                <div className="modal-content-detail">
+                <Detail Cardkey={Cardkey} />
+                <div className="close-modal">
                 <GrFormClose
                   size={35}
                   onClick={() => {
@@ -59,6 +87,21 @@ function App() {
                   }}
                 />
               </div>
+            </div>
+              ) : (
+                <div className="modal-content">
+                <Signup />
+                <div className="close-modal">
+                <GrFormClose
+                  size={35}
+                  onClick={() => {
+                    SetModalOpen(false);
+                    console.log("버튼작동하니?");
+                  }}
+                />
+              </div>
+            </div>
+              )}
             </div>
           </div>
         )}
