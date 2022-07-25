@@ -63,7 +63,7 @@ function App() {
                   </div>
                 </div>
               ) : ModalRequiredName == "makepost" ? (
-                <div className="modal-content">
+                <div className="modal-content-makepost">
                 <MakePost />
                 <div className="close-modal">
                     <GrFormClose

@@ -56,7 +56,7 @@ const NaviFrame = styled.div`
   position: absolute;
   top: 0px;
   left: 0px;
-  z-index: 10;
+  z-index: 0;
   width: 100%;
 `;
 
