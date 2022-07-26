@@ -21,7 +21,7 @@ function userLogin(userData) {
   return async (dispatch) => {
     console.log("미들웨어에서 로그인", userData);
     const testapi = await api
-      .get("login", userData)
+      .post("login", userData)
       .then(function (response) {
         console.log(response);
       })
