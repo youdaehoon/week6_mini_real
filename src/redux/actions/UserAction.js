@@ -1,4 +1,4 @@
-import { userSliceAction } from "../reducers/UserReducer";
+import { userSliceAction } from "../reducers/userReducer";
 
 function userSignUp(UserData) {
     return async (dispatch) =>{
@@ -6,9 +6,9 @@ function userSignUp(UserData) {
     }
 }
 
-function userLogin(UserData) {
+function userLogin(userData) {
     return async (dispatch) =>{
-        
+        console.log(userData);
     }
 }
 
@@ -24,4 +24,6 @@ function userLogin(UserData) {
 //     };
 //   }
 
-export const UserAction = {};
+export const userAction = {
+    userLogin,
+};
