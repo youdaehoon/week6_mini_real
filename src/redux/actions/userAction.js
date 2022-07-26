@@ -21,7 +21,7 @@ function userLogin(userData) {
   return async (dispatch) => {
     console.log("미들웨어에서 로그인", userData);
     const testapi = await api
-      .get("user/login", userData)
+      .post("login", userData)
       .then(function (response) {
         console.log(response);
       })
@@ -30,6 +30,11 @@ function userLogin(userData) {
       });
     console.log(testapi);
   };
+}
+
+function findPassword(){
+    return async (dispatch) => {
+    }
 }
 
 // function userSignUp(UserData) {
@@ -47,4 +52,5 @@ function userLogin(userData) {
 export const userAction = {
   userSignUp,
   userLogin,
+  findPassword,
 };

@@ -13,8 +13,8 @@ let initialState = {
       nickname: "케이오스",
       writerImage: "",
       image: gamsung_01,
-      Lat: "위도",
-      Lng: "경도",
+      Lat: "33.450539704220056",
+      Lng: "126.57101693441382",
     },
     {
       id: "werwerewcxvcxx23223",
@@ -23,8 +23,8 @@ let initialState = {
       nickname: "케이오스",
       writerImage: "",
       image: gamsung_02,
-      Lat: "위도",
-      Lng: "경도",
+      Lat: "35.87553268645352",
+      Lng: "128.6057222910765",
     },
     {
       id: "vcxvqxewq232343sa",
@@ -33,8 +33,8 @@ let initialState = {
       nickname: "케이오스3",
       writerImage: "",
       image: gamsung_03,
-      Lat: "위도",
-      Lng: "경도",
+      Lat: "35.885234406854465",
+      Lng: "128.6333804903908",
     },
     {
       id: "hgfdhcscweew2",
@@ -44,8 +44,8 @@ let initialState = {
       nickname: "케이오스4",
       writerImage: "",
       image: gamsung_04,
-      Lat: "위도",
-      Lng: "경도",
+      Lat: "35.8260138539907",
+      Lng: "128.61587781119",
     },
   ],
 
@@ -67,7 +67,8 @@ let initialState = {
         username: "작성자 아이디",
         profile: gamsung_01,
       },
-      content: "2번인데 이건한번 길게해볼게요 2번인데 이건한번 길게해볼게요2번인데 이건한번 길게해볼게요2번인데 이건한번 길게해볼게요",
+      content:
+        "2번인데 이건한번 길게해볼게요 2번인데 이건한번 길게해볼게요2번인데 이건한번 길게해볼게요2번인데 이건한번 길게해볼게요",
       createdAt: "댓글생성시간",
     },
     {
@@ -87,6 +88,9 @@ const boardSlice = createSlice({
   name: "board",
   initialState,
   reducers: {
+    getWordsList(state, action) {
+      state.board = action.payload;
+    },
     // 리듀서 넣기
     // <액션1 함수 이름> (state,action){
     // 	// 내용
