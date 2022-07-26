@@ -1,14 +1,24 @@
 import React from "react";
 import styled, { css } from "styled-components";
 
-const PhotoCard = ({ boardImg = "" , SetModalOpen, SetModalRequiredName, SetKey, Cardkey }) => {
-  console.log(Cardkey);
+const PhotoCard = ({
+  boardImg,
+  boardData,
+  setSelectBoardData,
+  SetModalOpen,
+  SetModalRequiredName,
+  SetKey,
+  Cardkey,
+}) => {
   return (
-    <ImageBox onClick={() => {
+    <ImageBox
+      onClick={() => {
+        setSelectBoardData(boardData)
         SetKey(Cardkey);
         SetModalOpen(true);
         SetModalRequiredName("detail");
-    }}>
+      }}
+    >
       <img src={boardImg ? boardImg : "https://placehold.jp/400x400.png"} />
     </ImageBox>
   );

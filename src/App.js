@@ -14,13 +14,17 @@ import Signup from "./pages/Signup";
 import { GrFormClose } from "react-icons/gr";
 import { RiCloseLine } from "react-icons/ri";
 import { faZ } from "@fortawesome/free-solid-svg-icons";
+import { useSelector} from "react-redux"
 
 function App() {
   const [ModalOpen, SetModalOpen] = React.useState(false);
   const [ModalRequiredName, SetModalRequiredName] = React.useState("login");
   const [is_login, setIsLogin] = React.useState(false);
   const [Cardkey, SetKey] = React.useState();
+  const [selectBoardData,setSelectBoardData] = React.useState({});
 
+  const boardList = useSelector((state)=>(state.boardReducer.board));
+  console.log(boardList);
   return (
     <AppBody>
       <MainNavi
@@ -40,6 +44,9 @@ function App() {
                 SetModalOpen={SetModalOpen}
                 SetModalRequiredName={SetModalRequiredName}
                 SetKey={SetKey}
+                selectBoardData={selectBoardData}
+                setSelectBoardData={setSelectBoardData}
+                boardList={boardList}
               />
             }
           />
@@ -65,7 +72,7 @@ function App() {
             <div>
               {ModalRequiredName == "login" ? (
                 <div className="modal-content">
-                  <Login />
+                  <Login SetModalOpen={SetModalOpen} />
                   <div className="close-modal">
                     <GrFormClose
                       size={35}
@@ -81,7 +88,7 @@ function App() {
                 </div>
               ) : ModalRequiredName == "detail" ? (
                 <div className="modal-content-detail">
-                  <Detail Cardkey={Cardkey} />
+                  <Detail selectBoardData={selectBoardData} />
                 </div>
               ) : (
                 <div className="modal-content">
