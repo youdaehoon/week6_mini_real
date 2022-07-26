@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import instgramletter from "../image/InstagramLetter.png";
-import {useDispatch}from"react-redux"
-import { userSignUp } from "../redux/actions/UserAction";
+import { useDispatch }from"react-redux"
+import { userAction }from "../redux/actions/userAction";
 
 const Signup = () => {
   const [MyFrofileImg, SetFrofileImg] = React.useState(
@@ -16,11 +16,11 @@ const Signup = () => {
   const RefPassword=React.useRef(null);
   const RefRePasswod=React.useRef(null);
 
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
  
 
   const Signup=()=>{
-    dispatch(userSignUp(
+    dispatch(userAction.userSignUp(
       {
         username:RefEmail.current.value,
         password:RefPassword.current.value,

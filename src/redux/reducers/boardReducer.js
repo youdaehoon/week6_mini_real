@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 let initialState = {};
 
-const userSlice = createSlice({
-  name: "user",
+const boardSlice = createSlice({
+  name: "board",
   initialState,
   reducers: {
     // 리듀서 넣기
@@ -17,5 +17,5 @@ const userSlice = createSlice({
   },
 });
 
-export const userSliceAction = userSlice.actions;
-export default userSlice.reducer;
+export const boardSliceAction = boardSlice.actions;
+export default boardSlice.reducer;
