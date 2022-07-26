@@ -72,7 +72,7 @@ function App() {
             <div>
               {ModalRequiredName == "login" ? (
                 <div className="modal-content">
-                  <Login />
+                  <Login SetModalOpen={SetModalOpen} />
                   <div className="close-modal">
                     <GrFormClose
                       size={35}

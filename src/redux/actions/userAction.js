@@ -6,14 +6,14 @@ function userSignUp(userData) {
     console.log("미들웨어에서잉~", userData);
     
     
-    // const testapi = await api
-    //   .post("user/signup", userData)
-    //   .then(function (response) {
-    //     console.log(response);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
+    const testapi11 = await api
+      .post("user/signup", userData)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 }
 

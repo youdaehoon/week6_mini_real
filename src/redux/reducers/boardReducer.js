@@ -1,8 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
+
 import gamsung_01 from "../../image/gamsung_01.jpg";
 import gamsung_02 from "../../image/gamsung_02.jpg";
 import gamsung_03 from "../../image/gamsung_03.jpg";
 import gamsung_04 from "../../image/gamsung_04.jpg";
+
+
 
 let initialState = {
   board: [
@@ -16,6 +19,7 @@ let initialState = {
       Lat: "33.450539704220056",
       Lng: "126.57101693441382",
     },
+
     {
       id: "werwerewcxvcxx23223",
       writeDate: "2022-07-22 18:55:28",
@@ -60,6 +64,7 @@ let initialState = {
       content: "본문",
       createdAt: "댓글생성시간",
     },
+
     {
       commentid: "댓글ID",
       writer: {
@@ -88,9 +93,6 @@ const boardSlice = createSlice({
   name: "board",
   initialState,
   reducers: {
-    getWordsList(state, action) {
-      state.board = action.payload;
-    },
     // 리듀서 넣기
     // <액션1 함수 이름> (state,action){
     // 	// 내용
@@ -99,6 +101,12 @@ const boardSlice = createSlice({
     // 	// 내용
     // },
     // ......<액션 갯수만큼 계속 이어서 작성>
+    createboard(state,action){
+      
+      state.board.push(action.payload)
+      
+      
+    }
   },
 });
 
