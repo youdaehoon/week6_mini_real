@@ -41,6 +41,7 @@ const Login = () => {
     dispatch(userAction.userLogin(userData));
   }
 
+
   return (
     <WrapLogin>
       <img src={instgramletter} width="50%" style={{ marginTop: "60px" }} />
@@ -84,7 +85,7 @@ const Login = () => {
           <p />
           <LinkText
             onClick={() => {
-              navigate("/signup");
+             
             }}
           >
             회원가입

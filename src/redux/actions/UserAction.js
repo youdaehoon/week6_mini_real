@@ -1,15 +1,34 @@
 import { userSliceAction } from "../reducers/userReducer";
+import api from "../api";
 
-function userSignUp(UserData) {
-    return async (dispatch) =>{
-        
-    }
+function userSignUp(userData) {
+  return async (dispatch) => {
+    console.log("미들웨어에서잉~", userData);
+
+    const testapi = await api
+      .post("user/signup", userData)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 }
 
 function userLogin(userData) {
-    return async (dispatch) =>{
-        console.log(userData);
-    }
+  return async (dispatch) => {
+    console.log("미들웨어에서 로그인", userData);
+    const testapi = await api
+      .get("user/login", userData)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    console.log(testapi);
+  };
 }
 
 // function userSignUp(UserData) {
@@ -25,5 +44,6 @@ function userLogin(userData) {
 //   }
 
 export const userAction = {
-    userLogin,
+  userSignUp,
+  userLogin,
 };
