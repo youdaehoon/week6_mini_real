@@ -20,8 +20,8 @@ const Makepost = () => {
   );
 };
 
-export default Makepost;
-
 const WrapMakeImg = styled.div`
   margin-top: 40px;
 `;
+
+export default Makepost;
