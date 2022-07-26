@@ -1,5 +1,17 @@
 import { userSliceAction } from "../reducers/UserReducer";
 
+function userSignUp(UserData) {
+    return async (dispatch) =>{
+        
+    }
+}
+
+function userLogin(UserData) {
+    return async (dispatch) =>{
+        
+    }
+}
+
 // function userSignUp(UserData) {
 //     return async (dispatch) => {
 //       const user_doc = await addDoc(collection(db, "users"), {

@@ -13,6 +13,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { GrFormClose } from "react-icons/gr";
 import { RiCloseLine } from "react-icons/ri";
+import { faZ } from "@fortawesome/free-solid-svg-icons";
 
 function App() {
   const [ModalOpen, SetModalOpen] = React.useState(false);
@@ -27,6 +28,8 @@ function App() {
         SetModalOpen={SetModalOpen}
         ModalRequiredName={ModalRequiredName}
         SetModalRequiredName={SetModalRequiredName}
+        is_login={is_login}
+        setIsLogin={setIsLogin}
       />
       <MainBody>
         <Routes>
@@ -132,6 +135,7 @@ const Modal = styled.div`
   right: 0;
   bottom: 0;
   position: fixed;
+  z-index: 1;
 `;
 
 const Overlay = styled.div`
