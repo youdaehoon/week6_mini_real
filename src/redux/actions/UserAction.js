@@ -1,12 +1,13 @@
-import { userSliceAction } from "../reducers/UserReducer";
+import { userSliceAction } from "../reducers/userReducer";
 import api from "../api";
-export function userSignUp(UserData) {
+
+function userSignUp(userData) {
   return async (dispatch) => {
-    console.log("미들웨어에서잉~", UserData);
+    console.log("미들웨어에서잉~", userData);
     
     
     // const testapi = await api
-    //   .post("user/signup", UserData)
+    //   .post("user/signup", userData)
     //   .then(function (response) {
     //     console.log(response);
     //   })
@@ -16,8 +17,19 @@ export function userSignUp(UserData) {
   };
 }
 
-function userLogin(UserData) {
-  return async (dispatch) => {};
+function userLogin(userData) {
+  return async (dispatch) => {
+    console.log("미들웨어에서 로그인", userData);
+    const testapi = await api
+      .get("user/login", userData)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    console.log(testapi);
+  };
 }
 
 // function userSignUp(UserData) {
@@ -32,4 +44,7 @@ function userLogin(UserData) {
 //     };
 //   }
 
-export const UserAction = {};
+export const userAction = {
+  userSignUp,
+  userLogin,
+};
