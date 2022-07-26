@@ -1,7 +1,7 @@
 import React from "react";
 import PhotoCard from "../components/PhotoCard";
 import styled from "styled-components";
-import "../modaltest/modal.css";
+import "../modal/modal.css";
 import gamsung_01 from "../image/gamsung_01.jpg";
 import gamsung_02 from "../image/gamsung_02.jpg";
 import gamsung_03 from "../image/gamsung_03.jpg";

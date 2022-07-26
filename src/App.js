@@ -44,7 +44,7 @@ function App() {
         {ModalOpen && (
           <Modal>
             <Overlay>
-              {ModalRequiredName == "detail" ? (
+              {ModalRequiredName == "detail"||ModalRequiredName == "makepost" ? (
                 <div className="close-modal">
                   <RiCloseLine
                     size={50}
@@ -75,14 +75,6 @@ function App() {
               ) : ModalRequiredName == "makepost" ? (
                 <div className="modal-content-makepost">
                   <MakePost />
-                  <div className="close-modal">
-                    <GrFormClose
-                      size={35}
-                      onClick={() => {
-                        SetModalOpen(false);
-                      }}
-                    />
-                  </div>
                 </div>
               ) : ModalRequiredName == "detail" ? (
                 <div className="modal-content-detail">
