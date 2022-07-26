@@ -4,15 +4,16 @@ import api from "../api";
 function userSignUp(userData) {
   return async (dispatch) => {
     console.log("미들웨어에서잉~", userData);
-
-    const testapi = await api
-      .post("user/signup", userData)
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    
+    
+    // const testapi = await api
+    //   .post("user/signup", userData)
+    //   .then(function (response) {
+    //     console.log(response);
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
   };
 }
 
