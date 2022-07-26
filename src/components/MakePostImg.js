@@ -1,9 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { useDropzone } from "react-dropzone";
-import KakaoMapForPost from"./KakaoMapForPost"
+import { useDispatch }from"react-redux"
+import { boardAction } from "../redux/actions/boardAction";
+import KakaoMapForPost from"./KakaoMapForPost";
+
 
 const MakePostImg = ({ files, setFiles, SetMakeProcess }) => {
+  const dispatch=useDispatch();
+  const Refcontents=React.useRef("");
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
     onDrop: (acceptedFiles) => {
@@ -16,7 +21,22 @@ const MakePostImg = ({ files, setFiles, SetMakeProcess }) => {
       );
     },
   });
-  console.log(files[0])
+  
+  const PostingBoardInMakePosting=()=>{
+    // console.log("makemodal에서 보낼놈들 확인용!!!","이미지는 파일로잘갔니?",files[0],"text:",Refcontents.current.value)
+    dispatch(boardAction.CreateBoard(
+      {
+        id: "dsadsoaipoapapapapapapapapapapap",
+        writeDate: "2022-07-22 18:55:28",
+        contents:  Refcontents.current.value,
+        nickname: "케이오스",
+        writerImage: "",
+        image: files[0],
+        Lat: "위도",
+        Lng: "경도",
+      }
+    ))
+  }
 
   return (
     <div>
@@ -24,7 +44,7 @@ const MakePostImg = ({ files, setFiles, SetMakeProcess }) => {
         <div style={{ width: "100%", height: "50px", fontWeight: "bold" }}>
           새 게시물 만들기
         </div>
-        <HeadBtn onClick={() => {}}>공유하기</HeadBtn>
+        <HeadBtn onClick={PostingBoardInMakePosting}>공유하기</HeadBtn>
       </WrapMakeImgHead>
       <div style={{ position: "relative", bottom: "70px"}}>
         <div style={{ display: "flex",borderTop:"1px solid black" }}>
@@ -73,6 +93,7 @@ const MakePostImg = ({ files, setFiles, SetMakeProcess }) => {
               <InputText
                 placeholder="문구입력.."
                 style={{ height: "340px", marginTop: "10px", width: "100%" }}
+                ref={Refcontents}
               />
             </WrapText>
           </div>
