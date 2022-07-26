@@ -75,8 +75,6 @@ const Signup = () => {
   );
 };
 
-export default Signup;
-
 const WrapLogin = styled.div`
   display: flex;
   flex-direction: column;
@@ -87,46 +85,53 @@ const WrapLogin = styled.div`
   padding: 20px 0 20px 0;
   border-radius: 10px;
 `;
+
 const Margin_10px = styled.div`
   margin: 20px 10px;
   width: 80%;
 `;
+
 const Title = styled.div`
   font-weight: bold;
 `;
+
 const WrapInput = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
 `;
+
 const MyInput = styled.input`
   margin-bottom: 10px;
   border: 0.1px solid #dbdbdb;
   border-radius: 5px;
   height: 40px;
 `;
+
 const WrapFrofile = styled.div`
   display: flex;
   flex-direction: row;
   margin-top: 10px;
 `;
+
 const ControlFrofileImg = styled.div`
   width: 50px;
   height: 50px;
   border-radius: 25px;
   overflow: hidden;
 `;
+
 const ControlNick = styled.div`
   width: 90%;
   font-weight: bold;
-
-  /* background-color: green; */
 `;
+
 const FrofileImg = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
 `;
+
 const Mybtn = styled.button`
   color: white;
   background-color: rgb(182 217 240);
@@ -138,11 +143,15 @@ const Mybtn = styled.button`
   margin-bottom: 10px;
   margin-top: 30px;
 `;
+
 const WrapLinkText = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 `;
+
 const LinkText = styled.div`
   font-size: 12px;
 `;
+
+export default Signup;

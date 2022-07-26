@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { BsFillPersonPlusFill,BsPlusSquareFill,BsPlusSquare } from "react-icons/bs";
-import { GoKey } from "react-icons/go";
+import { BsPersonPlus, BsPersonPlusFill, BsPlusSquareFill,BsPlusSquare } from "react-icons/bs";
+import { HiKey, HiOutlineKey } from "react-icons/hi"
 
 const MainNavi = ({ ModalOpen, SetModalOpen,ModalRequiredName, SetModalRequiredName }) => {
 
@@ -22,7 +22,7 @@ const MainNavi = ({ ModalOpen, SetModalOpen,ModalRequiredName, SetModalRequiredN
               SetModalRequiredName("login");
             }}
           >
-            <GoKey size={30}/>
+            {ModalOpen&&ModalRequiredName=="login"?(<HiKey size={30}/>):(<HiOutlineKey size={30}/>)}
           </div>
           <div
             onClick={() => {
@@ -30,7 +30,7 @@ const MainNavi = ({ ModalOpen, SetModalOpen,ModalRequiredName, SetModalRequiredN
               SetModalRequiredName("makepost");
             }}
           >
-            {ModalOpen&&ModalRequiredName=="makepost"?(<BsPlusSquareFill size={30}/>):(<BsPlusSquare className="emptyBt" size={30}/>)}
+            {ModalOpen&&ModalRequiredName=="makepost"?(<BsPlusSquareFill size={30}/>):(<BsPlusSquare size={30}/>)}
           </div>
           <div
             onClick={() => {
@@ -38,9 +38,7 @@ const MainNavi = ({ ModalOpen, SetModalOpen,ModalRequiredName, SetModalRequiredN
               SetModalRequiredName("signup");
             }}
           >
-            <BsFillPersonPlusFill
-              size={30}
-            />
+            {ModalOpen&&ModalRequiredName=="signup"?(<BsPersonPlusFill size={30}/>):(<BsPersonPlus size={30}/>)}
           </div>
         </span>
       </NaviWrap>
