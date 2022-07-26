@@ -1,15 +1,23 @@
 import { userSliceAction } from "../reducers/UserReducer";
-
-function userSignUp(UserData) {
-    return async (dispatch) =>{
-        
-    }
+import api from "../api";
+export function userSignUp(UserData) {
+  return async (dispatch) => {
+    console.log("미들웨어에서잉~", UserData);
+    
+    
+    const testapi = await api
+      .post("user/signup", UserData)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 }
 
 function userLogin(UserData) {
-    return async (dispatch) =>{
-        
-    }
+  return async (dispatch) => {};
 }
 
 // function userSignUp(UserData) {

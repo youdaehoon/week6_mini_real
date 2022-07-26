@@ -1,17 +1,44 @@
 import React from "react";
 import styled from "styled-components";
 import instgramletter from "../image/InstagramLetter.png";
+import {useDispatch}from"react-redux"
+import { userSignUp } from "../redux/actions/UserAction";
 
 const Signup = () => {
   const [MyFrofileImg, SetFrofileImg] = React.useState(
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlmv-ZuA9KAj9yb4y7UwSBYx_PjnSrBQJY-A&usqp=CAU"
   );
-
+  const [ImgForServerType,SetImgForServerType]=React.useState(null)
   const [Nickname, SetNickname] = React.useState("닉네임이 나타납니다.!");
   const RefNick = React.useRef(null);
   const RefProfileImg = React.useRef(null);
+  const RefEmail=React.useRef(null);
+  const RefPassword=React.useRef(null);
+  const RefRePasswod=React.useRef(null);
+
+  const dispatch=useDispatch();
+ 
+
+  const Signup=()=>{
+    dispatch(userSignUp(
+      {
+        username:RefEmail.current.value,
+        password:RefPassword.current.value,
+        rePassword:RefRePasswod.current.value,
+        nickname:RefNick.current.value,
+        profile:null,
+      }
+    ))
+    
+    
+
+  }
+
+
   const PreviewFrofileImg = (e) => {
     SetFrofileImg(URL.createObjectURL(e.target.files[0]));
+    SetImgForServerType(e.target.files[0])
+    console.log(ImgForServerType)
   };
   const PreviewFrofileNick = (e) => {
     SetNickname(e.target.value);
@@ -26,10 +53,10 @@ const Signup = () => {
       <img src={instgramletter} width="50%" style={{ marginTop: "60px" }} />
       <Margin_10px>
         <WrapInput>
-          <MyInput placeholder="이메일" />
-          <MyInput placeholder="비밀번호" />
+          <MyInput placeholder="이메일" ref={RefEmail} />
+          <MyInput placeholder="비밀번호" ref={RefPassword} />
 
-          <MyInput placeholder="비밀번호확인" />
+          <MyInput placeholder="비밀번호확인"ref={RefRePasswod} />
           <MyInput
             placeholder="닉네임"
             ref={RefNick}
@@ -60,7 +87,7 @@ const Signup = () => {
             </div>
           </WrapFrofile>
         </WrapInput>
-        <Mybtn>회원가입</Mybtn>
+        <Mybtn onClick={Signup}>회원가입</Mybtn>
         <WrapLinkText>
           <div style={{ display: "flex", flexDirection: "row" }}>
             <LinkText>아이디/</LinkText>
@@ -68,7 +95,7 @@ const Signup = () => {
           </div>
 
           <p />
-          <LinkText>회원가입</LinkText>
+          <LinkText >회원가입</LinkText>
         </WrapLinkText>
       </Margin_10px>
     </WrapLogin>

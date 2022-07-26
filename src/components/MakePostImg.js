@@ -16,6 +16,7 @@ const MakePostImg = ({ files, setFiles, SetMakeProcess }) => {
       );
     },
   });
+  console.log(files[0])
 
   return (
     <div>

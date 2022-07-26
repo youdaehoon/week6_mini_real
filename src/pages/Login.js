@@ -1,10 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
 import instgramletter from "../image/InstagramLetter.png";
 
 const Login = () => {
-  const navigate = useNavigate();
+  
   return (
     <WrapLogin>
       <img src={instgramletter} width="50%" style={{ marginTop: "60px" }} />
@@ -14,7 +13,7 @@ const Login = () => {
           <MyInput placeholder="비밀번호" />
           <Mybtn
             onClick={() => {
-              navigate("/");
+             
             }}
           >
             로그인
@@ -30,7 +29,7 @@ const Login = () => {
           <p />
           <LinkText
             onClick={() => {
-              navigate("/signup");
+             
             }}
           >
             회원가입
