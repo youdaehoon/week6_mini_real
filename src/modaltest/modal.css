@@ -67,3 +67,10 @@ body.active-modal {
   right: 10px;
   padding: 5px 7px;
 }
+
+.close-modal-makepost {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  padding: 5px 7px;
+}
