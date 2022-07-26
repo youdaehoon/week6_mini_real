@@ -5,14 +5,14 @@ export function userSignUp(UserData) {
     console.log("미들웨어에서잉~", UserData);
     
     
-    const testapi = await api
-      .post("user/signup", UserData)
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    // const testapi = await api
+    //   .post("user/signup", UserData)
+    //   .then(function (response) {
+    //     console.log(response);
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
   };
 }
 
