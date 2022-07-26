@@ -154,10 +154,10 @@ const CommentsInput = styled.input`
   background-color: white;
   border-radius: 2rem 0 0 2rem;
   border: 1rem solid white;
-  width: 80%;
+  width: 83%;
   height: 25px;
   @media screen and (max-width: 1200px) {
-    width: 90%;
+    width: 92%;
   }
   @media screen and (max-width: 800px) {
     width: 80%;
@@ -166,17 +166,18 @@ const CommentsInput = styled.input`
 
 const CommentsButton = styled.button`
   outline: none;
+  text-align: left;
   font-size: 15px;
   font-weight: bold;
   border-color: transparent;
   border-radius: 0 2rem 2rem 0;
   background: white;
   color: #0c8ce9;
-  width: 20%;
+  width: 17%;
   height: 107%;
   cursor: pointer;
   @media screen and (max-width: 1200px) {
-    width: 10%;
+    width: 8%;
   }
   @media screen and (max-width: 800px) {
     width: 20%;
