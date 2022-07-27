@@ -25,6 +25,8 @@ function userSignUp(userData) {
 function userLogin(userData) {
   return async (dispatch) => {
     console.log("미들웨어에서 로그인", userData);
+
+    
     const apiLogin = await api
       .post("login", userData)
       .then(function (response) {

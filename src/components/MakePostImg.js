@@ -21,22 +21,37 @@ const MakePostImg = ({ files, setFiles, SetMakeProcess }) => {
       );
     },
   });
-  
+  const formData = new FormData();
+
   const PostingBoardInMakePosting=()=>{
     // console.log("makemodal에서 보낼놈들 확인용!!!","이미지는 파일로잘갔니?",files[0],"text:",Refcontents.current.value)
-    dispatch(boardAction.CreateBoard(
-      {
-        // id: "dsadsoaipoapapapapapapapapapapap",
-        // writeDate: "2022-07-22 18:55:28",
-        contents:  Refcontents.current.value,
-        // nickname: "케이오스",
-        // writerImage: "",
-        image: files[0],
-        Lat: "561616",
-        Lng: "8989794646",
-        adress:"4564564654646"
-      }
-    ))
+    let authorization=sessionStorage.getItem("authorization")
+    let refresh_token=sessionStorage.getItem("refresh_token")
+    formData.append('contents',Refcontents.current.value)
+    formData.append('nickname', "케이오스")
+    formData.append('Lat', "561616")
+    formData.append('Lng', "8989794646")
+    formData.append('address', "4564564654646")
+    formData.append('data', files[0])
+    formData.forEach((v)=>console.log(v))
+    console.log(formData.keys)
+    dispatch(boardAction.CreateBoard({authorization,refresh_token},formData))
+    // dispatch(boardAction.CreateBoard({authorization,refresh_token},
+    //   {
+    //     // id: "dsadsoaipoapapapapapapapapapapap",
+    //     // writeDate: "2022-07-22 18:55:28",
+    //     contents:  Refcontents.current.value,
+    //     nickname: "케이오스",
+    //     // writerImage: "",
+       
+    //     Lat: "561616",
+    //     Lng: "8989794646",
+    //     adress:"4564564654646"
+    //   },
+    //  {
+    //   data: files[0],
+    //  },
+    // ))
   }
 
   return (
@@ -59,7 +74,7 @@ const MakePostImg = ({ files, setFiles, SetMakeProcess }) => {
               backgroundSize: "cover",
             }}
           >
-            <input {...getInputProps()} style={{ display: "none" }} />
+            <input {...getInputProps()} style={{ display: "none" }} type="file"/>
             {files[0] && (
               <img
                 alt=""
@@ -92,10 +107,12 @@ const MakePostImg = ({ files, setFiles, SetMakeProcess }) => {
              
 
               <InputText
+                
                 placeholder="문구입력.."
                 style={{ height: "340px", marginTop: "10px", width: "100%" }}
                 ref={Refcontents}
               />
+           
             </WrapText>
           </div>
         </div>

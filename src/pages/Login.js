@@ -35,7 +35,7 @@ const Login = () => {
     }
   };
 
-  const userLogin = (e,userData) => {
+  const userLogin = (e,userDataForLogin) => {
     e.preventDefault();
     console.log(userData);
     try{
