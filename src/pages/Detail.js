@@ -1,21 +1,15 @@
 import React, { useState, useRef } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { useParams } from "react-router-dom";
 import Comment from "../components/Comment";
 import KakaoMapForDetail from "../components/KakaoMapForDetail";
-import gamsung_02 from "../image/gamsung_02.jpg";
+import { FaPenSquare } from "react-icons/fa";
+import { RiDeleteBin6Fill } from "react-icons/ri";
 
 const Detail = ({ selectBoardData }) => {
   console.log(selectBoardData);
-  // Lat: "35.8260138539907"
-  // Lng: "128.61587781119"
-  // contents: "이거는 엄청길어지면어떻게될지 테스트가 하고싶으신가봐요이거는 엄청길어지면어떻게될지 테스트가 하고싶으신가봐요이거는 엄청길어지면어떻게될지 테스트가 하고싶으신가봐요이거는 엄청길어지면어떻게될지 테스트가 하고싶으신가봐요이거는 엄청길어지면어떻게될지 테스트가 하고싶으신가봐요이거는 엄청길어지면어떻게될지 테스트가 하고싶으신가봐요이거는 엄청길어지면어떻게될지 테스트가 하고싶으신가봐요이거는 엄청길어지면어떻게될지 테스트가 하고싶으신가봐요이거는 엄청길어지면어떻게될지 테스트가 하고싶으신가봐요"
-  // id: "hgfdhcscweew2"
-  // image: "/static/media/gamsung_04.754fe876f17a430d6a01.jpg"
-  // nickname: "케이오스4"
-  // writeDate: "2022-07-22 18:55:28"
-  // writerImage: ""
   const selectPosition = { La: selectBoardData.Lng, Ma: selectBoardData.Lat };
+  const commmentsList = useSelector((state) => state.boardReducer.comments);
   const [commentBt, setCommentBt] = useState(false);
   const commentInput = useRef();
   const boardImg = selectBoardData.image;
@@ -38,6 +32,15 @@ const Detail = ({ selectBoardData }) => {
         </PhotoArea>
         <CommentsArea>
           <CommentsBox>
+            <WriterInfoZone>
+              <DetailWriterInfo>
+                <CommentProfilePhoto>
+                  <img src={selectBoardData.writerImage} />
+                </CommentProfilePhoto>
+                <ProfileName>{selectBoardData.nickname}</ProfileName>
+              </DetailWriterInfo>
+              <DetailDateZone>{selectBoardData.writeDate}</DetailDateZone>
+            </WriterInfoZone>
             <CommentsInputArea>
               <CommentsInput
                 ref={commentInput}
@@ -49,15 +52,20 @@ const Detail = ({ selectBoardData }) => {
               </CommentsButton>
             </CommentsInputArea>
             <CommentsShowArea>
-              <Comment />
-              <Comment />
-              <Comment />
-              <Comment />
-              <Comment />
-              <Comment />
-              <Comment />
-              <Comment />
+              {commmentsList &&
+                commmentsList.map((commment, index) => (
+                  <Comment
+                    key={index}
+                    writer={commment.writer}
+                    content={commment.content}
+                    createdAt={commment.createdAt}
+                  />
+                ))}
             </CommentsShowArea>
+            {/* <CommentsBottomArea>
+              <FaPenSquare size={50}/>
+              <RiDeleteBin6Fill size={50}/>
+            </CommentsBottomArea> */}
           </CommentsBox>
         </CommentsArea>
       </DatailTopFrame>
@@ -67,15 +75,6 @@ const Detail = ({ selectBoardData }) => {
             <KakaoMapForDetail selectPosition={selectPosition} />
           </DetailMapField>
           <DetailContextFrame>
-            <DetailContextFieldTop>
-              <DetailWriterInfo>
-                <ProfilePhoto>
-                  <img src={selectBoardData.writerImage} />
-                </ProfilePhoto>
-                <ProfileName>{selectBoardData.nickname}</ProfileName>
-              </DetailWriterInfo>
-              <DetailDateZone>{selectBoardData.writeDate}</DetailDateZone>
-            </DetailContextFieldTop>
             <DetailContextField>
               <DetailContextArea>{selectBoardData.contents}</DetailContextArea>
             </DetailContextField>
@@ -121,6 +120,14 @@ const PhotoArea = styled.div`
   @media screen and (max-width: 1200px) {
     width: 100%;
   }
+`;
+
+const WriterInfoZone = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  width: 100%;
+  height: 60px;
 `;
 
 const CommentsArea = styled.div`
@@ -207,9 +214,23 @@ const CommentsButton = styled.button`
 const CommentsShowArea = styled.div`
   background: white;
   width: 95%;
+  height: 100%;
   max-height: 1000px;
   border-radius: 0.5rem 0.5rem;
-  overflow-y: scroll;
+  overflow-y: auto;
+`;
+
+const CommentsBottomArea = styled.div`
+  width: 95%;
+  height: 50px;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.5rem;
+  gap: 2px;
+  button{
+    width:50%;
+    height: 100%;
+  }
 `;
 
 const DatailBottomFrame = styled.div`
@@ -220,7 +241,7 @@ const DatailBottomFrame = styled.div`
 `;
 
 const DetailBottomArea = styled.div`
-  margin: 0.5rem;
+  margin: 0.5rem 1rem 0.5rem 1rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -249,7 +270,6 @@ const DetailContextFrame = styled.div`
   @media screen and (max-width: 800px) {
     width: 100%;
     margin: 0.5rem 0 0 0;
-    
   }
 `;
 
@@ -259,7 +279,7 @@ const DetailContextFieldTop = styled.div`
   justify-content: space-between;
   border-radius: 0 0.5rem 0 0;
   background-color: white;
-  width:100%;
+  width: 100%;
   height: 10%;
 `;
 
@@ -296,10 +316,10 @@ const DetailContextArea = styled.div`
   }
 `;
 
-const ProfilePhoto = styled.div`
+const CommentProfilePhoto = styled.div`
   margin: 0.5rem 0.5rem 0 1rem;
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -326,12 +346,11 @@ const DetailDateZone = styled.div`
   font-weight: lighter;
   justify-content: flex-end;
   margin-right: 1rem;
-  color: gray;
   width: 40%;
-  background: white;
+  background: #d9d9d9;
   font-size: 15px;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   text-align: center;
 `;
 

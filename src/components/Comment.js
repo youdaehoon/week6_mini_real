@@ -1,21 +1,21 @@
 import React from "react";
 import styled from "styled-components";
 
-const Comment = ({ profile }) => {
+const Comment = ({ writer,content,createdAt }) => {
   return (
     <CommentFrame>
       <CommentLeft>
         <ProfilePhoto>
-          <img src={profile} />
+          <img src={writer.profile} />
         </ProfilePhoto>
       </CommentLeft>
       <CommentMainFrame>
         <CommentMainFrameTop>
-          <WriterTextZone>a__jwon</WriterTextZone>
-          팔로우 가능한가요?ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ
+          <WriterTextZone>{writer.nickname}</WriterTextZone>
+          {content}
         </CommentMainFrameTop>
         <CommentMainFrameBottom>
-          <CommentDateZone>7분 전</CommentDateZone>
+          <CommentDateZone>{createdAt}</CommentDateZone>
         </CommentMainFrameBottom>
       </CommentMainFrame>
     </CommentFrame>
@@ -39,8 +39,6 @@ const WriterTextZone = styled.span`
   font-weight: bold;
   margin-right: 0.5rem;
 `;
-
-const CommentsZone = styled.div``;
 
 const CommentDateZone = styled.div`
   font-weight: lighter;
