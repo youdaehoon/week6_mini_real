@@ -51,7 +51,7 @@ const Detail = ({ selectBoardData }) => {
             <WriterInfoZone>
               <DetailWriterInfo>
                 <CommentProfilePhoto>
-                  <img src={selectBoardData.writerImage} />
+                  <img src={selectBoardData?.writerImage} />
                 </CommentProfilePhoto>
                 <ProfileName>{selectBoardData.nickname}</ProfileName>
               </DetailWriterInfo>
@@ -324,8 +324,9 @@ const CommentProfilePhoto = styled.div`
   background-repeat: no-repeat;
   img {
     display: block;
-    width: 50px;
-    height: auto;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 `;
 
