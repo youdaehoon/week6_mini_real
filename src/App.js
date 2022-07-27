@@ -13,18 +13,38 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { GrFormClose } from "react-icons/gr";
 import { RiCloseLine } from "react-icons/ri";
-import { faZ } from "@fortawesome/free-solid-svg-icons";
-import { useSelector} from "react-redux"
+import { FaPenSquare } from "react-icons/fa";
+import { RiDeleteBin6Fill } from "react-icons/ri";
+import { useSelector } from "react-redux";
 
 function App() {
   const [ModalOpen, SetModalOpen] = React.useState(false);
   const [ModalRequiredName, SetModalRequiredName] = React.useState("login");
   const [is_login, setIsLogin] = React.useState(false);
   const [Cardkey, SetKey] = React.useState();
-  const [selectBoardData,setSelectBoardData] = React.useState({});
+  const [selectBoardData, setSelectBoardData] = React.useState({});
 
-  const boardList = useSelector((state)=>(state.boardReducer.board));
+  const boardList = useSelector((state) => state.boardReducer.board);
   console.log(boardList);
+
+  const DeleteBoard = (e, Cardkey) => {
+    e.preventDefault();
+    console.log("삭제", Cardkey);
+    if (window.confirm("정말로 게시물을 삭제하시겠습니까?")) {
+      console.log("삭제완료", Cardkey);
+    }
+  };
+
+  React.useEffect(() => {
+    const escKeyModalClose = (e) => {
+      if (e.keyCode === 27) {
+        SetModalOpen(false);
+      }
+    };
+    window.addEventListener("keydown", escKeyModalClose);
+    return () => window.removeEventListener("keydown", escKeyModalClose);
+  }, []);
+
   return (
     <AppBody>
       <MainNavi
@@ -54,7 +74,7 @@ function App() {
         {ModalOpen && (
           <Modal>
             <Overlay>
-              {ModalRequiredName == "detail"||ModalRequiredName == "makepost" ? (
+              {ModalRequiredName == "makepost" ? (
                 <div className="close-modal">
                   <RiCloseLine
                     size={50}
@@ -67,9 +87,34 @@ function App() {
               ) : (
                 <></>
               )}
+              {ModalRequiredName == "detail" ? (
+                <BoardArea>
+                  <div className="close-modal">
+                    <RiCloseLine
+                      size={50}
+                      color="#fff"
+                      onClick={() => {
+                        SetModalOpen(false);
+                      }}
+                    />
+                  </div>
+                  <BoardBottomArea>
+                    <FaPenSquare color="#fff" size={50} />
+                    <RiDeleteBin6Fill
+                      color="#fff"
+                      size={50}
+                      onClick={(e) => {
+                        DeleteBoard(e, Cardkey);
+                      }}
+                    />
+                  </BoardBottomArea>
+                </BoardArea>
+              ) : (
+                <></>
+              )}
             </Overlay>
 
-            <div>
+            <ModalBody>
               {ModalRequiredName == "login" ? (
                 <div className="modal-content">
                   <Login SetModalOpen={SetModalOpen} />
@@ -103,13 +148,15 @@ function App() {
                   </div>
                 </div>
               )}
-            </div>
+            </ModalBody>
           </Modal>
         )}
       </MainBody>
     </AppBody>
   );
 }
+
+const ModalBody = styled.div``;
 
 const AppBody = styled.div`
   margin: 0;
@@ -146,6 +193,25 @@ const Overlay = styled.div`
   bottom: 0;
   position: fixed;
   background: rgba(49, 49, 49, 0.8);
+`;
+
+const BoardArea = styled.div`
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 1;
+`;
+
+const BoardBottomArea = styled.div`
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 5px 7px;
+  gap: 2px;
+  * {
+    margin-left: 1rem;
+  }
 `;
 
 export default App;

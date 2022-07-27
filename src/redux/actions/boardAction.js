@@ -26,6 +26,13 @@ function test(){
 //   }
 
 
+function DeleteBoard(){
+    return async (dispatch) => {
+        
+    }
+}
+
+
 function CreateBoard(boardData) {
     return async (dispatch) => {
       console.log("create디스패치 잘됨???~", boardData);
@@ -49,5 +56,5 @@ function CreateBoard(boardData) {
 
 
 export const boardAction = {
-CreateBoard
+    CreateBoard
 };
