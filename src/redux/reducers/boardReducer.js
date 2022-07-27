@@ -1,4 +1,4 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 import gamsung_01 from "../../image/gamsung_01.jpg";
 import gamsung_02 from "../../image/gamsung_02.jpg";
@@ -48,41 +48,6 @@ let initialState = {
       image: gamsung_04,
       Lat: "35.8260138539907",
       Lng: "128.61587781119",
-    },
-  ],
-
-  comments: [
-    {
-      commentid: "댓글ID",
-      writer: {
-        nickname: "작성자 닉네임",
-        username: "작성자 아이디",
-        profile: gamsung_02,
-      },
-      content: "본문",
-      createdAt: "댓글생성시간",
-    },
-
-    {
-      commentid: "댓글ID",
-      writer: {
-        nickname: "작성자 닉네임",
-        username: "작성자 아이디",
-        profile: gamsung_01,
-      },
-      content:
-        "2번인데 이건한번 길게해볼게요 2번인데 이건한번 길게해볼게요2번인데 이건한번 길게해볼게요2번인데 이건한번 길게해볼게요",
-      createdAt: "댓글생성시간",
-    },
-    {
-      commentid: "댓글ID",
-      writer: {
-        nickname: "작성자 닉네임",
-        username: "작성자 아이디",
-        profile: gamsung_02,
-      },
-      content: "1번댓글입니다 흐캬캬캬",
-      createdAt: "댓글생성시간",
     },
   ],
 };

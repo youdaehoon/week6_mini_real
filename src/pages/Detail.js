@@ -1,15 +1,11 @@
-import React, { useState, useRef } from "react";
-import { useSelector } from "react-redux";
+import React, { useState, useRef, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import Comment from "../components/Comment";
 import KakaoMapForDetail from "../components/KakaoMapForDetail";
-import { FaPenSquare } from "react-icons/fa";
-import { RiDeleteBin6Fill } from "react-icons/ri";
+import CommentShowBox from "../components/CommentShowBox";
 
 const Detail = ({ selectBoardData }) => {
-  console.log(selectBoardData);
   const selectPosition = { La: selectBoardData.Lng, Ma: selectBoardData.Lat };
-  const commmentsList = useSelector((state) => state.boardReducer.comments);
   const [commentBt, setCommentBt] = useState(false);
   const commentInput = useRef();
   const boardImg = selectBoardData.image;
@@ -20,6 +16,7 @@ const Detail = ({ selectBoardData }) => {
       setCommentBt(false);
     }
   };
+
   return (
     <DatailFrame>
       <DatailTopFrame>
@@ -51,21 +48,7 @@ const Detail = ({ selectBoardData }) => {
                 게시
               </CommentsButton>
             </CommentsInputArea>
-            <CommentsShowArea>
-              {commmentsList &&
-                commmentsList.map((commment, index) => (
-                  <Comment
-                    key={index}
-                    writer={commment.writer}
-                    content={commment.content}
-                    createdAt={commment.createdAt}
-                  />
-                ))}
-            </CommentsShowArea>
-            {/* <CommentsBottomArea>
-              <FaPenSquare size={50}/>
-              <RiDeleteBin6Fill size={50}/>
-            </CommentsBottomArea> */}
+            <CommentShowBox postId={selectBoardData.id}/>
           </CommentsBox>
         </CommentsArea>
       </DatailTopFrame>
@@ -125,6 +108,7 @@ const PhotoArea = styled.div`
 const WriterInfoZone = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 
   width: 100%;
   height: 60px;
@@ -211,15 +195,6 @@ const CommentsButton = styled.button`
   }
 `;
 
-const CommentsShowArea = styled.div`
-  background: white;
-  width: 95%;
-  height: 100%;
-  max-height: 1000px;
-  border-radius: 0.5rem 0.5rem;
-  overflow-y: auto;
-`;
-
 const CommentsBottomArea = styled.div`
   width: 95%;
   height: 50px;
@@ -286,7 +261,7 @@ const DetailContextFieldTop = styled.div`
 const DetailWriterInfo = styled.div`
   display: flex;
   flex-direction: row;
-  width: 100%;
+  width: auto;
   height: 100%;
 `;
 
@@ -346,7 +321,7 @@ const DetailDateZone = styled.div`
   font-weight: lighter;
   justify-content: flex-end;
   margin-right: 1rem;
-  width: 40%;
+  width: auto;
   background: #d9d9d9;
   font-size: 15px;
   display: flex;

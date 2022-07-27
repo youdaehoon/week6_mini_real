@@ -15,7 +15,6 @@ const Home = ({
 }) => {
   console.log(boardList);
   return (
-    <div>
       <HomeWholeFrame>
         {boardList &&
           boardList.map((board, index) => (
@@ -31,7 +30,6 @@ const Home = ({
             />
           ))}
       </HomeWholeFrame>
-    </div>
   );
 };
 

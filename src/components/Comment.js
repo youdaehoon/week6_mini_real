@@ -1,7 +1,21 @@
 import React from "react";
 import styled from "styled-components";
+import { useDispatch} from "react-redux"
+import { commentAction } from "../redux/actions/commentAction";
 
-const Comment = ({ writer,content,createdAt }) => {
+const Comment = ({ writer,content,createdAt,commentId }) => {
+  const dispatch = useDispatch();
+  console.log(commentId);
+  const CommentDelet = (e,commentId) =>{
+    e.preventDefault();
+    var arrComment = {id:commentId} 
+    console.log("삭제",commentId);
+    if (window.confirm("정말로 댓글을 삭제하시겠습니까?")){
+      console.log("삭제완료",commentId);
+      dispatch(commentAction.DelComment(arrComment));
+    }
+  }
+
   return (
     <CommentFrame>
       <CommentLeft>
@@ -16,6 +30,7 @@ const Comment = ({ writer,content,createdAt }) => {
         </CommentMainFrameTop>
         <CommentMainFrameBottom>
           <CommentDateZone>{createdAt}</CommentDateZone>
+          <CommentButtonArea onClick={(e)=>CommentDelet(e,commentId)}>삭제</CommentButtonArea>
         </CommentMainFrameBottom>
       </CommentMainFrame>
     </CommentFrame>
@@ -74,6 +89,16 @@ const CommentMainFrame = styled.div`
 
 const CommentMainFrameTop = styled.div``;
 
-const CommentMainFrameBottom = styled.div``;
+const CommentButtonArea = styled.div`
+  margin-left: 1rem;
+  color: #0c8ce9;
+  cursor: pointer;
+`;
+
+const CommentMainFrameBottom = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+`;
 
 export default Comment;
