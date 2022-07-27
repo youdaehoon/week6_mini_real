@@ -81,7 +81,11 @@ const boardSlice = createSlice({
       state.board.push(action.payload)
       
       
-    }
+    },
+    loadboard(state,action){
+      state.board = action.payload ;
+    },
+    
   },
 });
 
