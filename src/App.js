@@ -40,8 +40,8 @@ function App() {
     if (window.confirm("정말로 게시물을 삭제하시겠습니까?")) {
       dispatch(boardAction.DeleteBoard({authorization,refresh_token},
        {
-        username:"sjssmsqkqh1@naver.com",
-        id:"1"
+        username:"sjssmsqkqh1@gmail.com",
+        id:"2"
        }
       ))
       console.log("삭제완료", Cardkey);
