@@ -1,5 +1,6 @@
 import { userSliceAction } from "../reducers/userReducer";
 import api from "../api";
+import apiFormdata from"../apiFormdata";
 import axios from "axios";
 
 // function userSignUp(userData) {
@@ -20,27 +21,16 @@ import axios from "axios";
 function userSignUp(formData) {
   return async (dispatch) => {
     console.log("미들웨어에서잉~", formData);
-
-    const headers = {
-        'Content-Type': 'multipart/form-data',
-    }
-
-    // const apiSignUp = axios.create({
-    //   baseURL: "http://13.125.106.21:8080",
-    //   headers: {
-    //     "Content-Type": "multipart/form-data",
-    //   },
-    // });
-
-    const CreateBoardAXImg = await api
-      .post("user/signup", formData, {headers})
+    // formData.forEach((v)=>{console.log(v)})
+  
+    const SignUpAX = await apiFormdata
+      .post("user/signup", formData)
       .then(function (response) {
         console.log(response, "에러안남!!!!!");
       })
       .catch(function (error) {
         console.log(error);
       });
-      console.log(CreateBoardAXImg);
   };
 }
 

@@ -49,23 +49,16 @@ const Signup = () => {
 
   const formData = new FormData();
   const Signup = () => {
+   
     formData.append('username',RefEmail.current.value);
     formData.append('password',RefPassword.current.value);
     formData.append('rePassword',RefRePasswod.current.value);
     formData.append('nickname',RefNick.current.value);
-
-    formData.forEach((v)=>console.log(v))
+    formData.append('profile',ImgForServerType);
+    // formData.forEach((v)=>console.log(v))
     dispatch(userAction.userSignUp(formData))
 
-    dispatch(
-      userAction.userSignUp({
-        username: RefEmail.current.value,
-        password: RefPassword.current.value,
-        rePassword: RefRePasswod.current.value,
-        nickname: RefNick.current.value,
-        profile: null,
-      })
-    );
+  
   };
 
   const PreviewFrofileImg = (e) => {
