@@ -1,30 +1,31 @@
 import React from "react";
 import styled from "styled-components";
 import instgramletter from "../image/InstagramLetter.png";
-import { useDispatch }from"react-redux"
-import { userAction }from "../redux/actions/userAction";
+import { useDispatch } from "react-redux";
+import { userAction } from "../redux/actions/userAction";
+import { FaUmbrellaBeach } from "react-icons/fa";
 
 const Signup = () => {
   const [MyFrofileImg, SetFrofileImg] = React.useState(
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlmv-ZuA9KAj9yb4y7UwSBYx_PjnSrBQJY-A&usqp=CAU"
   );
-  const [ImgForServerType,SetImgForServerType]=React.useState(null)
+  const [ImgForServerType, SetImgForServerType] = React.useState(null);
   const [Nickname, SetNickname] = React.useState("닉네임이 나타납니다.!");
   const [notificationText, setNotificationText] = React.useState("");
-  const [userData, setUserData] =React.useState({});
+  const [userData, setUserData] = React.useState({});
 
   const RefNick = React.useRef(null);
   const RefProfileImg = React.useRef(null);
-  const RefEmail=React.useRef(null);
-  const RefPassword=React.useRef(null);
-  const RefRePasswod=React.useRef(null);
+  const RefEmail = React.useRef(null);
+  const RefPassword = React.useRef(null);
+  const RefRePasswod = React.useRef(null);
   const validationState = React.useRef(false);
 
   const validation = (e) => {
     e.preventDefault();
     const userID = RefEmail.current.value.trim();
     const userPW = RefPassword.current.value;
-    
+
     const regEmail =
       /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
     const regPassword = /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,20}$/;
@@ -34,7 +35,9 @@ const Signup = () => {
       setNotificationText("이메일 형식에 맞게 기재해주세요.");
     } else if (!regPassword.test(userPW)) {
       validationState.current = false;
-      setNotificationText("비밀번호는 8자 이상이어야 하며, 숫자/영문/특수문자를 모두 포함해야 합니다.");
+      setNotificationText(
+        "비밀번호는 8자 이상이어야 하며, 숫자/영문/특수문자를 모두 포함해야 합니다."
+      );
     } else {
       validationState.current = true;
       setUserData({ username: userID, password: userPW });
@@ -42,31 +45,33 @@ const Signup = () => {
     }
   };
 
-
-
-
-
-
-  
   const dispatch = useDispatch();
- 
-  const Signup=()=>{
-    dispatch(userAction.userSignUp(
-      {
-        username:RefEmail.current.value,
-        password:RefPassword.current.value,
-        rePassword:RefRePasswod.current.value,
-        nickname:RefNick.current.value,
-        profile:null,
-      }
-    ))
-  }
 
+  const formData = new FormData();
+  const Signup = () => {
+    formData.append('username',RefEmail.current.value);
+    formData.append('password',RefPassword.current.value);
+    formData.append('rePassword',RefRePasswod.current.value);
+    formData.append('nickname',RefNick.current.value);
+
+    formData.forEach((v)=>console.log(v))
+    dispatch(userAction.userSignUp(formData))
+
+    dispatch(
+      userAction.userSignUp({
+        username: RefEmail.current.value,
+        password: RefPassword.current.value,
+        rePassword: RefRePasswod.current.value,
+        nickname: RefNick.current.value,
+        profile: null,
+      })
+    );
+  };
 
   const PreviewFrofileImg = (e) => {
     SetFrofileImg(URL.createObjectURL(e.target.files[0]));
-    SetImgForServerType(e.target.files[0])
-    console.log(ImgForServerType)
+    SetImgForServerType(e.target.files[0]);
+    console.log(ImgForServerType);
   };
   const PreviewFrofileNick = (e) => {
     SetNickname(e.target.value);
@@ -81,10 +86,18 @@ const Signup = () => {
       <img src={instgramletter} width="50%" style={{ marginTop: "60px" }} />
       <Margin_10px>
         <WrapInput>
-          <MyInput placeholder="이메일" ref={RefEmail} onChange={(e)=>validation(e)} />
-          <MyInput placeholder="비밀번호" ref={RefPassword} onChange={(e)=>validation(e)} />
+          <MyInput
+            placeholder="이메일"
+            ref={RefEmail}
+            onChange={(e) => validation(e)}
+          />
+          <MyInput
+            placeholder="비밀번호"
+            ref={RefPassword}
+            onChange={(e) => validation(e)}
+          />
 
-          <MyInput placeholder="비밀번호확인"ref={RefRePasswod} />
+          <MyInput placeholder="비밀번호확인" ref={RefRePasswod} />
           <MyInput
             placeholder="닉네임"
             ref={RefNick}
@@ -124,7 +137,7 @@ const Signup = () => {
           </div>
 
           <p />
-          <LinkText >회원가입</LinkText>
+          <LinkText>회원가입</LinkText>
         </WrapLinkText>
       </Margin_10px>
     </WrapLogin>
