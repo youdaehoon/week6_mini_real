@@ -9,6 +9,8 @@ import {
 } from "react-icons/bs";
 import { HiKey, HiOutlineKey } from "react-icons/hi";
 import DropDown from "./DropDown";
+import { userAction } from "../redux/actions/userAction";
+import { useDispatch } from 'react-redux'
 
 const MainNavi = ({
   ModalOpen,
@@ -19,7 +21,17 @@ const MainNavi = ({
   setIsLogin,
   profile,
 }) => {
+  const sessiontest=sessionStorage;
+  const dispatch=useDispatch();
   console.log("회원가입 모달도", ModalOpen, ModalRequiredName);
+  const logout=()=>{
+    
+    let authorization=sessionStorage.getItem("authorization")
+    let refresh_token=sessionStorage.getItem("refresh_token")
+    dispatch(userAction.userLogout({authorization,refresh_token}))
+   
+   
+  }
 
   return (
     <NaviFrame>
@@ -66,7 +78,7 @@ const MainNavi = ({
             )}
           </div>
           <DropDown/>
-          <ProfilePhoto>
+          <ProfilePhoto onClick={logout}>
             <img src={profile} />
           </ProfilePhoto>
         </span>
