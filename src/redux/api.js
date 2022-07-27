@@ -5,6 +5,8 @@ const api = axios.create({
   headers: { "Content-Type": "application/json" },
 });
 
+
+
 // Add a request interceptor
 api.interceptors.request.use(function (config) {
     // Do something before request is sent
@@ -20,7 +22,9 @@ api.interceptors.request.use(function (config) {
 api.interceptors.response.use(function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
-    console.log(response,"머옴?")
+  
+    
+
     return response;
   }, function (error) {
     // Any status codes that falls outside the range of 2xx cause this function to trigger

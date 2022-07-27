@@ -26,14 +26,15 @@ const MakePostImg = ({ files, setFiles, SetMakeProcess }) => {
     // console.log("makemodal에서 보낼놈들 확인용!!!","이미지는 파일로잘갔니?",files[0],"text:",Refcontents.current.value)
     dispatch(boardAction.CreateBoard(
       {
-        id: "dsadsoaipoapapapapapapapapapapap",
-        writeDate: "2022-07-22 18:55:28",
+        // id: "dsadsoaipoapapapapapapapapapapap",
+        // writeDate: "2022-07-22 18:55:28",
         contents:  Refcontents.current.value,
-        nickname: "케이오스",
-        writerImage: "",
+        // nickname: "케이오스",
+        // writerImage: "",
         image: files[0],
-        Lat: "위도",
-        Lng: "경도",
+        Lat: "561616",
+        Lng: "8989794646",
+        adress:"4564564654646"
       }
     ))
   }
