@@ -20,7 +20,7 @@ const Home = ({
           boardList.map((board, index) => (
             <PhotoCard
               key={index}
-              boardImg={board.image}
+              boardImg={board.uploadImageUrl}
               Cardkey={board.id}
               boardData={board}
               setSelectBoardData={setSelectBoardData}

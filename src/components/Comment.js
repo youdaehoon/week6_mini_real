@@ -10,7 +10,9 @@ const Comment = ({ writer, content, createdAt, commentId }) => {
     console.log("삭제", commentId);
     if (window.confirm("정말로 댓글을 삭제하시겠습니까?")) {
       try {
-        await dispatch(commentAction.DelComment(commentId));
+        const originalPromiseResult = await dispatch(commentAction.DelComment(commentId)).unwrap();
+        console.log(originalPromiseResult)
+        // await dispatch(commentAction.DelComment(commentId));
         // dispatch(commentAction.GetCommentsList());
         // dispatch(commentAction.PostComment(postId,content));
         await dispatch(commentAction.GetCommentsList("1"));
@@ -26,8 +28,9 @@ const Comment = ({ writer, content, createdAt, commentId }) => {
     var timestampInput = objectDate.getTime();
     var timestampNow = Date.now();
     var gap_time = timestampNow - timestampInput;
-    if (gap_time < 3600) {
-      return Math.floor(gap_time / 60) + " 분 전";
+    console.log(gap_time);
+    if (gap_time < 3600000) {
+      return Math.ceil(gap_time / 60000) + " 분 전";
     } else {
       var date = new Date(timestampInput);
       return (
