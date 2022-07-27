@@ -14,7 +14,7 @@ const Comment = ({ writer, content, createdAt, commentId }) => {
         dispatch(commentAction.DelComment(commentId));
         // dispatch(commentAction.GetCommentsList());
         // dispatch(commentAction.PostComment(postId,content));
-        dispatch(commentAction.GetCommentsList("2"));
+        dispatch(commentAction.GetCommentsList("1"));
       } catch (e) {
         console.log(e);
         window.alert("댓글 삭제 실패하셨습니다.");
