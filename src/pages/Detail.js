@@ -3,19 +3,38 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import KakaoMapForDetail from "../components/KakaoMapForDetail";
 import CommentShowBox from "../components/CommentShowBox";
+import { commentAction } from "../redux/actions/commentAction";
 
 const Detail = ({ selectBoardData }) => {
+  const dispatch = useDispatch();
   const selectPosition = { La: selectBoardData.Lng, Ma: selectBoardData.Lat };
   const [commentBt, setCommentBt] = useState(false);
-  const commentInput = useRef();
+  const commentInputRef = useRef();
   const boardImg = selectBoardData.image;
   const btState = (e) => {
-    if (commentInput.current.value != "") {
+    if (commentInputRef.current.value != "") {
       setCommentBt(true);
     } else {
       setCommentBt(false);
     }
   };
+
+  const PostCommentInDetail = async (e,postId) => {
+    e.preventDefault();
+    var commentInput = commentInputRef.current.value.trim();
+    if(commentInput!=""){
+      var content = {"content": commentInput}
+      try{
+        await dispatch(commentAction.PostComment("2",content));
+        commentInputRef.current.value = "";
+        // dispatch(commentAction.PostComment(postId,content));
+        await dispatch(commentAction.GetCommentsList("2"));
+      } catch(e) {
+        console.log(e);
+        window.alert("댓글 작성을 실패하셨습니다.");
+      }
+    }
+  } 
 
   return (
     <DatailFrame>
@@ -40,11 +59,11 @@ const Detail = ({ selectBoardData }) => {
             </WriterInfoZone>
             <CommentsInputArea>
               <CommentsInput
-                ref={commentInput}
+                ref={commentInputRef}
                 onChange={(e) => btState()}
                 placeholder="댓글 달기..."
               />
-              <CommentsButton className={commentBt ? "active" : "unactive"}>
+              <CommentsButton className={commentBt ? "active" : "unactive"} onClick={(e)=>{PostCommentInDetail(e,selectBoardData.id)}}>
                 게시
               </CommentsButton>
             </CommentsInputArea>
@@ -138,7 +157,7 @@ const CommentsBox = styled.div`
   }
 `;
 
-const CommentsInputArea = styled.div`
+const CommentsInputArea = styled.form`
   width: 95%;
   height: 55px;
   background: transparent;

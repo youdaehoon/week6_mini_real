@@ -50,20 +50,16 @@ const Signup = () => {
   
   const dispatch = useDispatch();
  
-
   const Signup=()=>{
-    // dispatch(userAction.userSignUp(
-    //   {
-    //     username:RefEmail.current.value,
-    //     password:RefPassword.current.value,
-    //     rePassword:RefRePasswod.current.value,
-    //     nickname:RefNick.current.value,
-    //     profile:null,
-    //   }
-    // ))
-    
-    
-
+    dispatch(userAction.userSignUp(
+      {
+        username:RefEmail.current.value,
+        password:RefPassword.current.value,
+        rePassword:RefRePasswod.current.value,
+        nickname:RefNick.current.value,
+        profile:null,
+      }
+    ))
   }
 
 

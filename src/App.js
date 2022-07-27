@@ -17,6 +17,7 @@ import { FaPenSquare } from "react-icons/fa";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { useSelector,useDispatch } from "react-redux";
 import {boardAction} from "./redux/actions/boardAction"
+import ClipLoader from "react-spinners/ClipLoader";
 
 function App() {
   const [ModalOpen, SetModalOpen] = React.useState(false);
@@ -56,6 +57,8 @@ function App() {
     return () => window.removeEventListener("keydown", escKeyModalClose);
   }, []);
 
+
+  
   return (
     <AppBody>
       <MainNavi

@@ -27,7 +27,7 @@ const Login = () => {
       setNotificationText("이메일 형식에 맞게 기재해주세요.");
     } else if (!regPassword.test(userPW)) {
       validationState.current = false;
-      setNotificationText("비밀번호는 8자 이상이어야 하며, 숫자/대문자/소문자/특수문자를 모두 포함해야 합니다.");
+      setNotificationText("비밀번호는 8자 이상이어야 하며, 숫자/영문/특수문자를 모두 포함해야 합니다.");
     } else {
       validationState.current = true;
       setUserData({ username: userID, password: userPW });
@@ -37,8 +37,13 @@ const Login = () => {
 
   const userLogin = (e,userDataForLogin) => {
     e.preventDefault();
-    console.log(userDataForLogin);
-    dispatch(userAction.userLogin(userDataForLogin));
+    console.log(userData);
+    try{
+      dispatch(userAction.userLogin(userData));
+      
+    } catch(e) {
+
+    }
   }
 
 
