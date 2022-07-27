@@ -22,6 +22,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 function App() {
   const [ModalOpen, SetModalOpen] = React.useState(false);
   const [ModalRequiredName, SetModalRequiredName] = React.useState("login");
+  const [MakeOrModi, SetMakeOrModi] = React.useState("make");
   const [is_login, setIsLogin] = React.useState(false);
   const [Cardkey, SetKey] = React.useState();
   const [selectBoardData, setSelectBoardData] = React.useState({});
@@ -47,32 +48,18 @@ function App() {
     }
   };
 
-  const UpdateBoard = (e,Cardkey) => {
-    e.preventDefault();
-    console.log("삭제", Cardkey);
-    let authorization=sessionStorage.getItem("authorization")
-    let refresh_token=sessionStorage.getItem("refresh_token")
+  const GoToMake=()=>{
+    SetModalRequiredName("makepost");
+    
 
-    if (window.confirm("정말로 게시물을 삭제하시겠습니까?")) {
-      // dispatch(boardAction.UpdateBoard({authorization,refresh_token},
-      //  {
-      //   username:"sjssmsqkqh1@naver.com",
-      //   id:"1"
-      //  }
-      // ))
-      console.log("삭제완료", Cardkey);
-    }
-  };
-
-  const LoadAx=()=>{
-   
-    console.log("대훈")
-  
-    console.log("대훈")
   }
 
+ 
+
+
+
   React.useEffect(() => {
-    // dispatch(boardAction.LoadBoard())   
+    dispatch(boardAction.LoadBoard())   
 
     const escKeyModalClose = (e) => {
       if (e.keyCode === 27) {
@@ -141,7 +128,7 @@ function App() {
                     />
                   </div>
                   <BoardBottomArea>
-                    <FaPenSquare color="#fff" size={50} onClick={(e)=>{UpdateBoard(e,Cardkey)}}/>
+                    <FaPenSquare color="#fff" size={50} onClick={GoToMake}/>
                     <RiDeleteBin6Fill
                       color="#fff"
                       size={50}
@@ -171,7 +158,7 @@ function App() {
                 </div>
               ) : ModalRequiredName == "makepost" ? (
                 <div className="modal-content-makepost">
-                  <MakePost />
+                  <MakePost selectBoardData={selectBoardData} />
                 </div>
               ) : ModalRequiredName == "detail" ? (
                 <div className="modal-content-detail">

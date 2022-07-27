@@ -2,18 +2,42 @@ import { boardSliceAction } from "../reducers/boardReducer";
 import axios from "axios";
 import { api, apij } from "../api";
 import apiJson from "../apiJson";
+import gamsung_04 from"../../image/gamsung_01.jpg"
 
 function LoadBoard() {
   return async (dispatch) => {
   
-    const UploadBoardAX = await apiJson
-    .get("posts?sort=정렬기준&amount=게시글 수&count=페이지 수")
-    .then(function (response) {
-      console.log(response, "에러안남!!!!!");
-    })
-    .catch(function (error) {
-      console.log("에러났음.", error);
-    });
+    // const UploadBoardAX = await apiJson
+    // .get("posts?size=12&page=0")
+    // .then(function (response) {
+    //   console.log(response, "에러안남!!!!!");
+  
+
+    // })
+    // .catch(function (error) {
+    //   console.log("에러났음.", error);
+    // });
+
+    dispatch(boardSliceAction.loadboard( [
+      {
+        id: "hgfdhcscweew2",
+        writeDate: "2022-07-22 18:55:28",
+        contents:
+        "이거는 엄청길어지면어떻게될지 테스트가 하고싶으신가봐요이거는 엄청길어지면어떻게될지 테스트가 하고싶으신가봐요이거는 엄청길어지면어떻게될지 테스트가 하고싶으신가봐요이거는 엄청길어지면어떻게될지 테스트가 하고싶으신가봐요이거는 엄청길어지면어떻게될지 테스트가 하고싶으신가봐요이거는 엄청길어지면어떻게될지 테스트가 하고싶으신가봐요이거는 엄청길어지면어떻게될지 테스트가 하고싶으신가봐요이거는 엄청길어지면어떻게될지 테스트가 하고싶으신가봐요이거는 엄청길어지면어떻게될지 테스트가 하고싶으신가봐요",
+        writer:{
+        nickname: "작성자 닉네임",
+        username: "작성자 아이디",
+        profile: "작성자 프로필 사진"
+        },
+        uploadImageUrl: gamsung_04,
+        Lat: "35.8260138539907",
+        Lng: "128.61587781119",
+        },]
+      ))
+
+
+
+
   };
 }
 
