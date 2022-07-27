@@ -25,10 +25,10 @@ const Detail = ({ selectBoardData }) => {
     if(commentInput!=""){
       var content = {"content": commentInput}
       try{
-        await dispatch(commentAction.PostComment("3",content));
+        await dispatch(commentAction.PostComment("1",content));
         commentInputRef.current.value = "";
         // dispatch(commentAction.PostComment(postId,content));
-        await dispatch(commentAction.GetCommentsList("3"));
+        await dispatch(commentAction.GetCommentsList("1"));
       } catch(e) {
         console.log(e);
         window.alert("댓글 작성을 실패하셨습니다.");
@@ -51,7 +51,7 @@ const Detail = ({ selectBoardData }) => {
             <WriterInfoZone>
               <DetailWriterInfo>
                 <CommentProfilePhoto>
-                  <img src={selectBoardData.writerImage} />
+                  <img src={selectBoardData?.writerImage} />
                 </CommentProfilePhoto>
                 <ProfileName>{selectBoardData.nickname}</ProfileName>
               </DetailWriterInfo>
@@ -324,8 +324,9 @@ const CommentProfilePhoto = styled.div`
   background-repeat: no-repeat;
   img {
     display: block;
-    width: 50px;
-    height: auto;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 `;
 

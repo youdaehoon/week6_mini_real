@@ -14,7 +14,7 @@ const CommentShowBox = ({ postId }) => {
   console.log(comments);
 
   React.useEffect(() => {
-    dispatch(commentAction.GetCommentsList("3"));
+    dispatch(commentAction.GetCommentsList("1"));
     //dispatch(commentAction.GetCommentsList(postId));
   }, []);
 
