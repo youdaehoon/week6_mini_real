@@ -40,20 +40,47 @@ function App() {
       dispatch(boardAction.DeleteBoard({authorization,refresh_token},
        {
         username:"sjssmsqkqh1@naver.com",
-        id:"id"
+        id:"1"
        }
       ))
       console.log("삭제완료", Cardkey);
     }
   };
 
+  const UpdateBoard = (e,Cardkey) => {
+    e.preventDefault();
+    console.log("삭제", Cardkey);
+    let authorization=sessionStorage.getItem("authorization")
+    let refresh_token=sessionStorage.getItem("refresh_token")
+
+    if (window.confirm("정말로 게시물을 삭제하시겠습니까?")) {
+      // dispatch(boardAction.UpdateBoard({authorization,refresh_token},
+      //  {
+      //   username:"sjssmsqkqh1@naver.com",
+      //   id:"1"
+      //  }
+      // ))
+      console.log("삭제완료", Cardkey);
+    }
+  };
+
+  const LoadAx=()=>{
+   
+    console.log("대훈")
+  
+    console.log("대훈")
+  }
+
   React.useEffect(() => {
+    // dispatch(boardAction.LoadBoard())   
+
     const escKeyModalClose = (e) => {
       if (e.keyCode === 27) {
         SetModalOpen(false);
       }
     };
     window.addEventListener("keydown", escKeyModalClose);
+
     return () => window.removeEventListener("keydown", escKeyModalClose);
   }, []);
 
@@ -61,6 +88,7 @@ function App() {
 
   return (
     <AppBody>
+      
       <MainNavi
         ModalOpen={ModalOpen}
         SetModalOpen={SetModalOpen}
@@ -113,7 +141,7 @@ function App() {
                     />
                   </div>
                   <BoardBottomArea>
-                    <FaPenSquare color="#fff" size={50} />
+                    <FaPenSquare color="#fff" size={50} onClick={(e)=>{UpdateBoard(e,Cardkey)}}/>
                     <RiDeleteBin6Fill
                       color="#fff"
                       size={50}
