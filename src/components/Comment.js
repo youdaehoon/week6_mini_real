@@ -1,20 +1,51 @@
 import React from "react";
 import styled from "styled-components";
-import { useDispatch} from "react-redux"
+import { useDispatch } from "react-redux";
 import { commentAction } from "../redux/actions/commentAction";
 
-const Comment = ({ writer,content,createdAt,commentId }) => {
+const Comment = ({ writer, content, createdAt, commentId }) => {
   const dispatch = useDispatch();
-  console.log(commentId);
-  const CommentDelet = (e,commentId) =>{
+  const CommentDelet = async (e, commentId) => {
     e.preventDefault();
-    var arrComment = {id:commentId} 
-    console.log("삭제",commentId);
-    if (window.confirm("정말로 댓글을 삭제하시겠습니까?")){
-      console.log("삭제완료",commentId);
-      dispatch(commentAction.DelComment(arrComment));
+    // var arrComment = {id:commentId}
+    console.log("삭제", commentId);
+    if (window.confirm("정말로 댓글을 삭제하시겠습니까?")) {
+      try {
+        dispatch(commentAction.DelComment(commentId));
+        // dispatch(commentAction.GetCommentsList());
+        // dispatch(commentAction.PostComment(postId,content));
+        dispatch(commentAction.GetCommentsList("2"));
+      } catch (e) {
+        console.log(e);
+        window.alert("댓글 삭제 실패하셨습니다.");
+      }
     }
-  }
+  };
+
+  const timeSetting = (stringTime) => {
+    const objectDate = new Date(stringTime);
+    var timestampInput = objectDate.getTime();
+    var timestampNow = Date.now();
+    var gap_time = timestampNow - timestampInput;
+    if (gap_time < 3600) {
+      return Math.floor(gap_time / 60) + " 분 전";
+    } else {
+      var date = new Date(timestampInput);
+      return (
+        date.getFullYear() +
+        "/" +
+        (date.getMonth() + 1) +
+        "/" +
+        date.getDate() +
+        " " +
+        date.getHours() +
+        ":" +
+        date.getMinutes() +
+        ":" +
+        date.getSeconds()
+      );
+    }
+  };
 
   return (
     <CommentFrame>
@@ -29,8 +60,10 @@ const Comment = ({ writer,content,createdAt,commentId }) => {
           {content}
         </CommentMainFrameTop>
         <CommentMainFrameBottom>
-          <CommentDateZone>{createdAt}</CommentDateZone>
-          <CommentButtonArea onClick={(e)=>CommentDelet(e,commentId)}>삭제</CommentButtonArea>
+          <CommentDateZone>{timeSetting(createdAt)}</CommentDateZone>
+          <CommentButtonArea onClick={(e) => CommentDelet(e, commentId)}>
+            삭제
+          </CommentButtonArea>
         </CommentMainFrameBottom>
       </CommentMainFrame>
     </CommentFrame>

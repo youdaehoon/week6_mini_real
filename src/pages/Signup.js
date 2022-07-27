@@ -18,7 +18,6 @@ const Signup = () => {
 
   const dispatch = useDispatch();
  
-
   const Signup=()=>{
     dispatch(userAction.userSignUp(
       {
@@ -29,9 +28,6 @@ const Signup = () => {
         profile:null,
       }
     ))
-    
-    
-
   }
 
 
