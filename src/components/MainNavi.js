@@ -10,7 +10,7 @@ import {
 import { HiKey, HiOutlineKey } from "react-icons/hi";
 import DropDown from "./DropDown";
 import { userAction } from "../redux/actions/userAction";
-import { useDispatch } from 'react-redux'
+import { useDispatch } from "react-redux";
 
 const MainNavi = ({
   ModalOpen,
@@ -21,17 +21,14 @@ const MainNavi = ({
   setIsLogin,
   profile,
 }) => {
-  const sessiontest=sessionStorage;
-  const dispatch=useDispatch();
+  const sessiontest = sessionStorage;
+  const dispatch = useDispatch();
   console.log("회원가입 모달도", ModalOpen, ModalRequiredName);
-  const logout=()=>{
-    
-    let authorization=sessionStorage.getItem("authorization")
-    let refresh_token=sessionStorage.getItem("refresh_token")
-    dispatch(userAction.userLogout({authorization,refresh_token}))
-   
-   
-  }
+  const logout = () => {
+    let authorization = sessionStorage.getItem("authorization");
+    let refresh_token = sessionStorage.getItem("refresh_token");
+    dispatch(userAction.userLogout({ authorization, refresh_token }));
+  };
 
   return (
     <NaviFrame>
@@ -77,7 +74,7 @@ const MainNavi = ({
               <BsPlusSquare size={30} />
             )}
           </div>
-          <DropDown/>
+          <DropDown />
           <ProfilePhoto onClick={logout}>
             <img src={profile} />
           </ProfilePhoto>
