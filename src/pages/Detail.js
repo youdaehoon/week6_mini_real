@@ -25,10 +25,10 @@ const Detail = ({ selectBoardData }) => {
     if(commentInput!=""){
       var content = {"content": commentInput}
       try{
-        await dispatch(commentAction.PostComment("2",content));
+        await dispatch(commentAction.PostComment("3",content));
         commentInputRef.current.value = "";
         // dispatch(commentAction.PostComment(postId,content));
-        await dispatch(commentAction.GetCommentsList("2"));
+        await dispatch(commentAction.GetCommentsList("3"));
       } catch(e) {
         console.log(e);
         window.alert("댓글 작성을 실패하셨습니다.");

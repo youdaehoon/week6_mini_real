@@ -58,7 +58,7 @@ function App() {
   }, []);
 
 
-  
+
   return (
     <AppBody>
       <MainNavi

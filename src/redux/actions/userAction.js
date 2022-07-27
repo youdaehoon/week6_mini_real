@@ -17,7 +17,7 @@ function userSignUp(userData) {
       });
      
 
-  };
+  };  
  
   
 }
@@ -37,7 +37,7 @@ function userLogin(userData) {
         sessionStorageLogin.setItem("authorization",response.data.tokenBox.access_token)
         sessionStorageLogin.setItem("refresh_token",response.data.tokenBox.refresh_token)
 
-        console.log("api에서 확인!!!",response.data.tokenBox.access_token);
+        console.log("api에서 확인!!!",response.data.tokenBox);
       })
       .catch(function (error) {
         console.log(error);
