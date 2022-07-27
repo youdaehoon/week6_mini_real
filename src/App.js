@@ -16,6 +16,7 @@ import { RiCloseLine } from "react-icons/ri";
 import { FaPenSquare } from "react-icons/fa";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { useSelector } from "react-redux";
+import ClipLoader from "react-spinners/ClipLoader";
 
 function App() {
   const [ModalOpen, SetModalOpen] = React.useState(false);
@@ -45,6 +46,8 @@ function App() {
     return () => window.removeEventListener("keydown", escKeyModalClose);
   }, []);
 
+
+  
   return (
     <AppBody>
       <MainNavi
