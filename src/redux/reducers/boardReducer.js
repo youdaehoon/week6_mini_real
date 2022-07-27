@@ -5,8 +5,6 @@ import gamsung_02 from "../../image/gamsung_02.jpg";
 import gamsung_03 from "../../image/gamsung_03.jpg";
 import gamsung_04 from "../../image/gamsung_04.jpg";
 
-
-
 let initialState = {
   board: [
     {
