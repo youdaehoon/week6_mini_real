@@ -7,14 +7,13 @@ const Comment = ({ writer, content, createdAt, commentId }) => {
   const dispatch = useDispatch();
   const CommentDelet = async (e, commentId) => {
     e.preventDefault();
-    // var arrComment = {id:commentId}
     console.log("삭제", commentId);
     if (window.confirm("정말로 댓글을 삭제하시겠습니까?")) {
       try {
-        dispatch(commentAction.DelComment(commentId));
+        await dispatch(commentAction.DelComment(commentId));
         // dispatch(commentAction.GetCommentsList());
         // dispatch(commentAction.PostComment(postId,content));
-        dispatch(commentAction.GetCommentsList("1"));
+        await dispatch(commentAction.GetCommentsList("1"));
       } catch (e) {
         console.log(e);
         window.alert("댓글 삭제 실패하셨습니다.");
@@ -107,8 +106,9 @@ const ProfilePhoto = styled.div`
   background-repeat: no-repeat;
   img {
     display: block;
-    width: 50px;
-    height: auto;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 `;
 
