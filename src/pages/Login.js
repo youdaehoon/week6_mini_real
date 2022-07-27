@@ -37,9 +37,11 @@ const Login = () => {
 
   const userLogin = (e,userDataForLogin) => {
     e.preventDefault();
-    console.log(userData);
+    userIdRef.current.value="";
+    userPasswordIdRef.current.value="";
+    console.log(userDataForLogin);
     try{
-      dispatch(userAction.userLogin(userData));
+      dispatch(userAction.userLogin(userDataForLogin));
       
     } catch(e) {
 
