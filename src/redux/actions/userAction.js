@@ -25,6 +25,8 @@ function userSignUp(userData) {
 function userLogin(userData) {
   return async (dispatch) => {
     console.log("미들웨어에서 로그인", userData);
+
+    
     const apiLogin = await api
       .post("login", userData)
       .then(function (response) {
@@ -43,13 +45,14 @@ function userLogin(userData) {
 function userLogout(auth) {
   return async (dispatch) => {
     console.log('미들웨어에서 받는것!',auth);
+    
     const apiLogout = axios.create({
       baseURL: "http://13.125.106.21:8080",
       headers: { "authorization": `Bearer ${auth.authorization}`,
       "refresh_token":`Bearer ${auth.refresh_token}` },
     });
     
-
+   
     const LogoutAX = await apiLogout
     .post("logout")
     .then(function (response) {

@@ -10,25 +10,57 @@ const Signup = () => {
   );
   const [ImgForServerType,SetImgForServerType]=React.useState(null)
   const [Nickname, SetNickname] = React.useState("닉네임이 나타납니다.!");
+  const [notificationText, setNotificationText] = React.useState("");
+  const [userData, setUserData] =React.useState({});
+
   const RefNick = React.useRef(null);
   const RefProfileImg = React.useRef(null);
   const RefEmail=React.useRef(null);
   const RefPassword=React.useRef(null);
   const RefRePasswod=React.useRef(null);
+  const validationState = React.useRef(false);
 
+  const validation = (e) => {
+    e.preventDefault();
+    const userID = RefEmail.current.value.trim();
+    const userPW = RefPassword.current.value;
+    
+    const regEmail =
+      /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+    const regPassword = /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,20}$/;
+
+    if (!regEmail.test(userID)) {
+      validationState.current = false;
+      setNotificationText("이메일 형식에 맞게 기재해주세요.");
+    } else if (!regPassword.test(userPW)) {
+      validationState.current = false;
+      setNotificationText("비밀번호는 8자 이상이어야 하며, 숫자/영문/특수문자를 모두 포함해야 합니다.");
+    } else {
+      validationState.current = true;
+      setUserData({ username: userID, password: userPW });
+      setNotificationText("");
+    }
+  };
+
+
+
+
+
+
+  
   const dispatch = useDispatch();
  
 
   const Signup=()=>{
-    dispatch(userAction.userSignUp(
-      {
-        username:RefEmail.current.value,
-        password:RefPassword.current.value,
-        rePassword:RefRePasswod.current.value,
-        nickname:RefNick.current.value,
-        profile:null,
-      }
-    ))
+    // dispatch(userAction.userSignUp(
+    //   {
+    //     username:RefEmail.current.value,
+    //     password:RefPassword.current.value,
+    //     rePassword:RefRePasswod.current.value,
+    //     nickname:RefNick.current.value,
+    //     profile:null,
+    //   }
+    // ))
     
     
 
@@ -53,8 +85,8 @@ const Signup = () => {
       <img src={instgramletter} width="50%" style={{ marginTop: "60px" }} />
       <Margin_10px>
         <WrapInput>
-          <MyInput placeholder="이메일" ref={RefEmail} />
-          <MyInput placeholder="비밀번호" ref={RefPassword} />
+          <MyInput placeholder="이메일" ref={RefEmail} onChange={(e)=>validation(e)} />
+          <MyInput placeholder="비밀번호" ref={RefPassword} onChange={(e)=>validation(e)} />
 
           <MyInput placeholder="비밀번호확인"ref={RefRePasswod} />
           <MyInput
@@ -87,6 +119,7 @@ const Signup = () => {
             </div>
           </WrapFrofile>
         </WrapInput>
+        <LinkText>{notificationText}</LinkText>
         <Mybtn onClick={Signup}>회원가입</Mybtn>
         <WrapLinkText>
           <div style={{ display: "flex", flexDirection: "row" }}>

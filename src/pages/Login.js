@@ -35,10 +35,10 @@ const Login = () => {
     }
   };
 
-  const userLogin = (e,userData) => {
+  const userLogin = (e,userDataForLogin) => {
     e.preventDefault();
-    console.log(userData);
-    dispatch(userAction.userLogin(userData));
+    console.log(userDataForLogin);
+    dispatch(userAction.userLogin(userDataForLogin));
   }
 
 

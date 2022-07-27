@@ -23,7 +23,10 @@ api.interceptors.response.use(function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
   
-    
+    let test123=sessionStorage;
+    console.log("api에서 확인!!!",response.data.tokenBox.access_token);
+    test123.setItem("authorization",response.data.tokenBox.access_token)
+    test123.setItem("refresh_token",response.data.tokenBox.refresh_token)
 
     return response;
   }, function (error) {

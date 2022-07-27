@@ -15,7 +15,8 @@ import { GrFormClose } from "react-icons/gr";
 import { RiCloseLine } from "react-icons/ri";
 import { FaPenSquare } from "react-icons/fa";
 import { RiDeleteBin6Fill } from "react-icons/ri";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
+import {boardAction} from "./redux/actions/boardAction"
 
 function App() {
   const [ModalOpen, SetModalOpen] = React.useState(false);
@@ -26,11 +27,21 @@ function App() {
 
   const boardList = useSelector((state) => state.boardReducer.board);
   console.log(boardList);
+  const dispatch =useDispatch();
 
   const DeleteBoard = (e, Cardkey) => {
     e.preventDefault();
     console.log("삭제", Cardkey);
+    let authorization=sessionStorage.getItem("authorization")
+    let refresh_token=sessionStorage.getItem("refresh_token")
+
     if (window.confirm("정말로 게시물을 삭제하시겠습니까?")) {
+      dispatch(boardAction.DeleteBoard({authorization,refresh_token},
+       {
+        username:"sjssmsqkqh1@naver.com",
+        id:"id"
+       }
+      ))
       console.log("삭제완료", Cardkey);
     }
   };
