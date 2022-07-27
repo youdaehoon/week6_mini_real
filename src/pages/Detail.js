@@ -10,7 +10,7 @@ const Detail = ({ selectBoardData }) => {
   const selectPosition = { La: selectBoardData.Lng, Ma: selectBoardData.Lat };
   const [commentBt, setCommentBt] = useState(false);
   const commentInputRef = useRef();
-  const boardImg = selectBoardData.image;
+  const boardImg = selectBoardData.uploadImageUrl;
   const btState = (e) => {
     if (commentInputRef.current.value != "") {
       setCommentBt(true);
@@ -51,9 +51,9 @@ const Detail = ({ selectBoardData }) => {
             <WriterInfoZone>
               <DetailWriterInfo>
                 <CommentProfilePhoto>
-                  <img src={selectBoardData.writerImage} />
+                  <img src={selectBoardData?.writer.profile} />
                 </CommentProfilePhoto>
-                <ProfileName>{selectBoardData.nickname}</ProfileName>
+                <ProfileName>{selectBoardData.writer.nickname}</ProfileName>
               </DetailWriterInfo>
               <DetailDateZone>{selectBoardData.writeDate}</DetailDateZone>
             </WriterInfoZone>
@@ -324,8 +324,9 @@ const CommentProfilePhoto = styled.div`
   background-repeat: no-repeat;
   img {
     display: block;
-    width: 50px;
-    height: auto;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 `;
 
