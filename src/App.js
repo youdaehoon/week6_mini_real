@@ -11,6 +11,7 @@ import MainNavi from "./components/MainNavi";
 import Detail from "./pages/Detail";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import api from "./redux/api";
 import { GrFormClose } from "react-icons/gr";
 import { RiCloseLine } from "react-icons/ri";
 import { FaPenSquare } from "react-icons/fa";
@@ -18,6 +19,7 @@ import { RiDeleteBin6Fill } from "react-icons/ri";
 import { useSelector,useDispatch } from "react-redux";
 import {boardAction} from "./redux/actions/boardAction"
 import ClipLoader from "react-spinners/ClipLoader";
+import { userAction } from "./redux/actions/userAction";
 
 function App() {
   const [ModalOpen, SetModalOpen] = React.useState(false);
@@ -25,6 +27,8 @@ function App() {
   const [is_login, setIsLogin] = React.useState(false);
   const [Cardkey, SetKey] = React.useState();
   const [selectBoardData, setSelectBoardData] = React.useState({});
+  const is_authorization = sessionStorage.getItem("authorization") ? true : false;
+  const is_refresh_token = sessionStorage.getItem("refresh_token") ? true : false;
 
   const boardList = useSelector((state) => state.boardReducer.board);
   console.log(boardList);
@@ -55,6 +59,17 @@ function App() {
     };
     window.addEventListener("keydown", escKeyModalClose);
     return () => window.removeEventListener("keydown", escKeyModalClose);
+  }, []);
+
+  React.useEffect(() => {
+    if (is_authorization&&is_refresh_token) {
+      api.defaults.headers.common["authorization"] =
+      "Bearer " + sessionStorage.getItem("authorization");
+      api.defaults.headers.common["refresh_token"] =
+      "Bearer " + sessionStorage.getItem("refresh_token");
+      
+      // dispatch(userAction.userAuthcheck(is_authorization,is_refresh_token));
+    }
   }, []);
 
 

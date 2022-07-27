@@ -18,11 +18,25 @@ import axios from "axios";
 //   };
 // }
 
+function userAuthcheck(is_authorization,is_refresh_token) {
+
+}
+
 function userSignUp(formData) {
-  return async (dispatch) => {
+  return async (dispatch) => { 
     console.log("미들웨어에서잉~", formData);
-    // formData.forEach((v)=>{console.log(v)})
-  
+
+    const headers = {
+        'Content-Type': 'multipart/form-data',
+    }
+
+    // const apiSignUp = axios.create({
+    //   baseURL: "http://13.125.106.21:8080",
+    //   headers: {
+    //     "Content-Type": "multipart/form-data",
+    //   },
+    // });
+
     const SignUpAX = await apiFormdata
       .post("user/signup", formData)
       .then(function (response) {
@@ -51,7 +65,7 @@ function userLogin(userData) {
   return async (dispatch) => {
     console.log("미들웨어에서 로그인", userData);
 
-    const apiLogin = await api
+    await api
       .post("login", userData)
       .then(function (response) {
         api.defaults.headers.common["authorization"] =
@@ -68,7 +82,7 @@ function userLogin(userData) {
           "refresh_token",
           response.data.tokenBox.refresh_token
         );
-
+        dispatch(userSliceAction.recodeUser({...response.data.userInfoDto,username:userData.username}))
         console.log("api에서 확인!!!", response.data.tokenBox);
       })
       .catch(function (error) {
@@ -119,4 +133,5 @@ export const userAction = {
   userLogin,
   userLogout,
   findPassword,
+  userAuthcheck,
 };
