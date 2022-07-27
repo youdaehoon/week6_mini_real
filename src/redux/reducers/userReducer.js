@@ -13,7 +13,6 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     recodeUser(state,action){
-      console.log(action.payload);
       state.user = action.payload;
     }
     // 리듀서 넣기

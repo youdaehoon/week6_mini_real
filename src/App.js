@@ -24,7 +24,6 @@ import { userAction } from "./redux/actions/userAction";
 function App() {
   const [ModalOpen, SetModalOpen] = React.useState(false);
   const [ModalRequiredName, SetModalRequiredName] = React.useState("login");
-  const [MakeOrModi, SetMakeOrModi] = React.useState("make");
   const [is_login, setIsLogin] = React.useState(false);
   const [Cardkey, SetKey] = React.useState();
   const [selectBoardData, setSelectBoardData] = React.useState({});
