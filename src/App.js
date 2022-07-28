@@ -30,6 +30,9 @@ function App() {
   const [selectBoardData, setSelectBoardData] = React.useState({});
   const [SwitchCreateUpdate, SetSwitchCreateUpdate] = React.useState("create");
 
+  useEffect(() => {
+    console.log("이걸확인해야함", SwitchCreateUpdate);
+  }, [SwitchCreateUpdate]);
   const is_authorization = sessionStorage.getItem("authorization")
     ? true
     : false;
@@ -65,16 +68,16 @@ function App() {
 
   const GoToMake = () => {
     SetModalRequiredName("makepost");
+    SetSwitchCreateUpdate("update");
   };
 
-  useEffect(() => {
-    SetSwitchCreateUpdate("update");
-  });
+ 
 
   React.useEffect(() => {
     const escKeyModalClose = (e) => {
       if (e.keyCode === 27) {
         SetModalOpen(false);
+        SetSwitchCreateUpdate("make");
       }
     };
     window.addEventListener("keydown", escKeyModalClose);
@@ -138,6 +141,7 @@ function App() {
                     color="#fff"
                     onClick={() => {
                       SetModalOpen(false);
+                      SetSwitchCreateUpdate("make");
                     }}
                   />
                 </div>
@@ -152,6 +156,7 @@ function App() {
                       color="#fff"
                       onClick={() => {
                         SetModalOpen(false);
+                        SetSwitchCreateUpdate("make");
                       }}
                     />
                   </div>
@@ -184,6 +189,7 @@ function App() {
                       size={35}
                       onClick={() => {
                         SetModalOpen(false);
+                        SetSwitchCreateUpdate("make");
                       }}
                     />
                   </div>
@@ -212,6 +218,7 @@ function App() {
                       size={35}
                       onClick={() => {
                         SetModalOpen(false);
+                        SetSwitchCreateUpdate("make");
                       }}
                     />
                   </div>

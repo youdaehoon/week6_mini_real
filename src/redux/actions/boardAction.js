@@ -1,8 +1,6 @@
 import { boardSliceAction } from "../reducers/boardReducer";
 import axios from "axios";
-import { api, apij } from "../api";
 import apiJson from "../apiJson";
-import gamsung_04 from"../../image/gamsung_01.jpg"
 
 function LoadBoard() {
   return async (dispatch) => {

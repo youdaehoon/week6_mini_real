@@ -11,7 +11,10 @@ const MakePostImg = ({ selectBoardData,files, setFiles, SetMakeProcess ,SetModal
   const Refcontents=React.useRef("");
   const userdata = useSelector((state) => state.userReducer.user);
   console.log("프로필을넣자!",userdata)
-
+  React.useEffect(()=>{
+    console.log("이걸확인해야함",SwitchCreateUpdate)
+  },[SwitchCreateUpdate])
+  
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
     onDrop: (acceptedFiles) => {
@@ -37,6 +40,7 @@ const MakePostImg = ({ selectBoardData,files, setFiles, SetMakeProcess ,SetModal
     formData.append('data', files[0])
     
     dispatch(boardAction.CreateBoard({authorization,refresh_token},formData,SetModalOpen))
+    
 
   }
   const UpdateBoard=()=>{

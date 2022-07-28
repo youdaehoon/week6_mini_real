@@ -10,7 +10,8 @@ import {
 import { HiKey, HiOutlineKey } from "react-icons/hi";
 import DropDown from "./DropDown";
 import { userAction } from "../redux/actions/userAction";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { IoIosLogOut } from "react-icons/io";
 
 const MainNavi = ({
   ModalOpen,
@@ -29,11 +30,12 @@ const MainNavi = ({
     let refresh_token = sessionStorage.getItem("refresh_token");
     dispatch(userAction.userLogout({ authorization, refresh_token }));
   };
-
+  const userdata = useSelector((state) => state.userReducer.user);
+  console.log("누군데", userdata);
   return (
     <NaviFrame>
       <NaviWrap>
-        <a>
+        <a href="/">
           <h1>instagram</h1>
         </a>
         <span>
@@ -43,12 +45,31 @@ const MainNavi = ({
               SetModalRequiredName("login");
             }}
           >
-            {ModalOpen && ModalRequiredName == "login" ? (
-              <HiKey size={30} />
-            ) : (
-              <HiOutlineKey size={30} />
-            )}
+            {ModalOpen && ModalRequiredName == "login"
+              ? !is_login && <HiKey size={30} />
+              : !is_login && <HiOutlineKey size={30} />}
           </div>
+          {is_login && (
+            <div >
+              <div
+                style={{
+                  width: "30px",
+                  height: "30px",
+                  borderRadius: "40px",
+                  overflow: "hidden",
+                }}
+              >
+                <img
+                  src={userdata.profile}
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                ></img>
+              </div>
+              <div style={{ fontWeight: "bold", fontSize: "15px" }}>
+                {userdata.nickname}<div style={{ fontWeight: "normal" }}>님 환영합니다!</div>
+              </div>
+              
+            </div>
+          )}
           <div
             onClick={() => {
               SetModalOpen(true);
@@ -74,10 +95,11 @@ const MainNavi = ({
               <BsPlusSquare size={30} />
             )}
           </div>
-          <DropDown />
-          <ProfilePhoto onClick={logout}>
-            <img src={profile} />
-          </ProfilePhoto>
+          {is_login && (
+            <div>
+              <IoIosLogOut onClick={logout} size={35}></IoIosLogOut>
+            </div>
+          )}
         </span>
       </NaviWrap>
     </NaviFrame>
