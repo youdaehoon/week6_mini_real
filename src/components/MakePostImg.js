@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import { useDropzone } from "react-dropzone";
 import { useDispatch ,useSelector}from"react-redux"
@@ -9,6 +9,10 @@ import KakaoMapForPost from"./KakaoMapForPost";
 const MakePostImg = ({ selectBoardData,files, setFiles, SetMakeProcess ,SetModalOpen,SetSwitchCreateUpdate,SwitchCreateUpdate}) => {
   const dispatch=useDispatch();
   const Refcontents=React.useRef("");
+  const [Place, setPlace] = useState("");
+  const [markAddress, setMarkAddress] = useState("");
+  const [selectPosition, setSelectPosition] = useState();
+  
   const userdata = useSelector((state) => state.userReducer.user);
   console.log("프로필을넣자!",userdata)
   React.useEffect(()=>{
@@ -34,9 +38,9 @@ const MakePostImg = ({ selectBoardData,files, setFiles, SetMakeProcess ,SetModal
     let refresh_token=sessionStorage.getItem("refresh_token")
     formData.append('contents',Refcontents.current.value)
     formData.append('nickname', userdata.nickname)
-    formData.append('Lat', "561616")
-    formData.append('Lng', "8989794646")
-    formData.append('address', "4564564654646")
+    formData.append('Lat', selectPosition.Ma)
+    formData.append('Lng', selectPosition.La)
+    formData.append('address', markAddress)
     formData.append('data', files[0])
     
     dispatch(boardAction.CreateBoard({authorization,refresh_token},formData,SetModalOpen))
@@ -48,9 +52,9 @@ const MakePostImg = ({ selectBoardData,files, setFiles, SetMakeProcess ,SetModal
     let refresh_token=sessionStorage.getItem("refresh_token")
     formData.append('contents',Refcontents.current.value)
     formData.append('nickname', userdata.nickname)
-    formData.append('Lat', "561616")
-    formData.append('Lng', "8989794646")
-    formData.append('address', "4564564654646")
+    formData.append('Lat', selectPosition.Ma)
+    formData.append('Lng', selectPosition.La)
+    formData.append('address', markAddress)
     formData.append('data', files[0])
     const id=selectBoardData.id
     dispatch(boardAction.UpdateBoard({authorization,refresh_token},formData,SetModalOpen,id))
@@ -122,7 +126,7 @@ const MakePostImg = ({ selectBoardData,files, setFiles, SetMakeProcess ,SetModal
       </div>
       
       <WrapMap>
-      <KakaoMapForPost/>
+      <KakaoMapForPost setMarkAddress={setMarkAddress} Place={Place} setPlace={setPlace} setSelectPosition={setSelectPosition} />
       </WrapMap>
      
       
