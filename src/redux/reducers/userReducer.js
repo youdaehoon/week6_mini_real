@@ -14,6 +14,10 @@ const userSlice = createSlice({
   reducers: {
     recodeUser(state,action){
       state.user = action.payload;
+    },
+    emptyuser(state,action){
+      console.log("여기까진오니?")
+      state.user =null;
     }
     // 리듀서 넣기
     // <액션1 함수 이름> (state,action){
