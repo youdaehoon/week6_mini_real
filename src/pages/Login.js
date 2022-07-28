@@ -86,15 +86,11 @@ const Login = () => {
         <WrapLinkText>
           <div style={{ display: "flex", flexDirection: "row" }}>
             <LinkText>아이디/</LinkText>
-            <LinkText onClick={{}}>비밀번호찾기</LinkText>
+            <LinkText>비밀번호찾기</LinkText>
           </div>
 
           <p />
-          <LinkText
-            onClick={() => {
-             
-            }}
-          >
+          <LinkText>
             회원가입
           </LinkText>
         </WrapLinkText>

@@ -1,14 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import { useDropzone } from "react-dropzone";
-import { useDispatch }from"react-redux"
+import { useDispatch ,useSelector}from"react-redux"
 import { boardAction } from "../redux/actions/boardAction";
 import KakaoMapForPost from"./KakaoMapForPost";
 
 
-const MakePostImg = ({ files, setFiles, SetMakeProcess }) => {
+const MakePostImg = ({ selectBoardData,files, setFiles, SetMakeProcess ,SetModalOpen,SetSwitchCreateUpdate,SwitchCreateUpdate}) => {
   const dispatch=useDispatch();
   const Refcontents=React.useRef("");
+  const userdata = useSelector((state) => state.userReducer.user);
+  console.log("프로필을넣자!",userdata)
+
   const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
     onDrop: (acceptedFiles) => {
@@ -24,43 +27,39 @@ const MakePostImg = ({ files, setFiles, SetMakeProcess }) => {
   const formData = new FormData();
 
   const PostingBoardInMakePosting=()=>{
-    // console.log("makemodal에서 보낼놈들 확인용!!!","이미지는 파일로잘갔니?",files[0],"text:",Refcontents.current.value)
     let authorization=sessionStorage.getItem("authorization")
     let refresh_token=sessionStorage.getItem("refresh_token")
     formData.append('contents',Refcontents.current.value)
-    formData.append('nickname', "케이오스")
+    formData.append('nickname', userdata.nickname)
     formData.append('Lat', "561616")
     formData.append('Lng', "8989794646")
     formData.append('address', "4564564654646")
     formData.append('data', files[0])
-    formData.forEach((v)=>console.log(v))
-    console.log(formData.keys)
-    dispatch(boardAction.CreateBoard({authorization,refresh_token},formData))
-    // dispatch(boardAction.CreateBoard({authorization,refresh_token},
-    //   {
-    //     // id: "dsadsoaipoapapapapapapapapapapap",
-    //     // writeDate: "2022-07-22 18:55:28",
-    //     contents:  Refcontents.current.value,
-    //     nickname: "케이오스",
-    //     // writerImage: "",
-       
-    //     Lat: "561616",
-    //     Lng: "8989794646",
-    //     adress:"4564564654646"
-    //   },
-    //  {
-    //   data: files[0],
-    //  },
-    // ))
+    
+    dispatch(boardAction.CreateBoard({authorization,refresh_token},formData,SetModalOpen))
+
+  }
+  const UpdateBoard=()=>{
+    let authorization=sessionStorage.getItem("authorization")
+    let refresh_token=sessionStorage.getItem("refresh_token")
+    formData.append('contents',Refcontents.current.value)
+    formData.append('nickname', userdata.nickname)
+    formData.append('Lat', "561616")
+    formData.append('Lng', "8989794646")
+    formData.append('address', "4564564654646")
+    formData.append('data', files[0])
+    const id=selectBoardData.id
+    dispatch(boardAction.UpdateBoard({authorization,refresh_token},formData,SetModalOpen,id))
   }
 
   return (
     <div>
       <WrapMakeImgHead>
         <div style={{ width: "100%", height: "50px", fontWeight: "bold" }}>
-          새 게시물 만들기
+          {SwitchCreateUpdate=="update"?"게시물 수정하기":"새 게시물 만들기"}
         </div>
-        <HeadBtn onClick={PostingBoardInMakePosting}>공유하기</HeadBtn>
+        {SwitchCreateUpdate=="update"?<HeadBtn onClick={UpdateBoard}>수정하기</HeadBtn>: <HeadBtn onClick={PostingBoardInMakePosting}>공유하기</HeadBtn>}
+       
       </WrapMakeImgHead>
       <div style={{ position: "relative", bottom: "70px"}}>
         <div style={{ display: "flex",borderTop:"1px solid black" }}>
@@ -96,12 +95,12 @@ const MakePostImg = ({ files, setFiles, SetMakeProcess }) => {
               <WrapImage>
                 <img
                   alt=""
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlmv-ZuA9KAj9yb4y7UwSBYx_PjnSrBQJY-A&usqp=CAU"
+                  src={userdata.profile}
                   style={{ height: "100%", width: "100%", objectFit: "cover" }}
                 />
                 
               </WrapImage>
-              <div style={{fontSize:"20px",marginLeft:"10px",fontWeight:"bold"}}>케이오스</div>
+              <div style={{fontSize:"20px",marginLeft:"10px",fontWeight:"bold"}}>{userdata.nickname}</div>
               </WrapFrofile>
             
              

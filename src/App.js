@@ -27,6 +27,8 @@ function App() {
   const [is_login, setIsLogin] = React.useState(false);
   const [Cardkey, SetKey] = React.useState();
   const [selectBoardData, setSelectBoardData] = React.useState({});
+  const [SwitchCreateUpdate, SetSwitchCreateUpdate] = React.useState("create");
+
   const is_authorization = sessionStorage.getItem("authorization")
     ? true
     : false;
@@ -35,13 +37,16 @@ function App() {
     : false;
 
 
+
   const boardList = useSelector((state) => state.boardReducer.board);
-  console.log(boardList);
+  const userdata = useSelector((state) => state.userReducer.user);
+
   const dispatch = useDispatch();
 
   const DeleteBoard = (e, Cardkey) => {
     e.preventDefault();
-    console.log("삭제", Cardkey);
+
+    // console.log("삭제", Cardkey);
     let authorization = sessionStorage.getItem("authorization");
     let refresh_token = sessionStorage.getItem("refresh_token");
 
@@ -50,12 +55,12 @@ function App() {
         boardAction.DeleteBoard(
           { authorization, refresh_token },
           {
-            username: "sjssmsqkqh1@gmail.com",
-            id: "2",
+            username: userdata.username,
+            id: selectBoardData.id,
           }
         )
       );
-      console.log("삭제완료", Cardkey);
+      // console.log("삭제완료", Cardkey);
     }
   };
 
@@ -64,7 +69,10 @@ function App() {
   };
 
   useEffect(() => {
-    // dispatch(boardAction.LoadBoard());
+    SetSwitchCreateUpdate("update");
+  });
+
+  React.useEffect(() => {
 
     const escKeyModalClose = (e) => {
       if (e.keyCode === 27) {
@@ -76,7 +84,8 @@ function App() {
     return () => window.removeEventListener("keydown", escKeyModalClose);
   }, []);
 
-  useEffect(() => {
+
+  React.useEffect(() => {
     if (is_authorization && is_refresh_token) {
       api.defaults.headers.common["authorization"] =
         "Bearer " + sessionStorage.getItem("authorization");
@@ -171,7 +180,13 @@ function App() {
                 </div>
               ) : ModalRequiredName == "makepost" ? (
                 <div className="modal-content-makepost">
-                  <MakePost selectBoardData={selectBoardData} />
+                  <MakePost
+                    selectBoardData={selectBoardData}
+                    SetModalOpen={SetModalOpen}
+                    SwitchCreateUpdate={SwitchCreateUpdate}
+                    SetSwitchCreateUpdate={SetSwitchCreateUpdate}
+                    
+                  />
                 </div>
               ) : ModalRequiredName == "detail" ? (
                 <div className="modal-content-detail">
