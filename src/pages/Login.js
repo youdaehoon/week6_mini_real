@@ -5,7 +5,7 @@ import instgramletter from "../image/InstagramLetter.png";
 import { useDispatch } from "react-redux";
 import { userAction } from "../redux/actions/userAction";
 
-const Login = ({SetModalOpen}) => {
+const Login = ({ SetModalOpen }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userIdRef = useRef();
@@ -27,7 +27,9 @@ const Login = ({SetModalOpen}) => {
       setNotificationText("이메일 형식에 맞게 기재해주세요.");
     } else if (!regPassword.test(userPW)) {
       validationState.current = false;
-      setNotificationText("비밀번호는 8자 이상이어야 하며, 숫자/영문/특수문자를 모두 포함해야 합니다.");
+      setNotificationText(
+        "비밀번호는 8자 이상이어야 하며, 숫자/영문/특수문자를 모두 포함해야 합니다."
+      );
     } else {
       validationState.current = true;
       setUserData({ username: userID, password: userPW });
@@ -35,19 +37,13 @@ const Login = ({SetModalOpen}) => {
     }
   };
 
-  const userLogin = (e,userDataForLogin) => {
+  const userLogin = (e, userDataForLogin) => {
     e.preventDefault();
-    userIdRef.current.value="";
-    userPasswordIdRef.current.value="";
+    userIdRef.current.value = "";
+    userPasswordIdRef.current.value = "";
     console.log(userDataForLogin);
-    try{
-      dispatch(userAction.userLogin(userDataForLogin,SetModalOpen));
-      
-    } catch(e) {
-
-    }
-  }
-
+    dispatch(userAction.userLogin(userDataForLogin, SetModalOpen));
+  };
 
   return (
     <WrapLogin>
@@ -67,17 +63,21 @@ const Login = ({SetModalOpen}) => {
           />
           <LinkText>{notificationText}</LinkText>
           {validationState.current ? (
-            <Mybtn validationState={validationState.current}
+            <Mybtn
+              validationState={validationState.current}
               onClick={(e) => {
-                userLogin(e,userData)
+                userLogin(e, userData);
               }}
             >
               로그인
             </Mybtn>
           ) : (
-            <Mybtn onClick={(e) => {
-              e.preventDefault();
-            }} validationState={validationState.current}>
+            <Mybtn
+              onClick={(e) => {
+                e.preventDefault();
+              }}
+              validationState={validationState.current}
+            >
               로그인
             </Mybtn>
           )}
@@ -90,9 +90,7 @@ const Login = ({SetModalOpen}) => {
           </div>
 
           <p />
-          <LinkText>
-            회원가입
-          </LinkText>
+          <LinkText>회원가입</LinkText>
         </WrapLinkText>
       </Margin_10px>
     </WrapLogin>
@@ -138,7 +136,9 @@ const Mybtn = styled.button`
   ${({ validationState }) => {
     return css`
       color: white;
-      background-color:${validationState?"rgb(50,160,232);":"rgb(182 217 240);"} 
+      background-color:${
+        validationState ? "rgb(50,160,232);" : "rgb(182 217 240);"
+      } 
       font-size: 14px;
       border: 0px solid white;
       border-radius: 4px;

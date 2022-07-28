@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import KakaoMapForEdit from "./KakaoMapForEdit";
 
-const KakaoMapForPost = () => {
+const KakaoMapForPost = ( { Place, setPlace, setMarkAddress, setSelectPosition } ) => {
   const [InputText, setInputText] = useState("");
-  const [Place, setPlace] = useState("");
-  const [selectPosition, setSelectPosition] = useState();
 
   const onChange = (e) => {
     setInputText(e.target.value);
@@ -39,6 +37,7 @@ const KakaoMapForPost = () => {
       </KakaoMapSearchWarp>
       <KakaoMapForEdit
         searchPlace={Place}
+        setMarkAddress={setMarkAddress}
         setSelectPosition={setSelectPosition}
       />
     </KakaoMapWrap>

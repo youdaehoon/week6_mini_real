@@ -3,15 +3,24 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { commentAction } from "../redux/actions/commentAction";
 
-const Comment = ({ postId, writer, content, createdAt, commentId }) => {
+const Comment = ({
+  postId,
+  writer,
+  content,
+  createdAt,
+  commentId,
+  username,
+}) => {
   const dispatch = useDispatch();
   const CommentDelet = async (e, commentId) => {
     e.preventDefault();
     console.log("삭제", commentId);
     if (window.confirm("정말로 댓글을 삭제하시겠습니까?")) {
       try {
-        const originalPromiseResult = await dispatch(commentAction.DelComment(commentId)).unwrap();
-        console.log(originalPromiseResult)
+        const originalPromiseResult = await dispatch(
+          commentAction.DelComment(commentId)
+        ).unwrap();
+        console.log(originalPromiseResult);
         // await dispatch(commentAction.DelComment(commentId));
         // dispatch(commentAction.GetCommentsList());
         // dispatch(commentAction.PostComment(postId,content));
@@ -48,7 +57,8 @@ const Comment = ({ postId, writer, content, createdAt, commentId }) => {
       );
     }
   };
-
+  console.log(writer.username)
+  console.log(username)
   return (
     <CommentFrame>
       <CommentLeft>
@@ -63,9 +73,13 @@ const Comment = ({ postId, writer, content, createdAt, commentId }) => {
         </CommentMainFrameTop>
         <CommentMainFrameBottom>
           <CommentDateZone>{timeSetting(createdAt)}</CommentDateZone>
-          <CommentButtonArea onClick={(e) => CommentDelet(e, commentId)}>
-            삭제
-          </CommentButtonArea>
+          {username == writer.username ? (
+            <CommentButtonArea onClick={(e) => CommentDelet(e, commentId)}>
+              삭제
+            </CommentButtonArea>
+          ) : (
+            <></>
+          )}
         </CommentMainFrameBottom>
       </CommentMainFrame>
     </CommentFrame>

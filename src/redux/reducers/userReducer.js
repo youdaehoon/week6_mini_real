@@ -14,6 +14,9 @@ const userSlice = createSlice({
   reducers: {
     recodeUser(state,action){
       state.user = action.payload;
+    },
+    emptyuser(state){
+      state.user = null;
     }
     // 리듀서 넣기
     // <액션1 함수 이름> (state,action){

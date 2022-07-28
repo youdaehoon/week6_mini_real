@@ -36,7 +36,7 @@ const Detail = ({ selectBoardData, is_login }) => {
       }
     }
   } 
-
+  console.log(selectBoardData.address);
   return (
     <DatailFrame>
       <DatailTopFrame>
@@ -77,7 +77,7 @@ const Detail = ({ selectBoardData, is_login }) => {
       <DatailBottomFrame>
         <DetailBottomArea>
           <DetailMapField>
-            <KakaoMapForDetail selectPosition={selectPosition} />
+            <KakaoMapForDetail address={selectBoardData.address} selectPosition={selectPosition} />
           </DetailMapField>
           <DetailContextFrame>
             <DetailContextField>

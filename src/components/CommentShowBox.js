@@ -9,7 +9,11 @@ const CommentShowBox = ({ postId }) => {
   const { comments, commentsLoading } = useSelector(
     (state) => state.commentReducer
   );
+  const username = useSelector(
+    (state) => state.userReducer.user.username
+  );
   const dispatch = useDispatch();
+
 
   console.log(comments);
 
@@ -37,6 +41,7 @@ const CommentShowBox = ({ postId }) => {
             <Comment
               key={index}
               postId={postId}
+              username={username}
               writer={commmentInfo.writer}
               content={commmentInfo.content}
               createdAt={commmentInfo.createdAt}
