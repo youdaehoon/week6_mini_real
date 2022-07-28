@@ -29,6 +29,7 @@ const MainNavi = ({
     let authorization = sessionStorage.getItem("authorization");
     let refresh_token = sessionStorage.getItem("refresh_token");
     dispatch(userAction.userLogout({ authorization, refresh_token }));
+
   };
   const userdata = useSelector((state) => state.userReducer.user);
   console.log("누군데", userdata);
@@ -90,9 +91,9 @@ const MainNavi = ({
             }}
           >
             {ModalOpen && ModalRequiredName == "makepost" ? (
-              <BsPlusSquareFill size={30} />
+              is_login&&<BsPlusSquareFill size={30} />
             ) : (
-              <BsPlusSquare size={30} />
+              is_login&&<BsPlusSquare size={30} />
             )}
           </div>
           {is_login && (

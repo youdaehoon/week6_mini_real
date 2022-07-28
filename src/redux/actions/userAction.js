@@ -1,3 +1,4 @@
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import { userSliceAction } from "../reducers/userReducer";
 import api from "../api";
 import apiFormdata from "../apiFormdata";
@@ -50,13 +51,14 @@ function userLogin(userData,SetModalOpen) {
         );
         console.log("api에서 확인!!!", response.data.tokenBox);
         SetModalOpen(false)
-        
+        window.location.reload();
       })
       .catch(function (error) {
         console.log(error);
       });
   };
 }
+
 function userLogout(auth) {
   return async (dispatch) => {
     console.log("미들웨어에서 받는것!", auth);
@@ -64,15 +66,15 @@ function userLogout(auth) {
     const LogoutAX = await api
       .post("logout")
       .then(function (response) {
-        console.log(response, "로그아웃이 완료되었습니다.!");
+        console.log(response, "로그아웃이 완료되었습니다!");
         api.defaults.headers.common["authorization"] = "";
         api.defaults.headers.common["refresh_token"] = "";
-        dispatch(userSliceAction.emptyuser())
+        dispatch(userSliceAction.emptyuser());
+        window.location.reload();
       })
       .catch(function (error) {
-        console.log("로그아웃에 실패하였습니다!.", error);
+        console.log("로그아웃에 실패하였습니다 ㅜ.ㅜ", error);
       });
-
     sessionStorage.clear();
   };
 }

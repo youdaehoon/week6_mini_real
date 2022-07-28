@@ -1,22 +1,18 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import { useDropzone } from "react-dropzone";
 import { useDispatch, useSelector } from "react-redux";
 import { boardAction } from "../redux/actions/boardAction";
 import KakaoMapForPost from "./KakaoMapForPost";
 
-const MakePostImg = ({
-  selectBoardData,
-  files,
-  setFiles,
-  SetMakeProcess,
-  SetModalOpen,
-  SetSwitchCreateUpdate,
-  SwitchCreateUpdate,
-}) => {
-  const dispatch = useDispatch();
-  const Refcontents = React.useRef("");
-  const RefImgPreview = React.useRef("");
+
+const MakePostImg = ({ selectBoardData,files, setFiles, SetMakeProcess ,SetModalOpen,SetSwitchCreateUpdate,SwitchCreateUpdate}) => {
+  const dispatch=useDispatch();
+  const Refcontents=React.useRef("");
+  const [Place, setPlace] = useState("");
+  const [markAddress, setMarkAddress] = useState("");
+  const [selectPosition, setSelectPosition] = useState();
+  
   const userdata = useSelector((state) => state.userReducer.user);
 
   console.log("프로필을넣자!", userdata);
@@ -41,12 +37,12 @@ const MakePostImg = ({
   const CreateBoard = () => {
     let authorization = sessionStorage.getItem("authorization");
     let refresh_token = sessionStorage.getItem("refresh_token");
-    formData.append("contents", Refcontents.current.value);
-    formData.append("nickname", userdata.nickname);
-    formData.append("Lat", "561616");
-    formData.append("Lng", "8989794646");
-    formData.append("address", "4564564654646");
-    formData.append("data", files[0]);
+    formData.append('contents',Refcontents.current.value)
+    formData.append('nickname', userdata.nickname)
+    formData.append('Lat', selectPosition?.Ma)
+    formData.append('Lng', selectPosition?.La)
+    formData.append('address', markAddress)
+    formData.append('data', files[0]);
 
     dispatch(
       boardAction.CreateBoard(
@@ -60,16 +56,14 @@ const MakePostImg = ({
   const UpdateBoard = () => {
     let authorization = sessionStorage.getItem("authorization");
     let refresh_token = sessionStorage.getItem("refresh_token");
-    if(Refcontents.current.value==""){
-      formData.append("contents", selectBoardData.contents);
-    }else{
+   Refcontents.current.value==""?
+      formData.append("contents", selectBoardData.contents): formData.append('contents',Refcontents.current.value);
       
-    }
-    formData.append("contents", Refcontents.current.value);
+    
     formData.append("nickname", userdata.nickname);
-    formData.append("Lat", "561616");
-    formData.append("Lng", "8989794646");
-    formData.append("address", "4564564654646");
+    formData.append('Lat', selectPosition?selectPosition.Ma:selectBoardData.lat);
+    formData.append('Lng', selectPosition?selectPosition.La:selectBoardData.lng);
+    formData.append('address', markAddress);
     formData.append("data", files[0]);
     const id = selectBoardData.id;
     dispatch(
@@ -85,7 +79,7 @@ const MakePostImg = ({
     console.log(Refcontents.current.value, selectBoardData.contents);
     // Refcontents.current.value=selectBoardData.contents
     console.log("데이터확인!", selectBoardData);
-    console.log("다음은여기", RefImgPreview);
+
     // RefImgPreview.current.src=selectBoardData.imageFileName;
   }
 
@@ -124,29 +118,22 @@ const MakePostImg = ({
               <img
                 alt=""
                 src={selectBoardData.imageFileName}
-                style={{ width: "100%", height: "561px", objectFit: "contain" }}
+                style={{ width: "100%", height: "100%", objectFit: "contain" }}
               />
-            ) : (
+            ) : files[0] &&(
               <img
                 alt=""
                 src={files[0].preview}
-                style={{ width: "100%", height: "561px", objectFit: "contain" }}
+                style={{ width: "100%", height: "100%", objectFit: "contain" }}
               />
             )}
-            {files[0] && (
-              <img
-                
-                alt=""
-                src={files[0].preview}
-                style={{ width: "100%", height: "561px", objectFit: "contain" }}
-              />
-            )}
+        
           </div>
           <div
             style={{
               display: "flex",
               flexDirection: "column",
-              height: "561px",
+              height: "100%",
               width: "28%",
             }}
           >
@@ -188,8 +175,8 @@ const MakePostImg = ({
         </div>
       </div>
 
-      <WrapMap>
-        <KakaoMapForPost />
+      <WrapMap >
+      <KakaoMapForPost setMarkAddress={setMarkAddress} Place={Place} setPlace={setPlace} setSelectPosition={setSelectPosition} />
       </WrapMap>
     </div>
   );
@@ -254,4 +241,5 @@ const WrapMap = styled.div`
   width: 100%;
   height: 500px;
   margin-top: -70px;
+  
 `;

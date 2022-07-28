@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const { kakao } = window;
 
-const KakaoMapForEdit = ({ searchPlace, setSelectPosition }) => {
+const KakaoMapForEdit = ({ searchPlace, setMarkAddress, setSelectPosition }) => {
   useEffect(() => {
     var infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
     const container = document.getElementById("myMap");
@@ -25,12 +25,7 @@ const KakaoMapForEdit = ({ searchPlace, setSelectPosition }) => {
     kakao.maps.event.addListener(map, "click", function (mouseEvent) {
       searchDetailAddrFromCoords(mouseEvent.latLng, function (result, status) {
         if (status === kakao.maps.services.Status.OK) {
-          var detailAddr = !!result[0].road_address
-            ? "<div>도로명주소 : " +
-              result[0].road_address.address_name +
-              "</div>"
-            : "";
-          detailAddr +=
+          var detailAddr =
             "<div>지번 주소 : " + result[0].address.address_name + "</div>";
 
           var content =
@@ -42,7 +37,7 @@ const KakaoMapForEdit = ({ searchPlace, setSelectPosition }) => {
           // 마커를 클릭한 위치에 표시합니다
           setSelectPosition(mouseEvent.latLng);
           console.log(mouseEvent.latLng);
-          console.log(detailAddr);
+          setMarkAddress(detailAddr);
           marker.setPosition(mouseEvent.latLng);
           marker.setMap(map);
 

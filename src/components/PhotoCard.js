@@ -33,6 +33,7 @@ const ImageBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
   transition: all 0.1s linear;
   &:hover {
     box-shadow: black 0px 5px 15px 0px;

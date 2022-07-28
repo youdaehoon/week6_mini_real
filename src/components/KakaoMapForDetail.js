@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const { kakao } = window;
 
-const KakaoMapForDetail = ({ selectPosition }) => {
+const KakaoMapForDetail = ({ address, selectPosition }) => {
   //처음 지도 그리기
   useEffect(() => {
     const container = document.getElementById("map");
@@ -26,7 +26,7 @@ const KakaoMapForDetail = ({ selectPosition }) => {
     marker.setMap(kakaoMap);
 
     var iwContent =
-        `<div style="padding:5px;">위치<br><a href="https://map.kakao.com/link/map/${selectPosition.Ma},${selectPosition.La}" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/선택된 위치,${selectPosition.Ma},${selectPosition.La}" style="color:blue" target="_blank">길찾기</a></div>`,
+        `<div style="padding:2px;">${address}<a href="https://map.kakao.com/link/map/${selectPosition.Ma},${selectPosition.La}" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/선택된 위치,${selectPosition.Ma},${selectPosition.La}" style="color:blue" target="_blank">길찾기</a></div>`,
       iwPosition = new kakao.maps.LatLng(selectPosition.Ma, selectPosition.La); //인포윈도우 표시 위치입니다
 
     // 인포윈도우를 생성합니다
