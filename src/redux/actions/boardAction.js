@@ -43,6 +43,7 @@ function DeleteBoard(auth, boardData) {
       .delete(`posts/${boardData.id}`, boardData)
       .then(function (response) {
         console.log(response, "에러안남!!!!!");
+        window.location.reload();
       })
       .catch(function (error) {
         console.log("에러났음.", error);
@@ -91,6 +92,7 @@ function CreateBoard(auth, data,SetModalOpen) {
       .then(function (response) {
         console.log(response, "에러안남!!!!!");
         SetModalOpen(false)
+        window.location.reload();
       })
       .catch(function (error) {
         console.log("에러났음.", error);
@@ -117,6 +119,7 @@ function UpdateBoard(auth, data,SetModalOpen,id) {
       .then(function (response) {
         console.log(response, "에러안남!!!!!");
         SetModalOpen(false)
+        window.location.reload();
       })
       .catch(function (error) {
         console.log("에러났음.", error);

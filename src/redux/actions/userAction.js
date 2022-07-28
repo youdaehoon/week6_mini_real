@@ -11,6 +11,7 @@ function userSignUp(formData) {
       .post("user/signup", formData)
       .then(function (response) {
         console.log(response, "에러안남!!!!!");
+        window.location.reload();
       })
       .catch(function (error) {
         console.log(error);
