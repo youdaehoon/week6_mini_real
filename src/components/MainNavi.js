@@ -37,7 +37,7 @@ const MainNavi = ({
     <NaviFrame>
       <NaviWrap>
         <a href="/">
-          <h1>instagram</h1>
+        <h1>limstagram</h1>
         </a>
         <span>
           <div
@@ -78,9 +78,9 @@ const MainNavi = ({
             }}
           >
             {ModalOpen && ModalRequiredName == "signup" ? (
-              <BsPersonPlusFill size={30} />
+              !is_login&&<BsPersonPlusFill size={30} />
             ) : (
-              <BsPersonPlus size={30} />
+              !is_login&&<BsPersonPlus size={30} />
             )}
           </div>
 

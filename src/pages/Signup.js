@@ -76,7 +76,7 @@ const Signup = () => {
 
   return (
     <WrapLogin>
-      <img src={instgramletter} width="50%" style={{ marginTop: "60px" }} />
+      <h1>limstagram</h1>
       <Margin_10px>
         <WrapInput>
           <MyInput
