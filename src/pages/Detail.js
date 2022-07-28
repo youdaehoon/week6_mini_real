@@ -8,7 +8,7 @@ import { commentAction } from "../redux/actions/commentAction";
 const Detail = ({ selectBoardData }) => {
   console.log(selectBoardData);
   const dispatch = useDispatch();
-  const selectPosition = { La: selectBoardData.Lng, Ma: selectBoardData.Lat };
+  const selectPosition = { La: selectBoardData.lng, Ma: selectBoardData.lat };
   const [commentBt, setCommentBt] = useState(false);
   const commentInputRef = useRef();
   const boardImg = selectBoardData.uploadImageUrl;
