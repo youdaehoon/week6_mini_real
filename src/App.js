@@ -16,8 +16,8 @@ import { GrFormClose } from "react-icons/gr";
 import { RiCloseLine } from "react-icons/ri";
 import { FaPenSquare } from "react-icons/fa";
 import { RiDeleteBin6Fill } from "react-icons/ri";
-import { useSelector,useDispatch } from "react-redux";
-import {boardAction} from "./redux/actions/boardAction"
+import { useSelector, useDispatch } from "react-redux";
+import { boardAction } from "./redux/actions/boardAction";
 import ClipLoader from "react-spinners/ClipLoader";
 import { userAction } from "./redux/actions/userAction";
 
@@ -27,42 +27,46 @@ function App() {
   const [is_login, setIsLogin] = React.useState(false);
   const [Cardkey, SetKey] = React.useState();
   const [selectBoardData, setSelectBoardData] = React.useState({});
-  const is_authorization = sessionStorage.getItem("authorization") ? true : false;
-  const is_refresh_token = sessionStorage.getItem("refresh_token") ? true : false;
+  const [SwitchCreateUpdate, SetSwitchCreateUpdate] = React.useState("create");
+  const is_authorization = sessionStorage.getItem("authorization")
+    ? true
+    : false;
+  const is_refresh_token = sessionStorage.getItem("refresh_token")
+    ? true
+    : false;
 
   const boardList = useSelector((state) => state.boardReducer.board);
-  console.log(boardList);
-  const dispatch =useDispatch();
+  const userdata = useSelector((state) => state.userReducer.user);
+  // console.log("유저네임확인", userdata.username);
+  const dispatch = useDispatch();
 
   const DeleteBoard = (e, Cardkey) => {
     e.preventDefault();
-    console.log("삭제", Cardkey);
-    let authorization=sessionStorage.getItem("authorization")
-    let refresh_token=sessionStorage.getItem("refresh_token")
+    // console.log("삭제", Cardkey);
+    let authorization = sessionStorage.getItem("authorization");
+    let refresh_token = sessionStorage.getItem("refresh_token");
 
     if (window.confirm("정말로 게시물을 삭제하시겠습니까?")) {
-      dispatch(boardAction.DeleteBoard({authorization,refresh_token},
-       {
-        username:"sjssmsqkqh1@gmail.com",
-        id:"2"
-       }
-      ))
-      console.log("삭제완료", Cardkey);
+      dispatch(
+        boardAction.DeleteBoard(
+          { authorization, refresh_token },
+          {
+            username: userdata.username,
+            id: selectBoardData.id,
+          }
+        )
+      );
+      // console.log("삭제완료", Cardkey);
     }
   };
 
-  const GoToMake=()=>{
+  const GoToMake = () => {
     SetModalRequiredName("makepost");
-    
-
-  }
-
- 
-
-
+    SetSwitchCreateUpdate("update");
+  };
 
   React.useEffect(() => {
-    dispatch(boardAction.LoadBoard())   
+    dispatch(boardAction.LoadBoard());
 
     const escKeyModalClose = (e) => {
       if (e.keyCode === 27) {
@@ -75,21 +79,18 @@ function App() {
   }, []);
 
   React.useEffect(() => {
-    if (is_authorization&&is_refresh_token) {
+    if (is_authorization && is_refresh_token) {
       api.defaults.headers.common["authorization"] =
-      "Bearer " + sessionStorage.getItem("authorization");
+        "Bearer " + sessionStorage.getItem("authorization");
       api.defaults.headers.common["refresh_token"] =
-      "Bearer " + sessionStorage.getItem("refresh_token");
-      
+        "Bearer " + sessionStorage.getItem("refresh_token");
+
       // dispatch(userAction.userAuthcheck(is_authorization,is_refresh_token));
     }
   }, []);
 
-
-
   return (
     <AppBody>
-      
       <MainNavi
         ModalOpen={ModalOpen}
         SetModalOpen={SetModalOpen}
@@ -142,7 +143,7 @@ function App() {
                     />
                   </div>
                   <BoardBottomArea>
-                    <FaPenSquare color="#fff" size={50} onClick={GoToMake}/>
+                    <FaPenSquare color="#fff" size={50} onClick={GoToMake} />
                     <RiDeleteBin6Fill
                       color="#fff"
                       size={50}
@@ -172,7 +173,13 @@ function App() {
                 </div>
               ) : ModalRequiredName == "makepost" ? (
                 <div className="modal-content-makepost">
-                  <MakePost selectBoardData={selectBoardData} />
+                  <MakePost
+                    selectBoardData={selectBoardData}
+                    SetModalOpen={SetModalOpen}
+                    SwitchCreateUpdate={SwitchCreateUpdate}
+                    SetSwitchCreateUpdate={SetSwitchCreateUpdate}
+                    
+                  />
                 </div>
               ) : ModalRequiredName == "detail" ? (
                 <div className="modal-content-detail">

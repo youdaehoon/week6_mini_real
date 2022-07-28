@@ -10,30 +10,17 @@ function LoadBoard() {
     const UploadBoardAX = await apiJson
     .get("posts?size=12&page=0")
     .then(function (response) {
-      console.log(response, "에러안남!!!!!");
-  
+      console.log(response.data, "에러안남!!!!!");
+      dispatch(boardSliceAction.loadboard( 
+        response.data
+        ))
 
     })
     .catch(function (error) {
       console.log("에러났음.", error);
     });
 
-    // dispatch(boardSliceAction.loadboard( [
-    //   {
-    //     id: "hgfdhcscweew2",
-    //     writeDate: "2022-07-22 18:55:28",
-    //     contents:
-    //     "이거는 엄청길어지면어떻게될지 테스트가 하고싶으신가봐요이거는 엄청길어지면어떻게될지 테스트가 하고싶으신가봐요이거는 엄청길어지면어떻게될지 테스트가 하고싶으신가봐요이거는 엄청길어지면어떻게될지 테스트가 하고싶으신가봐요이거는 엄청길어지면어떻게될지 테스트가 하고싶으신가봐요이거는 엄청길어지면어떻게될지 테스트가 하고싶으신가봐요이거는 엄청길어지면어떻게될지 테스트가 하고싶으신가봐요이거는 엄청길어지면어떻게될지 테스트가 하고싶으신가봐요이거는 엄청길어지면어떻게될지 테스트가 하고싶으신가봐요",
-    //     writer:{
-    //     nickname: "작성자 닉네임",
-    //     username: "작성자 아이디",
-    //     profile: "작성자 프로필 사진"
-    //     },
-    //     uploadImageUrl: gamsung_04,
-    //     Lat: "35.8260138539907",
-    //     Lng: "128.61587781119",
-    //     },]
-    //   ))
+
 
 
 
@@ -62,7 +49,7 @@ function DeleteBoard(auth, boardData) {
       },
     });
     const DeleteBoardAX = await apiDelete
-      .delete('posts/2', boardData)
+      .delete(`posts/${boardData.id}`, boardData)
       .then(function (response) {
         console.log(response, "에러안남!!!!!");
       })
@@ -95,18 +82,9 @@ function DeleteBoard(auth, boardData) {
 //   }
 // }
 
-function CreateBoard(auth, data) {
+function CreateBoard(auth, data,SetModalOpen) {
   return async (dispatch) => {
-    console.log(
-      "create디스패치 잘됨???~",
-      "1",
-      auth.authorization,
-      "2",
-      auth.refresh_token,
-      "3",
-      data
-    );
-    //   boardData.img
+
 
     const apiImg = axios.create({
       baseURL: "http://13.125.106.21:8080",
@@ -121,25 +99,39 @@ function CreateBoard(auth, data) {
       .post("posts", data)
       .then(function (response) {
         console.log(response, "에러안남!!!!!");
+        SetModalOpen(false)
       })
       .catch(function (error) {
         console.log("에러났음.", error);
       });
 
-    // const new_image=boardData.image.preview
+    
+  };
+}
+function UpdateBoard(auth, data,SetModalOpen,id) {
+  return async (dispatch) => {
 
-    //     const new_data={...boardData,image:new_image};
-    //     console.log(new_data)
-    //     dispatch(boardSliceAction.createboard(new_data));
+    console.log("미들웨어에서 data확인",auth,data,SetModalOpen)
+    const apiImg = axios.create({
+      baseURL: "http://13.125.106.21:8080",
+      headers: {
+        authorization: `Bearer ${auth.authorization}`,
+        refresh_token: `Bearer ${auth.refresh_token}`,
+        "Content-Type": "multipart/form-data",
+      },
+    });
 
-    // const testapi = await api
-    //   .post("user/signup", userData)
-    //   .then(function (response) {
-    //     console.log(response);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
+    const UPdateBoardAXImg = await apiImg
+      .put(`posts/${id}`, data)
+      .then(function (response) {
+        console.log(response, "에러안남!!!!!");
+        SetModalOpen(false)
+      })
+      .catch(function (error) {
+        console.log("에러났음.", error);
+      });
+
+    
   };
 }
 
@@ -147,4 +139,5 @@ export const boardAction = {
   LoadBoard,
   CreateBoard,
   DeleteBoard,
+  UpdateBoard,
 };

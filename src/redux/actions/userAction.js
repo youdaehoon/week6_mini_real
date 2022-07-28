@@ -1,22 +1,8 @@
 import { userSliceAction } from "../reducers/userReducer";
 import api from "../api";
 import apiFormdata from"../apiFormdata";
-import axios from "axios";
 
-// function userSignUp(userData) {
-//   return async (dispatch) => {
-//     console.log("미들웨어에서잉~", userData);
 
-//     const testapi11 = await api
-//       .post("user/signup", userData)
-//       .then(function (response) {
-
-//       })
-//       .catch(function (error) {
-//         console.log(error);
-//       });
-//   };
-// }
 
 function userAuthcheck(is_authorization,is_refresh_token) {
 
@@ -25,17 +11,6 @@ function userAuthcheck(is_authorization,is_refresh_token) {
 function userSignUp(formData) {
   return async (dispatch) => { 
     console.log("미들웨어에서잉~", formData);
-
-    const headers = {
-        'Content-Type': 'multipart/form-data',
-    }
-
-    // const apiSignUp = axios.create({
-    //   baseURL: "http://13.125.106.21:8080",
-    //   headers: {
-    //     "Content-Type": "multipart/form-data",
-    //   },
-    // });
 
     const SignUpAX = await apiFormdata
       .post("user/signup", formData)
@@ -48,23 +23,12 @@ function userSignUp(formData) {
   };
 }
 
-// const apiImg = axios.create({
-//     baseURL: "http://13.125.106.21:8080",
-//     headers: { "authorization": `Bearer ${auth.authorization}`,
-//     "refresh_token":`Bearer ${auth.refresh_token}` ,
-//     "Content-Type": 'multipart/form-data'
-//   },
-//   });
 
-//   const CreateBoardAXImg = await apiImg
-//   .post("posts",data)
-//   .then(function (response) {
-//     console.log(response,"에러안남!!!!!");
 
 function userLogin(userData) {
   return async (dispatch) => {
     console.log("미들웨어에서 로그인", userData);
-
+    
     await api
       .post("login", userData)
       .then(function (response) {
@@ -93,45 +57,27 @@ function userLogin(userData) {
 function userLogout(auth) {
   return async (dispatch) => {
     console.log("미들웨어에서 받는것!", auth);
-    // const apiLogout = axios.create({
-    //   baseURL: "http://13.125.106.21:8080",
-    //   headers: { "authorization": `Bearer ${auth.authorization}`,
-    //   "refresh_token":`Bearer ${auth.refresh_token}` },
-    // });
 
+    
     const LogoutAX = await api
       .post("logout")
       .then(function (response) {
-        console.log(response, "에러안남!!!!!");
+        console.log(response, "로그아웃이 완료되었습니다.!");
+        dispatch(userSliceAction.emptyuser())
       })
       .catch(function (error) {
-        console.log("에러났음.", error);
+        console.log("로그아웃에 실패하였습니다!.", error);
       });
 
     sessionStorage.clear();
   };
 }
 
-function findPassword() {
-  return async (dispatch) => {};
-}
 
-// function userSignUp(UserData) {
-//     return async (dispatch) => {
-//       const user_doc = await addDoc(collection(db, "users"), {
-//         user_id: UserData.user_id,
-//         name: UserData.user_name,
-//         user_uid: UserData.uid,
-//         user_profile: null,
-//       });
-//       dispatch(userSliceAction.LoginUpdate(UserData));
-//     };
-//   }
 
 export const userAction = {
   userSignUp,
   userLogin,
   userLogout,
-  findPassword,
   userAuthcheck,
 };
