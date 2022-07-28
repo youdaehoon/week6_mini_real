@@ -1,15 +1,9 @@
 import { userSliceAction } from "../reducers/userReducer";
 import api from "../api";
-import apiFormdata from"../apiFormdata";
-
-
-
-function userAuthcheck(is_authorization,is_refresh_token) {
-
-}
+import apiFormdata from "../apiFormdata";
 
 function userSignUp(formData) {
-  return async (dispatch) => { 
+  return async (dispatch) => {
     console.log("미들웨어에서잉~", formData);
 
     const SignUpAX = await apiFormdata
@@ -23,12 +17,10 @@ function userSignUp(formData) {
   };
 }
 
-
-
 function userLogin(userData) {
   return async (dispatch) => {
     console.log("미들웨어에서 로그인", userData);
-    
+
     await api
       .post("login", userData)
       .then(function (response) {
@@ -46,7 +38,16 @@ function userLogin(userData) {
           "refresh_token",
           response.data.tokenBox.refresh_token
         );
-        dispatch(userSliceAction.recodeUser({...response.data.userInfoDto,username:userData.username}))
+        console.log(response)
+        sessionStorageLogin.setItem("username", userData.username);
+        sessionStorageLogin.setItem("nickname", response.data.userInfoDto.nickname);
+        sessionStorageLogin.setItem("profile", response.data.userInfoDto.profile);
+        dispatch(
+          userSliceAction.recodeUser({
+            ...response.data.userInfoDto,
+            username: userData.username,
+          })
+        );
         console.log("api에서 확인!!!", response.data.tokenBox);
       })
       .catch(function (error) {
@@ -58,14 +59,13 @@ function userLogout(auth) {
   return async (dispatch) => {
     console.log("미들웨어에서 받는것!", auth);
 
-    
     const LogoutAX = await api
       .post("logout")
       .then(function (response) {
         console.log(response, "로그아웃이 완료되었습니다.!");
         api.defaults.headers.common["authorization"] = "";
         api.defaults.headers.common["refresh_token"] = "";
-        dispatch(userSliceAction.emptyuser())
+        dispatch(userSliceAction.emptyuser());
       })
       .catch(function (error) {
         console.log("로그아웃에 실패하였습니다!.", error);
@@ -75,11 +75,8 @@ function userLogout(auth) {
   };
 }
 
-
-
 export const userAction = {
   userSignUp,
   userLogin,
   userLogout,
-  userAuthcheck,
 };

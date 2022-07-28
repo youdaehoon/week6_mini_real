@@ -49,6 +49,8 @@ const KakaoMapWrap = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border: 1px solid #0c8ce9;
+  border-radius: 10px;
 `;
 const KakaoMapSearchWarp = styled.div`
   display: flex;

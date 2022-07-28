@@ -5,10 +5,10 @@ import KakaoMapForDetail from "../components/KakaoMapForDetail";
 import CommentShowBox from "../components/CommentShowBox";
 import { commentAction } from "../redux/actions/commentAction";
 
-const Detail = ({ selectBoardData }) => {
+const Detail = ({ selectBoardData, is_login }) => {
   console.log(selectBoardData);
   const dispatch = useDispatch();
-  const selectPosition = { La: selectBoardData.Lng, Ma: selectBoardData.Lat };
+  const selectPosition = { La: selectBoardData.lng, Ma: selectBoardData.lat };
   const [commentBt, setCommentBt] = useState(false);
   const commentInputRef = useRef();
   const boardImg = selectBoardData.uploadImageUrl;
@@ -58,16 +58,18 @@ const Detail = ({ selectBoardData }) => {
               </DetailWriterInfo>
               <DetailDateZone>{selectBoardData.writeDate}</DetailDateZone>
             </WriterInfoZone>
+            {is_login?(
             <CommentsInputArea>
-              <CommentsInput
-                ref={commentInputRef}
-                onChange={(e) => btState()}
-                placeholder="댓글 달기..."
-              />
-              <CommentsButton className={commentBt ? "active" : "unactive"} onClick={(e)=>{PostCommentInDetail(e,selectBoardData.id)}}>
-                게시
-              </CommentsButton>
-            </CommentsInputArea>
+            <CommentsInput
+              ref={commentInputRef}
+              onChange={(e) => btState()}
+              placeholder="댓글 달기..."
+            />
+            <CommentsButton className={commentBt ? "active" : "unactive"} onClick={(e)=>{PostCommentInDetail(e,selectBoardData.id)}}>
+              게시
+            </CommentsButton>
+          </CommentsInputArea>
+            ):(<></>)}
             <CommentShowBox postId={selectBoardData.id}/>
           </CommentsBox>
         </CommentsArea>
@@ -129,6 +131,7 @@ const WriterInfoZone = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-bottom: 0.5rem;
 
   width: 100%;
   height: 60px;
