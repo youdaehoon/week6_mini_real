@@ -90,9 +90,12 @@ function App() {
         "Bearer " + sessionStorage.getItem("authorization");
       api.defaults.headers.common["refresh_token"] =
         "Bearer " + sessionStorage.getItem("refresh_token");
+        setIsLogin(true)
 
       // dispatch(userAction.userAuthcheck(is_authorization,is_refresh_token));
-    }
+    }else{
+      setIsLogin(false)
+     }
   }, []);
 
   return (

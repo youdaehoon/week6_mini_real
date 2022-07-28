@@ -25,7 +25,7 @@ function userSignUp(formData) {
 
 
 
-function userLogin(userData) {
+function userLogin(userData,SetModalOpen) {
   return async (dispatch) => {
     console.log("미들웨어에서 로그인", userData);
     
@@ -48,6 +48,8 @@ function userLogin(userData) {
         );
         dispatch(userSliceAction.recodeUser({...response.data.userInfoDto,username:userData.username}))
         console.log("api에서 확인!!!", response.data.tokenBox);
+        SetModalOpen(false)
+        
       })
       .catch(function (error) {
         console.log(error);
@@ -66,6 +68,7 @@ function userLogout(auth) {
         api.defaults.headers.common["authorization"] = "";
         api.defaults.headers.common["refresh_token"] = "";
         dispatch(userSliceAction.emptyuser())
+        
       })
       .catch(function (error) {
         console.log("로그아웃에 실패하였습니다!.", error);

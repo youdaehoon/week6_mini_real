@@ -5,7 +5,7 @@ import instgramletter from "../image/InstagramLetter.png";
 import { useDispatch } from "react-redux";
 import { userAction } from "../redux/actions/userAction";
 
-const Login = () => {
+const Login = ({SetModalOpen}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userIdRef = useRef();
@@ -41,7 +41,7 @@ const Login = () => {
     userPasswordIdRef.current.value="";
     console.log(userDataForLogin);
     try{
-      dispatch(userAction.userLogin(userDataForLogin));
+      dispatch(userAction.userLogin(userDataForLogin,SetModalOpen));
       
     } catch(e) {
 
