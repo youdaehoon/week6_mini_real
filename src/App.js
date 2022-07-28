@@ -20,6 +20,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { boardAction } from "./redux/actions/boardAction";
 import ClipLoader from "react-spinners/ClipLoader";
 import { userAction } from "./redux/actions/userAction";
+import { userSliceAction } from "./redux/reducers/userReducer";
 
 function App() {
   const [ModalOpen, SetModalOpen] = React.useState(false);
@@ -90,13 +91,19 @@ function App() {
         "Bearer " + sessionStorage.getItem("authorization");
       api.defaults.headers.common["refresh_token"] =
         "Bearer " + sessionStorage.getItem("refresh_token");
-        setIsLogin(true)
-
-      // dispatch(userAction.userAuthcheck(is_authorization,is_refresh_token));
-    }else{
-      setIsLogin(false)
-     }
+      dispatch(
+        userSliceAction.recodeUser({
+          username: sessionStorage.getItem("username"),
+          nickname: sessionStorage.getItem("nickname"),
+          profile: sessionStorage.getItem("profile"),
+        })
+      );
+      setIsLogin(true);
+    }
   }, []);
+
+  // console.log(userdata);
+  // console.log(selectBoardData.writer.username);
 
   return (
     <AppBody>
@@ -153,16 +160,20 @@ function App() {
                       }}
                     />
                   </div>
-                  <BoardBottomArea>
-                    <FaPenSquare color="#fff" size={50} onClick={GoToMake} />
-                    <RiDeleteBin6Fill
-                      color="#fff"
-                      size={50}
-                      onClick={(e) => {
-                        DeleteBoard(e, Cardkey);
-                      }}
-                    />
-                  </BoardBottomArea>
+                  {userdata.username == selectBoardData.writer.username ? (
+                    <BoardBottomArea>
+                      <FaPenSquare color="#fff" size={50} onClick={GoToMake} />
+                      <RiDeleteBin6Fill
+                        color="#fff"
+                        size={50}
+                        onClick={(e) => {
+                          DeleteBoard(e, Cardkey);
+                        }}
+                      />
+                    </BoardBottomArea>
+                  ) : (
+                    <> </>
+                  )}
                 </BoardArea>
               ) : (
                 <></>
@@ -194,7 +205,10 @@ function App() {
                 </div>
               ) : ModalRequiredName == "detail" ? (
                 <div className="modal-content-detail">
-                  <Detail selectBoardData={selectBoardData} />
+                  <Detail
+                    is_login={is_login}
+                    selectBoardData={selectBoardData}
+                  />
                 </div>
               ) : (
                 <div className="modal-content">

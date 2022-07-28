@@ -112,7 +112,7 @@ const MakePostImg = ({ selectBoardData,files, setFiles, SetMakeProcess ,SetModal
               <InputText
                 
                 placeholder="문구입력.."
-                style={{ height: "340px", marginTop: "10px", width: "100%" }}
+                style={{ height: "90%", marginTop: "10px", width: "100%" }}
                 ref={Refcontents}
               />
            
@@ -146,9 +146,10 @@ const WrapMakeImgHead = styled.div`
 
 `;
 const WrapText = styled.div`
-  width: 100%;
+  width: 30%;
   height: 600px;
   padding-top: 20px;
+  min-width: 300px;
   /* border-top: 1px solid black; */
   /* border-bottom: 1px solid black; */
   margin-left: 0.5rem;

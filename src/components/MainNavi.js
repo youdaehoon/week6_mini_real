@@ -35,7 +35,7 @@ const MainNavi = ({
   return (
     <NaviFrame>
       <NaviWrap>
-        <a>
+        <a href="/">
           <h1>instagram</h1>
         </a>
         <span>
@@ -49,7 +49,7 @@ const MainNavi = ({
               ? !is_login && <HiKey size={30} />
               : !is_login && <HiOutlineKey size={30} />}
           </div>
-          {true && (
+          {is_login && (
             <div >
               <div
                 style={{
