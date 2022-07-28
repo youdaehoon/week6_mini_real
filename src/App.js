@@ -1,7 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 // package
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Routes, Route } from "react-router-dom";
 // page, components
@@ -29,14 +29,15 @@ function App() {
   const [selectBoardData, setSelectBoardData] = React.useState({});
   const [SwitchCreateUpdate, SetSwitchCreateUpdate] = React.useState("create");
 
+  useEffect(() => {
+    console.log("이걸확인해야함", SwitchCreateUpdate);
+  }, [SwitchCreateUpdate]);
   const is_authorization = sessionStorage.getItem("authorization")
     ? true
     : false;
   const is_refresh_token = sessionStorage.getItem("refresh_token")
     ? true
     : false;
-
-
 
   const boardList = useSelector((state) => state.boardReducer.board);
   const userdata = useSelector((state) => state.userReducer.user);
@@ -66,24 +67,22 @@ function App() {
 
   const GoToMake = () => {
     SetModalRequiredName("makepost");
+    SetSwitchCreateUpdate("update");
   };
 
-  useEffect(() => {
-    SetSwitchCreateUpdate("update");
-  });
+ 
 
   React.useEffect(() => {
-
     const escKeyModalClose = (e) => {
       if (e.keyCode === 27) {
         SetModalOpen(false);
+        SetSwitchCreateUpdate("make");
       }
     };
     window.addEventListener("keydown", escKeyModalClose);
 
     return () => window.removeEventListener("keydown", escKeyModalClose);
   }, []);
-
 
   React.useEffect(() => {
     if (is_authorization && is_refresh_token) {
@@ -132,6 +131,7 @@ function App() {
                     color="#fff"
                     onClick={() => {
                       SetModalOpen(false);
+                      SetSwitchCreateUpdate("make");
                     }}
                   />
                 </div>
@@ -146,6 +146,7 @@ function App() {
                       color="#fff"
                       onClick={() => {
                         SetModalOpen(false);
+                        SetSwitchCreateUpdate("make");
                       }}
                     />
                   </div>
@@ -174,6 +175,7 @@ function App() {
                       size={35}
                       onClick={() => {
                         SetModalOpen(false);
+                        SetSwitchCreateUpdate("make");
                       }}
                     />
                   </div>
@@ -185,7 +187,6 @@ function App() {
                     SetModalOpen={SetModalOpen}
                     SwitchCreateUpdate={SwitchCreateUpdate}
                     SetSwitchCreateUpdate={SetSwitchCreateUpdate}
-                    
                   />
                 </div>
               ) : ModalRequiredName == "detail" ? (
@@ -200,6 +201,7 @@ function App() {
                       size={35}
                       onClick={() => {
                         SetModalOpen(false);
+                        SetSwitchCreateUpdate("make");
                       }}
                     />
                   </div>
