@@ -58,7 +58,6 @@ function DeleteBoard(auth, boardData) {
       headers: {
         authorization: `Bearer ${auth.authorization}`,
         refresh_token: `Bearer ${auth.refresh_token}`,
-      
       },
     });
     const DeleteBoardAX = await apiDelete
