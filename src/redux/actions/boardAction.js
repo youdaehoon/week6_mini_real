@@ -19,12 +19,6 @@ function LoadBoard() {
     .catch(function (error) {
       console.log("에러났음.", error);
     });
-
-
-
-
-
-
   };
 }
 
@@ -45,7 +39,6 @@ function DeleteBoard(auth, boardData) {
       headers: {
         authorization: `Bearer ${auth.authorization}`,
         refresh_token: `Bearer ${auth.refresh_token}`,
-      
       },
     });
     const DeleteBoardAX = await apiDelete

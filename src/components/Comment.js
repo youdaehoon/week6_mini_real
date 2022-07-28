@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { commentAction } from "../redux/actions/commentAction";
 
-const Comment = ({ writer, content, createdAt, commentId }) => {
+const Comment = ({ postId, writer, content, createdAt, commentId }) => {
   const dispatch = useDispatch();
   const CommentDelet = async (e, commentId) => {
     e.preventDefault();
@@ -15,7 +15,7 @@ const Comment = ({ writer, content, createdAt, commentId }) => {
         // await dispatch(commentAction.DelComment(commentId));
         // dispatch(commentAction.GetCommentsList());
         // dispatch(commentAction.PostComment(postId,content));
-        await dispatch(commentAction.GetCommentsList("1"));
+        await dispatch(commentAction.GetCommentsList(postId));
       } catch (e) {
         console.log(e);
         window.alert("댓글 삭제 실패하셨습니다.");

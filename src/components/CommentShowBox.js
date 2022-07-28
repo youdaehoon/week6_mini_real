@@ -14,7 +14,7 @@ const CommentShowBox = ({ postId }) => {
   console.log(comments);
 
   React.useEffect(() => {
-    dispatch(commentAction.GetCommentsList("1"));
+    dispatch(commentAction.GetCommentsList(postId));
     //dispatch(commentAction.GetCommentsList(postId));
   }, []);
 
@@ -36,6 +36,7 @@ const CommentShowBox = ({ postId }) => {
           comments.map((commmentInfo, index) => (
             <Comment
               key={index}
+              postId={postId}
               writer={commmentInfo.writer}
               content={commmentInfo.content}
               createdAt={commmentInfo.createdAt}

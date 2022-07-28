@@ -6,6 +6,7 @@ import CommentShowBox from "../components/CommentShowBox";
 import { commentAction } from "../redux/actions/commentAction";
 
 const Detail = ({ selectBoardData }) => {
+  console.log(selectBoardData);
   const dispatch = useDispatch();
   const selectPosition = { La: selectBoardData.Lng, Ma: selectBoardData.Lat };
   const [commentBt, setCommentBt] = useState(false);
@@ -25,10 +26,10 @@ const Detail = ({ selectBoardData }) => {
     if(commentInput!=""){
       var content = {"content": commentInput}
       try{
-        await dispatch(commentAction.PostComment("1",content));
+        await dispatch(commentAction.PostComment(postId,content));
         commentInputRef.current.value = "";
         // dispatch(commentAction.PostComment(postId,content));
-        await dispatch(commentAction.GetCommentsList("1"));
+        await dispatch(commentAction.GetCommentsList(postId));
       } catch(e) {
         console.log(e);
         window.alert("댓글 작성을 실패하셨습니다.");
@@ -287,7 +288,9 @@ const DetailWriterInfo = styled.div`
 const DetailContextField = styled.div`
   width: 100%;
   height: 100%;
+  max-height: 500px;
   margin: 0;
+  overflow-y: auto;
   background: white;
   display: flex;
   flex-direction: column;
@@ -301,6 +304,7 @@ const DetailContextField = styled.div`
 
 const DetailContextArea = styled.div`
   width: 60%;
+  height: 100%;
   text-align: center;
   white-space: pre-line;
   word-break: keep-all;

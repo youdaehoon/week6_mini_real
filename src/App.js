@@ -1,7 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 // package
-import React from "react";
+import React, {useEffect} from "react";
 import styled from "styled-components";
 import { Routes, Route } from "react-router-dom";
 // page, components
@@ -28,6 +28,7 @@ function App() {
   const [Cardkey, SetKey] = React.useState();
   const [selectBoardData, setSelectBoardData] = React.useState({});
   const [SwitchCreateUpdate, SetSwitchCreateUpdate] = React.useState("create");
+
   const is_authorization = sessionStorage.getItem("authorization")
     ? true
     : false;
@@ -35,13 +36,16 @@ function App() {
     ? true
     : false;
 
+
+
   const boardList = useSelector((state) => state.boardReducer.board);
   const userdata = useSelector((state) => state.userReducer.user);
-  // console.log("유저네임확인", userdata.username);
+
   const dispatch = useDispatch();
 
   const DeleteBoard = (e, Cardkey) => {
     e.preventDefault();
+
     // console.log("삭제", Cardkey);
     let authorization = sessionStorage.getItem("authorization");
     let refresh_token = sessionStorage.getItem("refresh_token");
@@ -62,11 +66,13 @@ function App() {
 
   const GoToMake = () => {
     SetModalRequiredName("makepost");
-    SetSwitchCreateUpdate("update");
   };
 
+  useEffect(() => {
+    SetSwitchCreateUpdate("update");
+  });
+
   React.useEffect(() => {
-    dispatch(boardAction.LoadBoard());
 
     const escKeyModalClose = (e) => {
       if (e.keyCode === 27) {
@@ -77,6 +83,7 @@ function App() {
 
     return () => window.removeEventListener("keydown", escKeyModalClose);
   }, []);
+
 
   React.useEffect(() => {
     if (is_authorization && is_refresh_token) {

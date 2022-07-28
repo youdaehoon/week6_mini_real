@@ -63,6 +63,8 @@ function userLogout(auth) {
       .post("logout")
       .then(function (response) {
         console.log(response, "로그아웃이 완료되었습니다.!");
+        api.defaults.headers.common["authorization"] = "";
+        api.defaults.headers.common["refresh_token"] = "";
         dispatch(userSliceAction.emptyuser())
       })
       .catch(function (error) {
